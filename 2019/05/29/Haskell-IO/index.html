@@ -141,13 +141,9 @@
     </div>
     <div class="post-content ">
         <blockquote>
-<blockquote>
-<blockquote>
-<p>本文翻译自维基百科(<a href="https://wiki.haskell.org/IO_inside),想要看原文的可以去那里查看" target="_blank" rel="noopener">https://wiki.haskell.org/IO_inside),想要看原文的可以去那里查看</a>.</p>
+<p>本文翻译自<a href="https://wiki.haskell.org/IO_inside" target="_blank" rel="noopener">维基百科</a>,想要看原文的可以去那里查看.</p>
 </blockquote>
-</blockquote>
-</blockquote>
-<h3 id="IO内部"><a href="#IO内部" class="headerlink" title="IO内部"></a>IO内部</h3><p>Haskell I/O一直是新Haskellers混乱和惊喜的根源。虽然Haskell中的简单I/O代码看起来非常类似于命令式语言中的等价物，但尝试编写更复杂的代码通常会导致完全混乱。这是因为Haskell I/O内部真的非常不同。Haskell是一种纯语言，甚至I/O系统也无法打破这种纯度。<br>以下正文试图解释Haskell I/O实现的细节，这个解释应该可以帮助你最终掌握所有的智能I/O技巧。此外，我已经添加了您可能遇到的各种陷阱的详细说明。阅读本文后，您将获得“Haskell I/O大师”学位，该学位同等于计算机科学和数学学士学位。<br>如果您是Haskell I/O新手，您可能更愿意从阅读IO简介开始(<a href="https://wiki.haskell.org/Introduction_to_IO" target="_blank" rel="noopener">https://wiki.haskell.org/Introduction_to_IO</a>)</p>
+<h3 id="IO内部"><a href="#IO内部" class="headerlink" title="IO内部"></a>IO内部</h3><p>Haskell I/O一直是新Haskellers混乱和惊喜的根源。虽然Haskell中的简单I/O代码看起来非常类似于命令式语言中的等价物，但尝试编写更复杂的代码通常会导致完全混乱。这是因为Haskell I/O内部真的非常不同。Haskell是一种纯语言，甚至I/O系统也无法打破这种纯度。<br>以下正文试图解释Haskell I/O实现的细节，这个解释应该可以帮助你最终掌握所有的智能I/O技巧。此外，我已经添加了您可能遇到的各种陷阱的详细说明。阅读本文后，您将获得“Haskell I/O大师”学位，该学位同等于计算机科学和数学学士学位。<br>如果您是Haskell I/O新手，您可能更愿意从阅读<a href="https://wiki.haskell.org/Introduction_to_IO" target="_blank" rel="noopener">IO简介</a>开始</p>
 <h4 id="Haskell是一门纯语言"><a href="#Haskell是一门纯语言" class="headerlink" title="Haskell是一门纯语言"></a>Haskell是一门纯语言</h4><p>Haskell是一门纯语言，这意味着任何函数调用的结果完全由其参数决定，像C中的rand()或getchar()这样的伪函数在每次调用时都会返回不同的结果，这些函数根本不可能在Haskell中编写。而且，Haskell函数不能有副作用，这意味着这些函数不能对”真实世界”做任何更改，例如：更改文件/写入文件/打印/通过网络发送数据等。这两个限制一起意味着任何函数调用都可以被具有相同参数的先前调用的结果替换，并且语言保证所有这些重新排列不会改变程序结果!</p>
 <p>让我们将其与C语言进行比较: 优化C编译器尝试猜测哪些函数没有副作用，并且不依赖于可变全局变量。如果这个猜测错了，优化可以改变程序的语义！为了避免这种灾难，C优化器在猜测中是保守的，或者需要程序员提供有关函数纯度的提示。</p>
 <p>与优化的C编译器相比，Haskell编译器是一组纯数学转换。这导致更好的高级优化设施。此外，纯数学计算可以更容易地分成几个可以并行执行的线程，这在多核CPU的这些日子里越来越重要。最后，纯计算不易出错且更容易验证，这增加了Haskell的稳健性和使用Haskell的程序开发速度。Haskell纯度允许编译器只调用其结果确实需要计算高级函数的最终值的函数(例如: main) - 这称为惰性求值。纯粹的数学计算是件好事，但是I/O动作怎么样？函数如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">putStrLn &quot;Press any key to begin formatting&quot;</span><br></pre></td></tr></table></figure></p>
