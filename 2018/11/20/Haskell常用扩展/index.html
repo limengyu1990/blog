@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Haskell常用扩展 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#BinaryLiterals"><span class="toc-text">BinaryLiterals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExistentialQuantification"><span class="toc-text">ExistentialQuantification</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FlexibleInstances"><span class="toc-text">FlexibleInstances</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LambdaCase"><span class="toc-text">LambdaCase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScopedTypeVariables"><span class="toc-text">ScopedTypeVariables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OverloadedStrings"><span class="toc-text">OverloadedStrings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TupleSections"><span class="toc-text">TupleSections</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#N-tuples"><span class="toc-text">N-tuples</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mapping"><span class="toc-text">Mapping</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Haskell常用扩展
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-11-20 13:51:09</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#haskell" title="haskell">haskell</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="BinaryLiterals"><a href="#BinaryLiterals" class="headerlink" title="BinaryLiterals"></a>BinaryLiterals</h3><h3 id="ExistentialQuantification"><a href="#ExistentialQuantification" class="headerlink" title="ExistentialQuantification"></a>ExistentialQuantification</h3><h3 id="FlexibleInstances"><a href="#FlexibleInstances" class="headerlink" title="FlexibleInstances"></a>FlexibleInstances</h3><h3 id="LambdaCase"><a href="#LambdaCase" class="headerlink" title="LambdaCase"></a>LambdaCase</h3><p>一个句法扩展，允许你用\case代替\arg - &gt; case arg of.<br>请考虑以下函数定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dayOfTheWeek :: Int -&gt; String</span><br><span class="line">dayOfTheWeek 0 = &quot;Sunday&quot;</span><br><span class="line">dayOfTheWeek 1 = &quot;Monday&quot;</span><br><span class="line">dayOfTheWeek 2 = &quot;Tuesday&quot;</span><br><span class="line">dayOfTheWeek 3 = &quot;Wednesday&quot;</span><br><span class="line">dayOfTheWeek 4 = &quot;Thursday&quot;</span><br><span class="line">dayOfTheWeek 5 = &quot;Friday&quot;</span><br><span class="line">dayOfTheWeek 6 = &quot;Saturday&quot;</span><br></pre></td></tr></table></figure></p>
+<p>如果您想避免重复函数名称，可以这样编写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dayOfTheWeek :: Int -&gt; String</span><br><span class="line">dayOfTheWeek i = case i of</span><br><span class="line">    0 -&gt; &quot;Sunday&quot;</span><br><span class="line">    1 -&gt; &quot;Monday&quot;</span><br><span class="line">    2 -&gt; &quot;Tuesday&quot;</span><br><span class="line">    3 -&gt; &quot;Wednesday&quot;</span><br><span class="line">    4 -&gt; &quot;Thursday&quot;</span><br><span class="line">    5 -&gt; &quot;Friday&quot;</span><br><span class="line">    6 -&gt; &quot;Saturday&quot;</span><br></pre></td></tr></table></figure></p>
+<p>而使用LambdaCase扩展后，您可以将其编写为函数表达式，而无需为参数命名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;-# LANGUAGE LambdaCase #-&#125;</span><br><span class="line"></span><br><span class="line">dayOfTheWeek :: Int -&gt; String</span><br><span class="line">dayOfTheWeek = \case</span><br><span class="line">    0 -&gt; &quot;Sunday&quot;</span><br><span class="line">    1 -&gt; &quot;Monday&quot;</span><br><span class="line">    2 -&gt; &quot;Tuesday&quot;</span><br><span class="line">    3 -&gt; &quot;Wednesday&quot;</span><br><span class="line">    4 -&gt; &quot;Thursday&quot;</span><br><span class="line">    5 -&gt; &quot;Friday&quot;</span><br><span class="line">    6 -&gt; &quot;Saturday&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="ScopedTypeVariables"><a href="#ScopedTypeVariables" class="headerlink" title="ScopedTypeVariables"></a>ScopedTypeVariables</h3><p>ScopedTypeVariables允许您引用声明中的通用量化类型, 更明确一点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Data.Monoid</span><br><span class="line"></span><br><span class="line">foo :: forall a b c. (Monoid b, Monoid c) =&gt; (a, b, c) -&gt; (b, c) -&gt; (a, b, c)</span><br><span class="line">foo (a, b, c) (b&apos;, c&apos;) = (a :: a, b&apos;&apos;, c&apos;&apos;)</span><br><span class="line">    where (b&apos;&apos;, c&apos;&apos;) = (b &lt;&gt; b&apos;, c &lt;&gt; c&apos;) :: (b, c)</span><br></pre></td></tr></table></figure></p>
+<p>重要的是我们可以使用a,b和c来指示编译器在声明的子表达式中(where子句中的元组和最终结果中的第一个a),实际上,ScopedTypeVariables有助于将复杂函数编写为部分之和，允许程序员将类型签名添加到没有具体类型的中间值。</p>
+<h3 id="OverloadedStrings"><a href="#OverloadedStrings" class="headerlink" title="OverloadedStrings"></a>OverloadedStrings</h3><p>通常，Haskell中的字符串文字具有String类型（它是[Char]的类型别名）。虽然这对于较小的教育程序来说不是问题，但实际应用程序通常需要更高效的存储，例如Text或ByteString.<br>OverloadedStrings只是将文字类型更改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;test&quot; :: Data.String.IsString a =&gt; a</span><br></pre></td></tr></table></figure></p>
+<p>允许它们直接传递给期望这种类型的函数。许多库为类似字符串的类型实现了这个接口，包括Data.Text和Data.ByteString ，它们都比[Char]提供了一定的时间和空间优势。</p>
+<p>还有一些像Postgresql简单库那样的OverloadedStrings独特用途，它允许用双引号编写SQL查询，就像普通字符串一样，但提供了对不正确连接的保护，这是一种臭名昭着的SQL注入攻击源。<br>要创建IsString类的实例，您需要实现fromString函数。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data Foo = A | B | Other String deriving Show</span><br><span class="line"></span><br><span class="line">instance IsString Foo where</span><br><span class="line">  fromString &quot;A&quot; = A</span><br><span class="line">  fromString &quot;B&quot; = B</span><br><span class="line">  fromString xs  = Other xs</span><br><span class="line"></span><br><span class="line">tests :: [ Foo ]</span><br><span class="line">tests = [ &quot;A&quot;, &quot;B&quot;, &quot;Testing&quot; ]</span><br></pre></td></tr></table></figure></p>
+<h3 id="TupleSections"><a href="#TupleSections" class="headerlink" title="TupleSections"></a>TupleSections</h3><p>一种语法扩展，允许以节的方式应用元组构造函数(它是一个运算符):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(a,b) == (,) a b</span><br><span class="line"></span><br><span class="line">-- With TupleSections</span><br><span class="line">(a,b) == (,) a b == (a,) b == (,b) a</span><br></pre></td></tr></table></figure></p>
+<h4 id="N-tuples"><a href="#N-tuples" class="headerlink" title="N-tuples"></a>N-tuples</h4><p>它也适用于元素大于2的元组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(,2,) 1 3 == (1,2,3)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Mapping"><a href="#Mapping" class="headerlink" title="Mapping"></a>Mapping</h4><p>这在使用部分的其他地方也很有用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map (,&quot;tag&quot;) [1,2,3] == [(1,&quot;tag&quot;), (2, &quot;tag&quot;), (3, &quot;tag&quot;)]</span><br></pre></td></tr></table></figure></p>
+<p>没有此扩展的上述示例如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map (\a -&gt; (a, &quot;tag&quot;)) [1,2,3]</span><br></pre></td></tr></table></figure></p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://www.baidu.com">baidu</a></span>
+        <span>/</span>
+        
+        <span><a href="https://google.com.hk">Google</a></span>
+        <span>/</span>
+        
+        <span><a href="https://cn.bing.com/translator/">bing</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.codewars.com/">Codewars</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Haskell常用扩展',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>

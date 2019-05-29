@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Dubbo源码阅读之Configurator动态配置 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#官网文档"><span class="toc-text">官网文档</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configurator接口"><span class="toc-text">Configurator接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AbstractConfigurator抽象类"><span class="toc-text">AbstractConfigurator抽象类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AbsentConfigurator实现类"><span class="toc-text">AbsentConfigurator实现类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OverrideConfigurator实现类"><span class="toc-text">OverrideConfigurator实现类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置工厂类"><span class="toc-text">配置工厂类</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Dubbo源码阅读之Configurator动态配置
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-09-05 12:20:32</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#dubbo" title="dubbo">dubbo</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>我们可以编写动态配置来配置服务提供者。这个操作通常在监控中心完成。</p>
+</blockquote>
+<h3 id="官网文档"><a href="#官网文档" class="headerlink" title="官网文档"></a>官网文档</h3><p>我们先看下官网给的文档说明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RegistryFactory registryFactory = ExtensionLoader.getExtensionLoader(RegistryFactory.class).getAdaptiveExtension();</span><br><span class="line"><span class="comment">//获取注册中心</span></span><br><span class="line">Registry registry = registryFactory.getRegistry(URL.valueOf(<span class="string">"zookeeper://10.20.153.10:2181"</span>));</span><br><span class="line"><span class="comment">//注册配置</span></span><br><span class="line">registry.register(URL.valueOf(<span class="string">"override://0.0.0.0/com.foo.BarService?category=configurators&amp;dynamic=false&amp;application=foo&amp;timeout=1000"</span>));</span><br></pre></td></tr></table></figure></p>
+<p>在这个配置override url中：</p>
+<ul>
+<li>override:// 表示数据将会被覆盖，当前dubbo支持override和absent，可以自行扩展，必填参数.</li>
+<li>0.0.0.0 表示该配置对所有IP地址都有效，如果只想覆盖指定的ip数据，则可以替换指定的ip地址，必填参数.</li>
+<li>com.foo.BarService 表示对指定的服务有效，必填参数.</li>
+<li>category=configurators 表示数据是动态配置的，必填参数.</li>
+<li>dynamic=false 表示数据是持久化的，当注册方撤销时，数据仍存储在注册表中。</li>
+<li>enabled=true 启用覆盖策略，可以不传，不传的话，默认值为启用</li>
+<li>application=foo 表示对指定的application有效，可以不传，不传的话则对所有应用程序有效。</li>
+<li>timeout=1000 表示满足上述条件的timeout参数的值将会被1000覆盖，如果想要覆盖其他参数，则直接添加到override URL参数上。</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><ul>
+<li><p>禁用服务提供者(通常用于临时踢掉提供者机器，类似于禁止消费者访问，请使用路由规则)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">override:<span class="comment">//10.20.153.10/com.foo.BarService?category=configurators&amp;dynamic=false&amp;disbaled=true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调整权重:(通常用于容量评估，默认为100)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">override:<span class="comment">//10.20.153.10/com.foo.BarService?category=configurators&amp;dynamic=false&amp;weight=200</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调整负载均衡策略(默认策略为随机)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">override:<span class="comment">//10.20.153.10/com.foo.BarService?category=configurators&amp;dynamic=false&amp;loadbalance=leastactive</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>服务降级:(通常用于暂时屏蔽非关键服务的错误）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">override:<span class="comment">//0.0.0.0/com.foo.BarService?category=configurators&amp;dynamic=false&amp;application=foo&amp;mock=force:return+null</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>现在我们开始看源码实现</p>
+<h3 id="Configurator接口"><a href="#Configurator接口" class="headerlink" title="Configurator接口"></a>Configurator接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Configurator</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;<span class="title">Configurator</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取配置url</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">URL <span class="title">getUrl</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 配置服务提供者url</span></span><br><span class="line"><span class="comment">     * 向url中添加新属性(absent) 或者 覆盖url中的属性(override).(新属性来源于配置url)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> url 旧的提供者url</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  新的提供者url</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">URL <span class="title">configure</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="AbstractConfigurator抽象类"><a href="#AbstractConfigurator抽象类" class="headerlink" title="AbstractConfigurator抽象类"></a>AbstractConfigurator抽象类</h4><p>该抽象类实现了Configurator接口。并实现了configure方法，在该方法中，会判断当前url是否满足覆盖url的条件。如果满足的话，会调用抽象方法doConfigure执行相应的配置。doConfigure抽象方法由两个子类AbsentConfigurator(absent)和OverrideConfigurator(override)进行实现。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractConfigurator</span> <span class="keyword">implements</span> <span class="title">Configurator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 配置url</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> URL configuratorUrl;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AbstractConfigurator</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (url == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"configurator url == null"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.configuratorUrl = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> URL <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> configuratorUrl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> url 旧的url</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> URL <span class="title">configure</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (configuratorUrl == <span class="keyword">null</span> || configuratorUrl.getHost() == <span class="keyword">null</span></span><br><span class="line">                || url == <span class="keyword">null</span> || url.getHost() == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> url;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果override url存在端口，则意味着它是服务提供者地址</span></span><br><span class="line">        <span class="comment">//我们想要这个override url控制一个指定的服务提供者</span></span><br><span class="line">        <span class="comment">//该覆盖url规则可能对特定的服务提供者实例生效，或者对持有这个服务提供者实例的消费者生效</span></span><br><span class="line">        <span class="keyword">if</span> (configuratorUrl.getPort() != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (url.getPort() == configuratorUrl.getPort()) &#123;</span><br><span class="line">                <span class="comment">//服务提供者</span></span><br><span class="line">                <span class="keyword">return</span> configureIfMatch(url.getHost(), url);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//configuratorUrl没有端口，意味着这个url的ip指定的是一个消费者地址或者0.0.0.0</span></span><br><span class="line">            <span class="comment">//如果它是一个消费者ip地址，目的是控制一个特定的消费者实例，</span></span><br><span class="line">            <span class="comment">//它必须在消费者端生效，任何提供者都将会忽略该url</span></span><br><span class="line">            <span class="comment">//如果ip是0.0.0.0，则该配置url对消费者、生产者都生效</span></span><br><span class="line">            <span class="keyword">if</span> (url.getParameter(Constants.SIDE_KEY, Constants.PROVIDER).equals(Constants.CONSUMER)) &#123;</span><br><span class="line">                <span class="comment">//消费者</span></span><br><span class="line">                <span class="comment">//NetUtils.getLocalHost is the ip address consumer registered to registry.</span></span><br><span class="line">                <span class="comment">//NetUtils.getLocalHost是一个注册到注册中心的消费者ip地址</span></span><br><span class="line">                <span class="keyword">return</span> configureIfMatch(NetUtils.getLocalHost(), url);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (url.getParameter(Constants.SIDE_KEY, Constants.CONSUMER).equals(Constants.PROVIDER)) &#123;</span><br><span class="line">                <span class="comment">//生产者</span></span><br><span class="line">                <span class="comment">// take effect on all providers, so address must be 0.0.0.0,</span></span><br><span class="line">                <span class="comment">// otherwise it won't flow to this if branch</span></span><br><span class="line">                <span class="comment">//对所有生产者生效，因此地址必须是0.0.0.0，否则，它将不会进入这个分支</span></span><br><span class="line">                <span class="keyword">return</span> configureIfMatch(Constants.ANYHOST_VALUE, url);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> host 受影响的主机地址</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> url</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> URL <span class="title">configureIfMatch</span><span class="params">(String host, URL url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Constants.ANYHOST_VALUE.equals(configuratorUrl.getHost())</span><br><span class="line">                || host.equals(configuratorUrl.getHost())) &#123;</span><br><span class="line">            <span class="comment">//配置url的host等于0.0.0.0，或者等于host</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//获取配置url的application参数值，如果为空，则获取username属性</span></span><br><span class="line">            String configApplication = configuratorUrl.getParameter(Constants.APPLICATION_KEY,configuratorUrl.getUsername());</span><br><span class="line">            <span class="comment">//获取当前url的application参数值，如果为空，则获取username属性</span></span><br><span class="line">            String currentApplication = url.getParameter(Constants.APPLICATION_KEY, url.getUsername());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (configApplication == <span class="keyword">null</span> || Constants.ANY_VALUE.equals(configApplication)</span><br><span class="line">                    || configApplication.equals(currentApplication)) &#123;</span><br><span class="line">                <span class="comment">//配置url的configApplication = (null || * || currentApplication)</span></span><br><span class="line">                Set&lt;String&gt; condtionKeys = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">                </span><br><span class="line">		<span class="comment">//添加category、check、dynamic、enabled参数</span></span><br><span class="line">                condtionKeys.add(Constants.CATEGORY_KEY);</span><br><span class="line">                condtionKeys.add(Constants.CHECK_KEY);</span><br><span class="line">                condtionKeys.add(Constants.DYNAMIC_KEY);</span><br><span class="line">                condtionKeys.add(Constants.ENABLED_KEY);</span><br><span class="line">                </span><br><span class="line">		<span class="comment">//遍历配置url的参数列表</span></span><br><span class="line">                <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : configuratorUrl.getParameters().entrySet()) &#123;</span><br><span class="line">                    <span class="comment">//参数key</span></span><br><span class="line">                    String key = entry.getKey();</span><br><span class="line">                    <span class="comment">//参数value</span></span><br><span class="line">                    String value = entry.getValue();</span><br><span class="line">                    </span><br><span class="line">		    <span class="keyword">if</span> (key.startsWith(<span class="string">"~"</span>) || Constants.APPLICATION_KEY.equals(key) || Constants.SIDE_KEY.equals(key)) &#123;</span><br><span class="line">			<span class="comment">//参数key = (application || side || ^~ )</span></span><br><span class="line">                        </span><br><span class="line">			<span class="comment">//添加该key参数</span></span><br><span class="line">                        condtionKeys.add(key);</span><br><span class="line">                        </span><br><span class="line">			<span class="keyword">if</span> (value != <span class="keyword">null</span> &amp;&amp; !Constants.ANY_VALUE.equals(value)</span><br><span class="line">                                &amp;&amp; !value.equals(url.getParameter(key.startsWith(<span class="string">"~"</span>) ? key.substring(<span class="number">1</span>) : key))) &#123;</span><br><span class="line">                            <span class="comment">//如果 当前url的key参数的值 != * 并且 不等于 配置url的key参数的值，则直接返回当前url</span></span><br><span class="line">                            <span class="keyword">return</span> url;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//从配置url中移除condtionKeys参数，然后执行配置</span></span><br><span class="line">                <span class="keyword">return</span> doConfigure(url, configuratorUrl.removeParameters(condtionKeys));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1、具有特定主机IP的URL比0.0.0.0的优先级高</span></span><br><span class="line"><span class="comment">     * 2、如果两个url有相同的host，比较priority字段的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Configurator o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ipCompare = getUrl().getHost().compareTo(o.getUrl().getHost());</span><br><span class="line">        <span class="keyword">if</span> (ipCompare == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> i = getUrl().getParameter(Constants.PRIORITY_KEY, <span class="number">0</span>),</span><br><span class="line">                    j = o.getUrl().getParameter(Constants.PRIORITY_KEY, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; j) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> ipCompare;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//抽象方法，执行相应配置策略</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> URL <span class="title">doConfigure</span><span class="params">(URL currentUrl, URL configUrl)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="AbsentConfigurator实现类"><a href="#AbsentConfigurator实现类" class="headerlink" title="AbsentConfigurator实现类"></a>AbsentConfigurator实现类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbsentConfigurator</span> <span class="keyword">extends</span> <span class="title">AbstractConfigurator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AbsentConfigurator</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(url);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@currentUrl</span> 服务提供者url</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@configUrl</span>  配置url</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> URL <span class="title">doConfigure</span><span class="params">(URL currentUrl, URL configUrl)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将配置url中的参数添加到服务提供者url参数中(只会添加不存在的，不会覆盖已存在的参数)</span></span><br><span class="line">        <span class="keyword">return</span> currentUrl.addParametersIfAbsent(configUrl.getParameters());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 只有原服务提供者url中不包含该参数时，才会添加，不会覆盖</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> URL <span class="title">addParametersIfAbsent</span><span class="params">(Map&lt;String, String&gt; parameters)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (parameters == <span class="keyword">null</span> || parameters.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//A-1,B-2,C-2 覆盖url</span></span><br><span class="line">        <span class="comment">//A-2,B-2     原服务提供者url参数</span></span><br><span class="line">        <span class="comment">//A-2,B-2,C-2 新的服务提供者url参数</span></span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;(parameters);</span><br><span class="line">        map.putAll(getParameters());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> URL(protocol, username, password, host, port, path, map);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="OverrideConfigurator实现类"><a href="#OverrideConfigurator实现类" class="headerlink" title="OverrideConfigurator实现类"></a>OverrideConfigurator实现类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverrideConfigurator</span> <span class="keyword">extends</span> <span class="title">AbstractConfigurator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OverrideConfigurator</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(url);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@currentUrl</span> 服务提供者url</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@configUrl</span>  配置url</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> URL <span class="title">doConfigure</span><span class="params">(URL currentUrl, URL configUrl)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将配置url中的参数添加到服务提供者url参数中</span></span><br><span class="line">        <span class="keyword">return</span> currentUrl.addParameters(configUrl.getParameters());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将配置url中的参数添加到服务提供者url参数中(会覆盖)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> URL <span class="title">addParameters</span><span class="params">(Map&lt;String, String&gt; parameters)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (parameters == <span class="keyword">null</span> || parameters.size() == <span class="number">0</span>) &#123;</span><br><span class="line">	    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//参数值没有发生变化</span></span><br><span class="line">	<span class="keyword">boolean</span> hasAndEqual = <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : parameters.entrySet()) &#123;</span><br><span class="line">	    <span class="comment">//获取当前服务提供者url的参数值</span></span><br><span class="line">	    String value = getParameters().get(entry.getKey());</span><br><span class="line">	    <span class="keyword">if</span> (value == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="comment">//当前服务提供者url中的参数值为空，并且覆盖url中的参数值不为空</span></span><br><span class="line">		<span class="keyword">if</span> (entry.getValue() != <span class="keyword">null</span>) &#123;</span><br><span class="line">		    hasAndEqual = <span class="keyword">false</span>;</span><br><span class="line">		    <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">//当前服务提供者url中的参数值不为空，并且和覆盖url中的参数值不相等</span></span><br><span class="line">		<span class="keyword">if</span> (!value.equals(entry.getValue())) &#123;</span><br><span class="line">		    hasAndEqual = <span class="keyword">false</span>;</span><br><span class="line">		    <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (hasAndEqual) &#123;</span><br><span class="line">	    <span class="comment">//没有发生变化。立即返回</span></span><br><span class="line">	    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;(getParameters());</span><br><span class="line">	<span class="comment">//使用配置url中的参数值覆盖当前服务提供者url中的参数值</span></span><br><span class="line">	map.putAll(parameters);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> URL(protocol, username, password, host, port, path, map);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="配置工厂类"><a href="#配置工厂类" class="headerlink" title="配置工厂类"></a>配置工厂类</h4><p>工厂类用来创建相应的配置策略实现类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbsentConfiguratorFactory</span> <span class="keyword">implements</span> <span class="title">ConfiguratorFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Configurator <span class="title">getConfigurator</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AbsentConfigurator(url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverrideConfiguratorFactory</span> <span class="keyword">implements</span> <span class="title">ConfiguratorFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Configurator <span class="title">getConfigurator</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OverrideConfigurator(url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置扩展<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">override=com.alibaba.dubbo.rpc.cluster.configurator.override.OverrideConfiguratorFactory</span><br><span class="line">absent=com.alibaba.dubbo.rpc.cluster.configurator.absent.AbsentConfiguratorFactory</span><br></pre></td></tr></table></figure></p>
+<p>自定义的配置策略实现，可以自行参照AbsentConfigurator类进行实现，本小节就先介绍到这里了。</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://www.baidu.com">baidu</a></span>
+        <span>/</span>
+        
+        <span><a href="https://google.com.hk">Google</a></span>
+        <span>/</span>
+        
+        <span><a href="https://cn.bing.com/translator/">bing</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.codewars.com/">Codewars</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Dubbo源码阅读之Configurator动态配置',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
