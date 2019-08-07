@@ -140,7 +140,10 @@
 </span>
     </div>
     <div class="post-content ">
-        <h3 id="QuickCheck是什么"><a href="#QuickCheck是什么" class="headerlink" title="QuickCheck是什么"></a>QuickCheck是什么</h3><p><code>QuickCheck</code>是一种自动测试<code>Haskell</code>程序的工具。程序员以<code>函数应满足哪些属性</code>的形式提供程序的规范，然后，<code>QuickCheck</code>测试这些属性是否存在于大量随机生成的案例中。<br>规范在<code>Haskell</code>中使用<code>QuickCheck</code>库中定义的组合器来表示。<code>QuickCheck</code>提供组合器来定义属性，观察测试数据的分布，并定义测试数据生成器。</p>
+        <blockquote>
+<p><a href="http://www.cse.chalmers.se/~rjmh/QuickCheck/manual.html" target="_blank" rel="noopener">原文地址</a></p>
+</blockquote>
+<h3 id="QuickCheck是什么"><a href="#QuickCheck是什么" class="headerlink" title="QuickCheck是什么"></a>QuickCheck是什么</h3><p><code>QuickCheck</code>是一种自动测试<code>Haskell</code>程序的工具。程序员以<code>函数应满足哪些属性</code>的形式提供程序的规范，然后，<code>QuickCheck</code>测试这些属性是否存在于大量随机生成的案例中。<br>规范在<code>Haskell</code>中使用<code>QuickCheck</code>库中定义的组合器来表示。<code>QuickCheck</code>提供组合器来定义属性，观察测试数据的分布，并定义测试数据生成器。</p>
 <h3 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h3><p>一个简单的属性定义示例是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prop_RevRev xs = reverse (reverse xs) == xs</span><br><span class="line">  where types = xs::[Int]</span><br></pre></td></tr></table></figure></p>
 <p>要检查该属性，我们需要将此定义加载到<code>hugs</code>中，然后调用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Main&gt; quickCheck prop_RevRev</span><br><span class="line">OK, passed 100 tests.</span><br></pre></td></tr></table></figure></p>
 <p>当属性失败时，<code>QuickCheck</code>会显示出一个反例。例如，如果我们定义:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prop_RevId xs = reverse xs == xs</span><br><span class="line">  where types = xs::[Int]</span><br></pre></td></tr></table></figure></p>
