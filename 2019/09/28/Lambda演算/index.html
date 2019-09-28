@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Lambda演算 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda演算"><span class="toc-text">Lambda演算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SKI-Combinators"><span class="toc-text">SKI Combinators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implementation-實現"><span class="toc-text">Implementation(實現)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Substitution-替換"><span class="toc-text">Substitution(替換)</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Lambda演算
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-09-28 15:17:38</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#lambda" title="lambda">lambda</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>語言是人類理性的工具，而不僅僅是表達思想的媒介，這是公認的真理。 — George Boole</p>
+</blockquote>
+<h2 id="Lambda演算"><a href="#Lambda演算" class="headerlink" title="Lambda演算"></a>Lambda演算</h2><p>所有函數式語言的基礎都是原子的組合概念，即單個變量的函數抽象。<code>Lambda</code>演算非常簡單的由三個項及其所有有效的遞歸組合組成。<br><img src="Lambda演算/img/img01.png" alt=""></p>
+<p>這個緊湊的符號看起來與您在<code>Haskell</code>中使用的符號略有不同，但實際上沒有: <code>λx.xa</code>等同於<code>\x -&gt; x a</code>。這意味著您在上圖中看到的內容將轉換為<code>(\x -&gt; x) (\y -&gt; y)</code>，這等同於<code>id id</code>（當然，其結果為<code>id</code>）。</p>
+<p>這三個術語通常在代碼中通過它們名稱的幾個縮寫來表示:</p>
+<ul>
+<li><strong>Var</strong> - 標識一個變量</li>
+<li><strong>Lam</strong> - 標識一個lambda抽象</li>
+<li><strong>App</strong> - 標識一個應用</li>
+</ul>
+<p>一個lambda項被稱為綁定它的變量。例如這裏的<code>lambda</code>綁定<code>x</code>，在數學中我們通常會這麼寫:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(x) = e</span><br></pre></td></tr></table></figure></p>
+<p>使用lambda演算符號，我們寫為:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = λx.e</span><br></pre></td></tr></table></figure></p>
+<p>換句話説，<code>λx.e</code>是一個接收變量<code>x</code>，返回<code>e</code>的函數.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">e := x      (Var)</span><br><span class="line">     λx.e   (Lam)</span><br><span class="line">     e e    (App)</span><br></pre></td></tr></table></figure></p>
+<p><code>lambda</code>演算通常被稱為函數式編程的”匯編語言”，它的變體和擴展構成了許多函數編譯器中間形式的基礎，這些中間形式適用於<code>Haskell/Ocaml/標準ML</code>等語言。</p>
+<p>我們首先討論的變體稱為<code>無類型的Lambda演算</code>，相比之下，稍後我們將討論<code>類型化的Lambda演算</code>，它是其擴展。</p>
+<p>編寫<code>Lambda</code>表達式時，我們將採用機種語法約定。多個表達式的<code>App</code>執行左關聯:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1 x2 x3 ...Xn = (...((x1x2)x3)...Xn)</span><br></pre></td></tr></table></figure></p>
+<p>按照慣例，<code>App</code>在語法上盡可能向右擴展，括號用於消除歧異。</p>
+<p>在<code>Lambda</code>演算中，每個<code>Lambda</code>抽象綁定一個變量，而<code>lambda</code>抽象的主體可能是另一個<code>lambda</code>抽象，為了方便，我們經常在一個符號上寫多個<code>lambda</code>抽象及其變量。這只是一種語法約定，並不會改變其基本含義。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">λxy.z = λx.λy.z</span><br></pre></td></tr></table></figure></p>
+<p><code>lambda</code>演算的實際實現允許在表示<code>lambda</code>抽象方面有幾個自由度。<br>最值得注意的是為綁定變量選擇標識符。</p>
+<p>如果一個變量包含在同一個變量綁定的<code>lambda</code>表達式中，則稱該變量<code>bound</code>(範圍內的)。相反，如果變量沒有<code>bound</code>(不在範圍內)，則稱它是<code>free</code>(自由)的。<br>有<code>free</code>變量的項稱為<code>open term</code>(開項)，而沒有<code>free</code>變量的項稱為<code>closed</code>(閉項)或<code>combinator</code>(組合子)。</p>
+<p><img src="Lambda演算/img/img02.png" alt=""></p>
+<p><code>e0</code>是一個<code>combinator</code>，而<code>e1</code>不是。<br>在<code>e1</code>中出現的兩次<code>x</code>，都是<code>bound</code>的，第一個<code>y</code>也是<code>bound</code>的，而第二個<code>y</code>是<code>free</code>的。<code>a</code>也是<code>free</code>的。</p>
+<p>多個<code>lambda</code>抽象可以綁定相同的變量名稱，然後，每次出現的變量都由最近的<code>enclosing binder</code>(封閉活頁夾)來<code>bound</code>(限定它的範圍)。<br>例如: 以下表達式中的<code>x</code>變量<code>bound</code>(限定)在內部的<code>lambda</code>上，而<code>y</code>變量<code>bound</code>(限定)在外部<code>lambda</code>上。這種現象稱為<code>name shadowing</code>(名稱陰影)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">λxy.(λxz.x + y)</span><br></pre></td></tr></table></figure></p>
+<h3 id="SKI-Combinators"><a href="#SKI-Combinators" class="headerlink" title="SKI Combinators"></a>SKI Combinators</h3><p>有三個基本的<code>closed</code>表達式，稱為<code>SKI</code>組合器。<br><img src="Lambda演算/img/img03.png" alt=""></p>
+<p>在<code>Haskell</code>中，它們被寫做:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s f g x = f x (g x)</span><br><span class="line">k x y = x</span><br><span class="line">i x = x</span><br></pre></td></tr></table></figure></p>
+<p>相當引人注目的<code>Moses Schonfinkel</code>表明: 所有的<code>closed lambda</code>表達式都可以僅用<code>S</code>和<code>K</code>組合子表示(甚至是<code>I</code>組合子)。<br>例如，我們可以很容易的證明<code>SKK</code>可以簡化為<code>I</code>.<br><img src="Lambda演算/img/img04.png" alt=""></p>
+<p>在测试<code>lambda</code>演算的实现时，这是一个有用的完整性检查。</p>
+<h3 id="Implementation-實現"><a href="#Implementation-實現" class="headerlink" title="Implementation(實現)"></a>Implementation(實現)</h3><p>具有命名綁定的<code>lambda</code>演算語法 最簡單的實現是使用以下定義:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type Name = String</span><br><span class="line"></span><br><span class="line">data Expr</span><br><span class="line">  = Var Name</span><br><span class="line">  | App Expr Expr</span><br><span class="line">  | Lam Name Expr</span><br></pre></td></tr></table></figure></p>
+<p><code>lambda</code>表達式有機種詞法語法選擇，我們將簡單的選擇<code>Haskell</code>約定, 它以反斜槓(<code>\</code>)到具有(<code>-&gt;</code>)的主體表示<code>lambda</code>，并以空格表示<code>App</code>。命名變量只是字母數字字符序列。</p>
+<ul>
+<li><strong><em>Logical notation</em></strong>: <code>𝚌𝚘𝚗𝚜𝚝 = λxy.x</code></li>
+<li><strong><em>Haskell notation</em></strong>: <code>const = \x y -&gt; x</code></li>
+</ul>
+<p>此外，可以添加其他術語，如文字數字或布爾值，這使編寫說明性示例更加容易，對於這些，我們將添加一個<code>Lit</code>構造函數。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data Expr</span><br><span class="line">  = ...</span><br><span class="line">  | Lit Lit</span><br><span class="line"></span><br><span class="line">data Lit</span><br><span class="line">  = LInt Int</span><br><span class="line">  | LBool Bool</span><br></pre></td></tr></table></figure>
+<h3 id="Substitution-替換"><a href="#Substitution-替換" class="headerlink" title="Substitution(替換)"></a>Substitution(替換)</h3>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Lambda演算',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
