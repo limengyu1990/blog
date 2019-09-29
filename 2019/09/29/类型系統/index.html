@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        类型系統 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rules"><span class="toc-text">Rules</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-Safety-类型安全"><span class="toc-text">Type Safety(类型安全)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Types"><span class="toc-text">Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Small-Step-Semantics"><span class="toc-text">Small-Step Semantics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observations"><span class="toc-text">Observations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Simply-Typed-Lambda-Calculus"><span class="toc-text">Simply Typed Lambda Calculus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-Checker"><span class="toc-text">Type Checker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-評估"><span class="toc-text">Evaluation(評估)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observations-1"><span class="toc-text">Observations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Notation-Reference-符号參考"><span class="toc-text">Notation Reference(符号參考)</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        类型系統
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-09-29 15:54:21</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Write-Haskell" title="Write-Haskell">Write-Haskell</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#类型系統" title="类型系統">类型系統</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>[A type system is a] tractable syntactic method for proving the absence of certain program behaviors by classifying phrases according to the kinds of values they compute.  — Benjamin Pierce<br><a href="http://dev.stephendiehl.com/fun/004_type_systems.html" target="_blank" rel="noopener">http://dev.stephendiehl.com/fun/004_type_systems.html</a></p>
+</blockquote>
+<p>类型系统是一种形式语言，我们可以在其中描述和限制编程语言的语义。该主题的研究是一个丰富而开放的研究领域，在设计空间中具有许多自由度。<br>如引言中所述，这是一个非常大的主题，我们将仅涵盖足够多的主题以完成针对我们语言的类型检查器的编写，而不是针对该主题的全面性。<br>每个人都阅读的经典文章是<code>Types and Programming Languages</code>或<code>TAPL</code>，并更深入地讨论了该主题。实际上，我们将以<code>Haskell</code>的风格非常紧密地遵循<code>TAPL</code>。</p>
+<h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>在编程语言语义的研究中，逻辑语句是用特定的逻辑符号编写的。对于我们的目的，<code>property</code>(属性)是关于术语类型的事实。它的写法如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1:𝙽𝚊𝚝</span><br></pre></td></tr></table></figure></p>
+<p>这些事实存在于被称为类型系统的预设话语范围之内，类型系统具有定义，属性，约定以及关于类型和术语的逻辑推论规则。 在给定的系统中，我们将具有关于这些术语的几个属性。 例如:</p>
+<ul>
+<li><strong>(A1)</strong> <code>0</code>是一個自然數</li>
+<li><strong>(A2)</strong> 對於一個自然數<code>n</code>, <code>𝚜𝚞𝚌𝚌(n)</code>也是一個自然數.</li>
+</ul>
+<p>给定自然数的几个属性，我们将使用一种表示法，将其链接在一起以形成有关系统中任意项的证明。<br><img src="img/img01.png" alt=""></p>
+<p>在这种表示法中，该行上方的表达式称为先例，而该行下方的表达式称为结论。没有先例的规则是一个公理。</p>
+<p>变量<code>n</code>是代表任何自然数的元变量，规则实例是这些元变量的值替换。<br><code>derivation</code>(推导)是有限深度规则的树。我们写<code>⊢ C</code>表示存在一个推论，其结论为<code>C</code>，证明<code>C</code>是可证明的。</p>
+<p>例如<code>⊢ 2: 𝙽𝚊𝚝</code>的推导:</p>
+<p><img src="img/img02.png" alt=""></p>
+<p>这些推导中还可能存在类型上下文或被寫作<code>Γ</code>的类型環境。<br>上下文是一系列命名变量映射到关于命名变量的属性。<br>上下文的逗号运算符通过在现有集合的右侧添加新<code>property</code>(属性)来扩展<code>Γ</code>。<br>空上下文用<code>∅</code>表示，是该属性链中不包含任何信息的终端元素。<br>因此，上下文定义为：<br><img src="img/img03.png" alt=""></p>
+<p>这是使用上下文进行加法的类型规则的示例:<br><img src="img/img04.png" alt=""></p>
+<p>在这种情况下，无论上下文如何，<code>property</code>(属性)总是隐含的，我们将缩短表达式。这只是一个词汇约定。<br><img src="img/img05.png" alt=""></p>
+<h3 id="Type-Safety-类型安全"><a href="#Type-Safety-类型安全" class="headerlink" title="Type Safety(类型安全)"></a>Type Safety(类型安全)</h3><p>在使用这种逻辑符号对编程语言的语义进行建模的上下文中，我们经常提到语义规则的两个基本規則。</p>
+<ul>
+<li><strong>Statics(静态)</strong>: 从语言语法中派生出来的语义描述。</li>
+<li><strong>Dynamics(动态)</strong>: 描述由程序产生的值演化的语义描述。</li>
+</ul>
+<p>类型安全性定义为语言的静态和动态之间的等效性。这种等效性由两个与类型和评估语义相关的属性来建模:</p>
+<ul>
+<li><strong>Progress</strong>: 如果表达式的类型正确，则要么是一个值，要么可以通过可用的评估规则对其进行进一步评估。</li>
+<li><strong>Preservation</strong>: 如果表达式<code>e</code>的类型为<code>τ</code>，并且被评估为<code>e&#39;</code>，则<code>e&#39;</code>的类型为<code>τ</code>。</li>
+</ul>
+<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><p><code>type</code>(类型)一词在常见的编程词典中经常被重载。其他语言通常将在动态语言中出现的运行时标签称为类型。一些例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># Python</span><br><span class="line">&gt;&gt;&gt; type(1)</span><br><span class="line">&lt;type &apos;int&apos;&gt;</span><br><span class="line"></span><br><span class="line"># Javascript</span><br><span class="line">&gt; typeof(1)</span><br><span class="line">&apos;number&apos;</span><br><span class="line"></span><br><span class="line"># Ruby</span><br><span class="line">irb(main):001:0&gt; 1.class</span><br><span class="line">=&gt; Fixnum</span><br><span class="line"></span><br><span class="line"># Julia</span><br><span class="line">julia&gt; typeof(1)</span><br><span class="line">Int64</span><br><span class="line"></span><br><span class="line"># Clojure</span><br><span class="line">user=&gt; (type 1)</span><br><span class="line">java.lang.Long</span><br></pre></td></tr></table></figure></p>
+<p>虽然这是一个完全可以接受的替代定义，但我们不会走这条路线，而只会将自己纯粹局限于静态类型的讨论，换句话说，就是在运行时之前已知的类型。根据这组定义，许多所谓的动态类型语言通常仅具有单个静态类型。<br>例如，在<code>Python</code>中，所有静态类型都包含在<code>PyObject</code>中，并且只有在运行时才区分出标签<code>PyTypeObject * ob_type</code>，以产生<code>type</code>的<code>Python</code>概念。<br>同样，这不是我们将要讨论的类型。这些语言之间的权衡是，它们通常具有琐碎的静态语义，而语言的动态性却往往极其复杂。<code>Haskell</code>和<code>OCaml</code>之类的语言是此设计领域的对立面。<br>类型通常会写成<code>τ</code>，并且可以包含许多不同的构造，以至于类型语言可能变得与<code>value</code>(值)级别语言一样丰富。</p>
+<p>现在，我们仅考虑三种简单类型，两种<code>ground</code>类型(<code>𝙽𝚊𝚝</code>和<code>𝙱𝚘𝚘𝚕</code>)和一种<code>arrow</code>(箭头)类型:</p>
+<p><img src="img/img06.png" alt=""></p>
+<p><code>arrow</code>(箭头0类型将是函数表达式的类型，左参数是输入类型，右参数是输出类型。按照惯例，<code>arrow</code>类型将关联到右侧:</p>
+<p><img src="img/img07.png" alt=""></p>
+<p>在我们将实现的所有语言中，编译期间出现的类型都将被擦除。虽然类型可能出现在计算语义中，但是<code>runtime</code>运行时不能在运行时对值的类型进行分派。<br>根据定义，类型仅在编译时存在于该语言的静态语义中。</p>
+<h3 id="Small-Step-Semantics"><a href="#Small-Step-Semantics" class="headerlink" title="Small-Step Semantics"></a>Small-Step Semantics</h3><p>我们真正感兴趣的正式描述是编程语言中的表达式。编程语言语义由该语言的操作语义描述。操作语义可以看作是对抽象机器的描述，抽象机器按照编程语言的抽象术语进行操作，就像虚拟机按照指令进行操作一样。<br>我们使用了一个名为”小步骤语义”的框架，在这个框架中，派生过程展示了如何重写组合以生成一个<code>term</code>(术语)，我们可以通过一系列状态更改将该术语计算为一个值。<br>这是一个框架，通过描述可能的<code>transitions</code>(过渡)类型和<code>terms</code>可能占用的空间，在运行程序之前对程序运行时行为的各个方面进行建模。<br>我们希望<code>term</code>能够过渡并终止为我们语言中的一個值，而不是像我们之前遇到的那样被”卡住”。<br>在构造第一个解析器之前，请回顾一下我们的小计算器语言:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data Expr</span><br><span class="line">  = Tr</span><br><span class="line">  | Fl</span><br><span class="line">  | IsZero Expr</span><br><span class="line">  | Succ Expr</span><br><span class="line">  | Pred Expr</span><br><span class="line">  | If Expr Expr Expr</span><br><span class="line">  | Zero</span><br></pre></td></tr></table></figure></p>
+<p>表达式语法如下:</p>
+<p><img src="img/img08.png" alt=""></p>
+<p>这种小语言的小步评估语义由以下9条规则唯一定义。<br><code>They describe each step that an expression may take during evaluation which may or may not terminate and converge on a value.</code>(它们描述了表达式在评估过程中可能采取的可能终止或收敛于某个值的每个步骤。)</p>
+<p><img src="img/img09.png" alt=""></p>
+<p>我们的解释器的评估逻辑只是通过预定义的评估规则来简化表达式，直到表达式达到标准形式(一個值)或陷入困境为止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nf :: Expr -&gt; Expr</span><br><span class="line">nf t = fromMaybe t (nf &lt;$&gt; eval1 t)</span><br><span class="line"></span><br><span class="line">eval :: Expr -&gt; Maybe Expr</span><br><span class="line">eval t = case isVal (nf t) of</span><br><span class="line">  True  -&gt; Just (nf t)</span><br><span class="line">  False -&gt; Nothing -- term is &quot;stuck&quot;</span><br></pre></td></tr></table></figure></p>
+<p>我们语言中的值定义: 文字数或布尔值.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isVal :: Expr -&gt; Bool</span><br><span class="line">isVal Tr = True</span><br><span class="line">isVal Fl = True</span><br><span class="line">isVal t | isNum t = True</span><br><span class="line">isVal _ = False</span><br></pre></td></tr></table></figure></p>
+<p>以<code>applicative</code>形式编写的评估规则与我们的评估逻辑之间存在明显的对应关系。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- Evaluate a single step.</span><br><span class="line">eval1 :: Expr -&gt; Maybe Expr</span><br><span class="line">eval1 expr = case expr of</span><br><span class="line">  Succ t                    -&gt; Succ &lt;$&gt; (eval1 t)</span><br><span class="line">  Pred Zero                 -&gt; Just Zero</span><br><span class="line">  Pred (Succ t) | isNum t   -&gt; Just t</span><br><span class="line">  Pred t                    -&gt; Pred &lt;$&gt; (eval1 t)</span><br><span class="line">  IsZero Zero               -&gt; Just Tr</span><br><span class="line">  IsZero (Succ t) | isNum t -&gt; Just Fl</span><br><span class="line">  IsZero t                  -&gt; IsZero &lt;$&gt; (eval1 t)</span><br><span class="line">  If Tr  c _                -&gt; Just c</span><br><span class="line">  If Fl _ a                 -&gt; Just a</span><br><span class="line">  If t c a                  -&gt; (\t&apos; -&gt; If t&apos; c a) &lt;$&gt; eval1 t</span><br><span class="line">  _                         -&gt; Nothing</span><br></pre></td></tr></table></figure></p>
+<p>正如我们之前所注意到的，我们可以构造出各种病态的表达方式，这些表达方式会被卡住。<br>查看计算规则，每一个受保护的模式匹配都提示我们，当布尔值用于数字的位置时，哪里可能”出错”，反之亦然。<br>我们希望在编译时静态地强制执行这个不变量，因此我们将引入一个小型类型系统来处理现有术语的两种语法类别。除了箭头类型，我们还添加了自然数的抽象类型和布尔值的类型:<br><img src="img/img10.png" alt=""></p>
+<p>在Haskell中实现为以下数据类型:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data Type</span><br><span class="line">  = TBool</span><br><span class="line">  | TNat</span><br><span class="line">  | TArr Type Type</span><br></pre></td></tr></table></figure></p>
+<p>現在的类型規則:<br><img src="img/img11.png" alt=""></p>
+<p>这些规则限制了所有可能程序的空间。</p>
+<p>这是一个更复杂的展示，但这一制度也有<code>progress</code>(进步)和<code>preservation</code>(保存)。如果一个<code>term</code>(术语)现在是类型良好的，那么它将始终计算为一个值，并且在计算时不会”出错”。<br>为了检查表达式的格式是否良好，我们实现了一段称为类型检查器的逻辑，它确定<code>term</code>是否具有定义良好的类型(根据类型规则)，如果有，则返回该类型，如果没有，则返回失败(除非没有)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">type Check a = Except TypeError a</span><br><span class="line"></span><br><span class="line">data TypeError</span><br><span class="line">  = TypeMismatch Type Type</span><br><span class="line"></span><br><span class="line">check :: Expr -&gt; Either TypeError Type</span><br><span class="line">check = runExcept . typeof</span><br><span class="line">typeof :: Expr -&gt; Check Type</span><br><span class="line">typeof expr = case expr of</span><br><span class="line">  Succ a -&gt; do</span><br><span class="line">    ta &lt;- typeof a</span><br><span class="line">    case ta of</span><br><span class="line">      TNat -&gt; return TNat</span><br><span class="line">      _    -&gt; throwError $ TypeMismatch ta TNat</span><br><span class="line"></span><br><span class="line">  Pred a -&gt; do</span><br><span class="line">    ta &lt;- typeof a</span><br><span class="line">    case ta of</span><br><span class="line">      TNat -&gt; return TNat</span><br><span class="line">      _    -&gt; throwError $ TypeMismatch ta TNat</span><br><span class="line"></span><br><span class="line">  IsZero a -&gt; do</span><br><span class="line">    ta &lt;- typeof a</span><br><span class="line">    case ta of</span><br><span class="line">      TNat -&gt; return TBool</span><br><span class="line">      _    -&gt; throwError $ TypeMismatch ta TNat</span><br><span class="line"></span><br><span class="line">  If a b c -&gt; do</span><br><span class="line">    ta &lt;- typeof a</span><br><span class="line">    tb &lt;- typeof b</span><br><span class="line">    tc &lt;- typeof c</span><br><span class="line">    if ta /= TBool</span><br><span class="line">    then throwError $ TypeMismatch ta TBool</span><br><span class="line">    else</span><br><span class="line">      if tb /= tc</span><br><span class="line">      then throwError $ TypeMismatch ta tb</span><br><span class="line">      else return tc</span><br><span class="line"></span><br><span class="line">  Tr   -&gt; return TBool</span><br><span class="line">  Fl   -&gt; return TBool</span><br><span class="line">  Zero -&gt; return TNat</span><br></pre></td></tr></table></figure></p>
+<h3 id="Observations"><a href="#Observations" class="headerlink" title="Observations"></a>Observations</h3><p>我们以前在無類型语言中遇到的病态术语现在完全没有表达能力，并且在编译时被拒绝。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Arith&gt; succ 0</span><br><span class="line">succ 0 : Nat</span><br><span class="line"></span><br><span class="line">Arith&gt; succ (succ 0)</span><br><span class="line">succ (succ 0) : Nat</span><br><span class="line"></span><br><span class="line">Arith&gt; if false then true else false</span><br><span class="line">false : Bool</span><br><span class="line"></span><br><span class="line">Arith&gt; iszero (pred (succ (succ 0)))</span><br><span class="line">false : Bool</span><br><span class="line"></span><br><span class="line">Arith&gt; pred (succ 0)</span><br><span class="line">0 : Nat</span><br><span class="line"></span><br><span class="line">Arith&gt; iszero false</span><br><span class="line">Type Mismatch: Bool is not Nat</span><br><span class="line"></span><br><span class="line">Arith&gt; if 0 then true else false</span><br><span class="line">Type Mismatch: Nat is not Bool</span><br></pre></td></tr></table></figure></p>
+<p>很好，我们已经使整个非法程序类都无法表示。让我们做更多的事情！</p>
+<h3 id="Simply-Typed-Lambda-Calculus"><a href="#Simply-Typed-Lambda-Calculus" class="headerlink" title="Simply Typed Lambda Calculus"></a>Simply Typed Lambda Calculus</h3><p><code>Church</code>和<code>Curry</code>的<code>simply typed lambda calculus(STLC)</code>是<code>lambda</code>演算的扩展，该演算用类型项注释每个<code>lambda</code>绑定器。<code>STLC</code>是明确类型化的，所有类型都直接出现在绑定器上，要确定范围内任何变量的类型，我们只需要遍历其<code>enclosing</code>包围范围即可。</p>
+<p><img src="img/img12.png" alt=""></p>
+<p>最简单的<code>STLC</code>语言是这三个<code>terms</code>(术语)，但是，我们将添加数字和布尔文字项，以便我们编写有意义的示例。</p>
+<p><img src="img/img13.png" alt=""></p>
+<p>我们可以為我們的語言考虑一种非常简单的类型系统，它由<code>Int</code>和<code>Bool</code>类型以及<code>function</code>类型组成。</p>
+<p><img src="img/img14.png" alt=""></p>
+<h3 id="Type-Checker"><a href="#Type-Checker" class="headerlink" title="Type Checker"></a>Type Checker</h3><p>类型规则非常简单，并且我们再次获得了不错的属性，即每个语法术语与类型规则之间存在一对一的映射。</p>
+<ul>
+<li><strong>T-Var</strong>: 变量只是从上下文中提取。</li>
+<li><strong>T-Lam</strong>: 在推断主体时<code>lambdas</code>将类型化变量引入到环境中。</li>
+<li><strong>T-App</strong>: 将类型为<code>t1 -&gt; t2</code>的<code>lambda</code>应用于类型为<code>t1</code>的值将产生类型为<code>t2</code>的值。</li>
+</ul>
+<p><img src="img/img15.png" alt=""></p>
+<p>评估规则描述了值在其他值之间转换的本质，并确定了程序的运行时行为。</p>
+<p><img src="img/img16.png" alt=""></p>
+<p>由于我们现在有了<code>lambda</code>范围变量的概念，因此我们将在类型规则中实现一个以<code>Γ</code>形式表示的类型环境<code>Env</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">type Env = [(Name, Type)]</span><br><span class="line"></span><br><span class="line">extend :: (Name, Type) -&gt; Env -&gt; Env</span><br><span class="line">extend xt env = xt : env</span><br><span class="line"></span><br><span class="line">inEnv :: (Name, Type) -&gt; Check a -&gt; Check a</span><br><span class="line">inEnv (x,t) = local (extend (x,t))</span><br><span class="line"></span><br><span class="line">lookupVar :: Name -&gt; Check Type</span><br><span class="line">lookupVar x = do</span><br><span class="line">  env &lt;- ask</span><br><span class="line">  case lookup x env of</span><br><span class="line">    Just e  -&gt; return e</span><br><span class="line">    Nothing -&gt; throwError $ NotInScope x</span><br></pre></td></tr></table></figure></p>
+<p>类型检查器将是<code>ExceptT + Reader monad</code>的转换器，其中读取器将保持类型环境。<br>简单类型的<code>lambda</code>演算类型检查器有三种可能的故障模式:</p>
+<ul>
+<li>我们尝试<code>unify</code>(统一)两种不同类型。</li>
+<li>我们尝试对参数应用非函数。</li>
+<li>引用变量不在范围内。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data TypeError</span><br><span class="line">  = Mismatch Type Type</span><br><span class="line">  | NotFunction Type</span><br><span class="line">  | NotInScope Name</span><br><span class="line"></span><br><span class="line">type Check = ExceptT TypeError (Reader Env)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里的语法模式与其等效的类型判断之间存在直接等价关系。通常，情况并非总是如此。类型检查器的实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">check :: Expr -&gt; Check Type</span><br><span class="line">check expr = case expr of</span><br><span class="line"></span><br><span class="line">  Lit (LInt&#123;&#125;) -&gt; return TInt</span><br><span class="line"></span><br><span class="line">  Lit (LBool&#123;&#125;) -&gt; return TBool</span><br><span class="line"></span><br><span class="line">  Lam x t e -&gt; do</span><br><span class="line">    rhs &lt;- inEnv (x,t) (check e)</span><br><span class="line">    return (TArr t rhs)</span><br><span class="line"></span><br><span class="line">  App e1 e2 -&gt; do</span><br><span class="line">    t1 &lt;- check e1</span><br><span class="line">    t2 &lt;- check e2</span><br><span class="line">    case t1 of</span><br><span class="line">       (TArr a b) | a == t2 -&gt; return b</span><br><span class="line">                  | otherwise -&gt; throwError $ Mismatch t2 a</span><br><span class="line">       ty -&gt; throwError $ NotFunction ty</span><br><span class="line"></span><br><span class="line">  Var x -&gt; lookupVar x</span><br></pre></td></tr></table></figure></p>
+<h3 id="Evaluation-評估"><a href="#Evaluation-評估" class="headerlink" title="Evaluation(評估)"></a>Evaluation(評估)</h3><p>从根本上说，类型化<code>lambda</code>演算的计算与非类型化<code>lambda</code>演算没有什么不同，也不可能有什么不同，因为类型的语法添加纯粹是一个静态构造，根据定义，在运行时不能有任何表现。<br>唯一的區別是: 简单类型的<code>lambda</code>演算所接受的程序比非类型的<code>lambda</code>演算所允许的程序少得多(即类型化的更严格)。<br>静态类型化语言的编译的基本思想是，可以通过擦除类型信息但保留类型化程序的评估语义，将类型化程序转换为未类型化程序。如果我们的程序具有类型安全性，则它永远不会在运行时”出错”。<br>当然反过来是不正确的，没有”出错”的程序不一定是类型正确的，尽管我们是否可以证明一个不良类型的程序是否不会出错是一个正交的问题。我们作为静态类型语言实现者的游戏基本上是一种限制：我们會占据所有程序的空间，并在我们愿意考虑的程序讨论范围内划出一条大界限，因为這些是我们唯一可以证明其属性的程序。</p>
+<blockquote>
+<p>类型正确的程序不会出错，但是，并非每个不会出错的程序都类型正确。 展示不会出错但在任何可判定类型系统中类型错误的程序很容易。许多这样的程序很有用，这就是为什么像Erlang和Lisp这样的动态类型语言很受欢迎的原因。 – Simon Peyton Jones</p>
+</blockquote>
+<p>权利总是有代价的。使用一个系统，您可以做更多的事情。在另一种方法中，您可以更多地谈论程序可以做的事情。语言设计学科的基础艺术是平衡两者，以找到正确的功率重量比。</p>
+<h3 id="Observations-1"><a href="#Observations-1" class="headerlink" title="Observations"></a>Observations</h3><p>嘗試一些簡單的例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Stlc&gt; (\x : Int . \y : Int . y) 1 2</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">Stlc&gt; (\x : (Int -&gt; Int). x) (\x : Int . 1) 2</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">Stlc&gt; (\x : Int . x) False</span><br><span class="line">Couldn&apos;t match expected type &apos;Int&apos; with actual type: &apos;Bool&apos;</span><br><span class="line">Stlc&gt; 1 2</span><br><span class="line">Tried to apply to non-function type: Int</span><br><span class="line"></span><br><span class="line">Stlc&gt; (\x : Int . (\y : Int . x))</span><br><span class="line">&lt;&lt;closure&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Notation-Reference-符号參考"><a href="#Notation-Reference-符号參考" class="headerlink" title="Notation Reference(符号參考)"></a>Notation Reference(符号參考)</h3><p>此处介绍的符号将在<code>Haskell</code>编译器的整个构建过程中使用。作为参考，这里列出了我们将使用的每种符号约定。其中一些术语尚未引入。<br><img src="img/img17.png" alt=""></p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '类型系統',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
