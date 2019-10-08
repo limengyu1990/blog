@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        評估模型 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-評估"><span class="toc-text">Evaluation(評估)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#評估模型"><span class="toc-text">評估模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Call-by-value"><span class="toc-text">Call-by-value</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Call-by-name"><span class="toc-text">Call-by-name</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Call-by-need"><span class="toc-text">Call-by-need</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Higher-Order-Abstract-Syntax-HOAS"><span class="toc-text">Higher Order Abstract Syntax (HOAS)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parametric-Higher-Order-Abstract-Syntax-PHOAS"><span class="toc-text">Parametric Higher Order Abstract Syntax (PHOAS)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Embedding-IO"><span class="toc-text">Embedding IO</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        評估模型
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-10-08 15:14:39</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Write-Haskell" title="Write-Haskell">Write-Haskell</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#評估" title="評估">評估</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Evaluation" title="Evaluation">Evaluation</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>類型正確的程序不可以”出錯”.    — Robin Milner<br><a href="http://dev.stephendiehl.com/fun/005_evaluation.html" target="_blank" rel="noopener">http://dev.stephendiehl.com/fun/005_evaluation.html</a></p>
+</blockquote>
+<h3 id="Evaluation-評估"><a href="#Evaluation-評估" class="headerlink" title="Evaluation(評估)"></a>Evaluation(評估)</h3><p>尽管<code>lambda</code>演算极其简单，但评估和实现lambda表达式的约简的方式却多种多样。<br>评估的不同模型是评估策略。</p>
+<p>设计空间中存在兩點分歧:严格和非严格评估。</p>
+<p>如果在约简<code>lambda</code>之前必须先评估<code>lambda</code>表达式的参数，则稱评估策略是严格的。<br>在<code>lambda</code>约简之前不必对参数进行求值的语言是非严格的。</p>
+<p>换句话说，分歧项由<code>bottom</code>值(表示为<code>⊥f</code>)表示相等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f ⊥ ≠ ⊥</span><br></pre></td></tr></table></figure></p>
+<h3 id="評估模型"><a href="#評估模型" class="headerlink" title="評估模型"></a>評估模型</h3><p>有许多不同的模型及其各种混合形式。我们将考虑三种主要模型：</p>
+<ul>
+<li><code>Call-by-value</code>(按值调用): 在進入函数之前先评估参数</li>
+<li><code>Call-by-value</code>(按名称调用): 参数传递时未评估</li>
+<li><code>Call-by-value</code>(按需调用): 参数传递时不计算值，但表达式只評估一次，并在后续引用时共享</li>
+</ul>
+<p>給定一個表達式: <code>fx</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Call-by-value:</span><br><span class="line">    1. 評估 xv</span><br><span class="line">    2. 評估 fλy.e</span><br><span class="line">    3. 評估 [y/v]e</span><br><span class="line"></span><br><span class="line">Call-by-name:</span><br><span class="line">    1. 評估 fλy.e</span><br><span class="line">    2. 評估 [y/x]e</span><br><span class="line"></span><br><span class="line">Call-by-need:</span><br><span class="line">    1. 分配一個thunk vx</span><br><span class="line">    2. 評估 fλy.e</span><br><span class="line">    3. 評估 [y/v]e</span><br></pre></td></tr></table></figure></p>
+<p>在一个模型中具有正常形式的术语在另一个模型中可能具有或不具有正常形式。<br>在<code>call-by-need</code>和<code>call-by-name</code>的评估中，不一定要在進入之前就评估不同的术语，因此在这些模型中具有正常形式的某些<code>term</code>(术语)可能会在<code>call-by-value</code>的情况下发生偏离。</p>
+<h4 id="Call-by-value"><a href="#Call-by-value" class="headerlink" title="Call-by-value"></a>Call-by-value</h4><p><code>Call-by-value</code>是一种非常普遍的评估模型。许多命令式和函数式编程语言都使用此评估策略。</p>
+<p><code>Call-by-value</code>的本质是有两类表达式: <code>terms</code>(术语)和<code>values</code>(值)。</p>
+<p><code>values</code>是<code>lambda</code>表达式和其他形式的普通项，不能进一步简化。函数的所有参数在被绑定到<code>lambda</code>内部之前都将被简化为正常形式，并且只有在参数被简化之后才会进行归纳。</p>
+<p>对于简单的算术表达式，归纳如下进行。请注意，子表达式<code>(2 + 2)</code>在绑定之前是如何评估为正常形式的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(\x. \y. y x) (2 + 2) (\x. x + 1)</span><br><span class="line">=&gt; (\x. \y. y x) 4 (\x. x + 1)</span><br><span class="line">=&gt; (\y. y 4) (\x. x + 1)</span><br><span class="line">=&gt; (\x. x + 1) 4</span><br><span class="line">=&gt; 4 + 1</span><br><span class="line">=&gt; 5</span><br></pre></td></tr></table></figure></p>
+<p>当然，对于应用程序有两个评估规则。</p>
+<p><img src="img/img01.png" alt=""></p>
+<p>对于简单的小的<code>λ</code>演算，按值调用解释器非常简单。<code>lambda</code>演算的运行时评估的一部分涉及创建闭包，即将局部变量保存在作用域内的环境。<br>用我们的小语言来说，<code>reduction</code>(規約)可能会收敛的两个可能的值是<code>VInt</code>和<code>VClosure</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">data Expr</span><br><span class="line">  = Var Int</span><br><span class="line">  | Lam Expr</span><br><span class="line">  | App Expr Expr</span><br><span class="line">  | Lit Int</span><br><span class="line">  | Prim PrimOp Expr Expr</span><br><span class="line">  deriving Show</span><br><span class="line"></span><br><span class="line">data PrimOp = Add | Mul</span><br><span class="line">  deriving Show</span><br><span class="line"></span><br><span class="line">data Value</span><br><span class="line">  = VInt Int</span><br><span class="line">  | VClosure Expr Env</span><br><span class="line">  deriving Show</span><br><span class="line"></span><br><span class="line">type Env = [Value]</span><br><span class="line"></span><br><span class="line">emptyEnv :: Env</span><br><span class="line">emptyEnv = []</span><br></pre></td></tr></table></figure></p>
+<p>评估函数仅将本地作用域和一個<code>term</code>(术语)映射到最终值。每当引用变量时，都会在环境中查找该变量。<br>每当输入<code>lambda</code>时，它将使用闭包的本地作用域扩展环境。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">eval :: Env -&gt; Expr -&gt; Value</span><br><span class="line">eval env term = case term of</span><br><span class="line">  Var n -&gt; env !! n</span><br><span class="line">  Lam a -&gt; VClosure a env</span><br><span class="line">  App a b -&gt;</span><br><span class="line">    let VClosure c env&apos; = eval env a in</span><br><span class="line">    let v = eval env b in</span><br><span class="line">    eval (v : env&apos;) c</span><br><span class="line"></span><br><span class="line">  Lit n -&gt; VInt n</span><br><span class="line">  Prim p a b -&gt; (evalPrim p) (eval env a) (eval env b)</span><br><span class="line"></span><br><span class="line">evalPrim :: PrimOp -&gt; Value -&gt; Value -&gt; Value</span><br><span class="line">evalPrim Add (VInt a) (VInt b) = VInt (a + b)</span><br><span class="line">evalPrim Mul (VInt a) (VInt b) = VInt (a * b)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Call-by-name"><a href="#Call-by-name" class="headerlink" title="Call-by-name"></a>Call-by-name</h4><p>在<code>Call-by-name</code>评估中，將按原样替换<code>lambda</code>表达式的参数，评估仅从左向右进行替换最外面的<code>lambda</code>或归约值。如果不使用替换表达式，则永远不会求值。<br><img src="img/img02.png" alt=""></p>
+<p>例如，我们看过的<code>Call-by-value</code>的相同表达式具有相同的正常形式，但通过不同的归约顺序得出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(\x. \y. y x) (2 + 2) (\x. x + 1)</span><br><span class="line">=&gt; (\y. y (2 + 2)) (\x. x + 1)</span><br><span class="line">=&gt; (\x. x + 1) (2 + 2)</span><br><span class="line">=&gt; (2 + 2) + 1</span><br><span class="line">=&gt; 4 + 1</span><br><span class="line">=&gt; 5</span><br></pre></td></tr></table></figure></p>
+<p>尽管很少有语言使用此模型，但<code>Call-by-name</code>不是严格的。</p>
+<h4 id="Call-by-need"><a href="#Call-by-need" class="headerlink" title="Call-by-need"></a>Call-by-need</h4><p><code>Call-by-need</code>是一种特殊类型的非严格评估，其中未评估的表达式由<code>suspensions</code>或<code>thunks</code>表示，将其传递到未评估的函数中，仅在需要或强制时才对其进行评估。</p>
+<p>当强制使用<code>thunk</code>时，<code>thunk</code>的表示将使用计算值进行更新，并且在进一步引用时不会重新计算。</p>
+<p>未评估的<code>lambda</code>表达式的<code>thunk</code>会在评估时分配，并将所得的计算值放在相同的引用中，以便后续计算共享结果。如果不再需要该参数，则永远不会对其进行计算，这将导致在空间和时间之间进行权衡。</p>
+<p>由于子表达式的评估不遵循任何预先定义的顺序，因此带有副作用的任何不纯函数的评估都将以不确定的顺序进行。因此，仅在纯函數设置中才能有效实现<code>Call-by-need</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">type Thunk = () -&gt; IO Value</span><br><span class="line"></span><br><span class="line">data Value</span><br><span class="line">  = VBool Bool</span><br><span class="line">  | VInt Integer</span><br><span class="line">  | VClosure (Thunk -&gt; IO Value)</span><br><span class="line">update :: IORef Thunk -&gt; Value -&gt; IO ()</span><br><span class="line">update ref v = do</span><br><span class="line">  writeIORef ref (\() -&gt; return v)</span><br><span class="line">  return ()</span><br><span class="line">force :: IORef Thunk -&gt; IO Value</span><br><span class="line">force ref = do</span><br><span class="line">  th &lt;- readIORef ref</span><br><span class="line">  v &lt;- th ()</span><br><span class="line">  update ref v</span><br><span class="line">  return v</span><br><span class="line">mkThunk :: Env -&gt; String -&gt; Expr -&gt; (Thunk -&gt; IO Value)</span><br><span class="line">mkThunk env x body = \a -&gt; do</span><br><span class="line">  a&apos; &lt;- newIORef a</span><br><span class="line">  eval ((x, a&apos;) : env) body</span><br><span class="line">eval :: Env -&gt; Expr -&gt; IO Value</span><br><span class="line">eval env ex = case ex of</span><br><span class="line">  EVar n -&gt; do</span><br><span class="line">    th &lt;- lookupEnv env n</span><br><span class="line">    v &lt;- force th</span><br><span class="line">    return v</span><br><span class="line"></span><br><span class="line">  ELam x e -&gt; return $ VClosure (mkThunk env x e)</span><br><span class="line"></span><br><span class="line">  EApp a b -&gt; do</span><br><span class="line">    VClosure c &lt;- eval env a</span><br><span class="line">    c (\() -&gt; eval env b)</span><br><span class="line"></span><br><span class="line">  EBool b -&gt; return $ VBool b</span><br><span class="line">  EInt n  -&gt; return $ VInt n</span><br><span class="line">  EFix e  -&gt; eval env (EApp e (EFix e))</span><br></pre></td></tr></table></figure>
+<p>例如，在这个模型中，下面的程序不会<code>diverge</code>(发散)，因为传递给常量函数的<code>omega</code>组合子没有被使用，因此参数没有被求值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">omega = (\x -&gt; x x) (\x -&gt; x x)</span><br><span class="line">test1 = (\y -&gt; 42) omega</span><br><span class="line">omega :: Expr</span><br><span class="line">omega = EApp (ELam &quot;x&quot; (EApp (EVar &quot;x&quot;) (EVar &quot;x&quot;)))</span><br><span class="line">             (ELam &quot;x&quot; (EApp (EVar &quot;x&quot;) (EVar &quot;x&quot;)))</span><br><span class="line"></span><br><span class="line">test1 :: IO Value</span><br><span class="line">test1 = eval [] $ EApp (ELam &quot;y&quot; (EInt 42)) omega</span><br></pre></td></tr></table></figure></p>
+<h3 id="Higher-Order-Abstract-Syntax-HOAS"><a href="#Higher-Order-Abstract-Syntax-HOAS" class="headerlink" title="Higher Order Abstract Syntax (HOAS)"></a>Higher Order Abstract Syntax (HOAS)</h3><p><code>GHC Haskell</code>是一种丰富的语言，具有多种扩展功能，除其他外，这些功能使我们能够将定义语言中的<code>lambda</code>表达式直接映射到<code>Haskell</code>中的<code>lambda</code>表达式。<br>在这种情况下，我们将使用<code>GADT</code>在我们的表达式类型中嵌入<code>Haskell</code>表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;-# LANGUAGE GADTs #-&#125;</span><br><span class="line"></span><br><span class="line">data Expr a where</span><br><span class="line">  Lift :: a                       -&gt; Expr a</span><br><span class="line">  Tup  :: Expr a -&gt; Expr b        -&gt; Expr (a, b)</span><br><span class="line">  Lam  :: (Expr a -&gt; Expr b)      -&gt; Expr (a -&gt; b)</span><br><span class="line">  App  :: Expr (a -&gt; b) -&gt; Expr a -&gt; Expr b</span><br><span class="line">  Fix  :: Expr (a -&gt; a)           -&gt; Expr a</span><br></pre></td></tr></table></figure>
+<p>这种编码最显著的特点是，变量没有獨特的构造函数。相反，它们只是宿主语言中的值。一些示例表达式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">id :: Expr (a -&gt; a)</span><br><span class="line">id = Lam (\x -&gt; x)</span><br><span class="line"></span><br><span class="line">tr :: Expr (a -&gt; b -&gt; a)</span><br><span class="line">tr = Lam (\x -&gt; (Lam (\y -&gt; x)))</span><br><span class="line"></span><br><span class="line">fl :: Expr (a -&gt; b -&gt; b)</span><br><span class="line">fl = Lam (\x -&gt; (Lam (\y -&gt; y)))</span><br></pre></td></tr></table></figure></p>
+<p>然后，我们的<code>evaluator</code>只需使用<code>Haskell</code>进行评估。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">eval :: Expr a -&gt; a</span><br><span class="line">eval (Lift v)    = v</span><br><span class="line">eval (Tup e1 e2) = (eval e1, eval e2)</span><br><span class="line">eval (Lam f)     = \x -&gt; eval (f (Lift x))</span><br><span class="line">eval (App e1 e2) = (eval e1) (eval e2)</span><br><span class="line">eval (Fix f)     = (eval f) (eval (Fix f))</span><br></pre></td></tr></table></figure></p>
+<p>一些使用的例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fact :: Expr (Integer -&gt; Integer)</span><br><span class="line">fact =</span><br><span class="line">  Fix (</span><br><span class="line">    Lam (\f -&gt;</span><br><span class="line">      Lam (\y -&gt;</span><br><span class="line">        Lift (</span><br><span class="line">          if eval y == 0</span><br><span class="line">          then 1</span><br><span class="line">          else eval y * (eval f) (eval y - 1)))))</span><br><span class="line"></span><br><span class="line">test :: Integer</span><br><span class="line">test = eval fact 10</span><br><span class="line"></span><br><span class="line">main :: IO ()</span><br><span class="line">main = print test</span><br></pre></td></tr></table></figure></p>
+<p>在使用<code>HOAS</code>时必须注意几点。首先，转换这种形式的表达式需要做更多的工作，因为为了处理表达式，我们需要到达<code>Haskell</code>函数本身的<code>lambda</code>绑定下。因为所有的机制都被封装在<code>Haskell</code>的实现中，即使是像漂亮的打印和编写转换传递这样的简单操作也会变得更加困难。这种形式是评估的好形式，但不是转换的好形式。</p>
+<h3 id="Parametric-Higher-Order-Abstract-Syntax-PHOAS"><a href="#Parametric-Higher-Order-Abstract-Syntax-PHOAS" class="headerlink" title="Parametric Higher Order Abstract Syntax (PHOAS)"></a>Parametric Higher Order Abstract Syntax (PHOAS)</h3><p>另一种稍微不同的<code>HOAS</code>形式称为<code>PHOAS</code>，它在存在类型下的绑定类型上使用参数化的<code>lambda</code>表示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;-# LANGUAGE RankNTypes #-&#125;</span><br><span class="line"></span><br><span class="line">data ExprP a</span><br><span class="line">  = VarP a</span><br><span class="line">  | AppP (ExprP a) (ExprP a)</span><br><span class="line">  | LamP (a -&gt; ExprP a)</span><br><span class="line">  | LitP Integer</span><br><span class="line"></span><br><span class="line">newtype Expr = Expr &#123; unExpr :: forall a . ExprP a &#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们语言中的<code>lambda</code>只是<code>Haskell</code>中的<code>lambda</code>。例如，通常的<code>SK</code>组合器将编写如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-- i x = x</span><br><span class="line">i :: ExprP a</span><br><span class="line">i = LamP (\a -&gt; VarP a)</span><br><span class="line"></span><br><span class="line">-- k x y = x</span><br><span class="line">k :: ExprP a</span><br><span class="line">k = LamP (\x -&gt; LamP (\y -&gt; VarP x))</span><br><span class="line"></span><br><span class="line">-- s f g x = f x (g x)</span><br><span class="line">s :: ExprP a</span><br><span class="line">s = </span><br><span class="line">  LamP (\f -&gt; </span><br><span class="line">    LamP (\g -&gt; </span><br><span class="line">      LamP (\x -&gt; </span><br><span class="line">        AppP </span><br><span class="line">          (AppP (VarP f) (VarP x))</span><br><span class="line">          (AppP (VarP g) (VarP x))</span><br><span class="line">        )))</span><br></pre></td></tr></table></figure></p>
+<p>评估将产生运行时<code>Value</code>类型，就像我们的外部解释器一样。<br>我们将使用几个<code>extractor</code>函数，这些函数在後台使用不完整的模式。<br>该模型本身并不能防止格式错误的程序在这里爆炸，因此有必要在评估之前确保程序是正确的。 通常，在达到这一点之前，<code>typechecker</code>(类型检查器)会在更高级别上保证这一点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">data Value</span><br><span class="line">  = VLit Integer</span><br><span class="line">  | VFun (Value -&gt; Value)</span><br><span class="line"></span><br><span class="line">fromVFun :: Value -&gt; (Value -&gt; Value)</span><br><span class="line">fromVFun val = case val of</span><br><span class="line">  VFun f -&gt; f</span><br><span class="line">  _      -&gt; error &quot;not a function&quot;</span><br><span class="line"></span><br><span class="line">fromVLit :: Value -&gt; Integer</span><br><span class="line">fromVLit val = case val of</span><br><span class="line">  VLit n -&gt; n</span><br><span class="line">  _      -&gt; error &quot;not an integer&quot;</span><br></pre></td></tr></table></figure></p>
+<p>评估只是利用了一个事实，即利用了我們存在类型下的<code>Haskell</code>函数，因此我们免费获得所有名称捕获，闭包和绑定机制。<code>PHOAS</code>模型的评估逻辑非常短。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">eval :: Expr -&gt; Value</span><br><span class="line">eval e = ev (unExpr e) where</span><br><span class="line">  ev (LamP f)      = VFun(ev . f)</span><br><span class="line">  ev (VarP v)      = v</span><br><span class="line">  ev (AppP e1 e2)  = fromVFun (ev e1) (ev e2)</span><br><span class="line">  ev (LitP n)      = VLit n</span><br></pre></td></tr></table></figure></p>
+<p>再次考虑<code>S K K = I</code>示例，并检查结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">skk :: ExprP a</span><br><span class="line">skk = AppP (AppP s k) k</span><br><span class="line"></span><br><span class="line">example :: Integer</span><br><span class="line">example = fromVLit $ eval $ Expr (AppP skk (LitP 3))</span><br></pre></td></tr></table></figure></p>
+<p>我们将广泛地使用这种评估技术来为我们更大的语言编写翻译。这是在<code>Haskell</code>中编写解释器非常方便和有用的方法。</p>
+<h3 id="Embedding-IO"><a href="#Embedding-IO" class="headerlink" title="Embedding IO"></a>Embedding IO</h3><p>如前所述，<code>effects</code>是<code>Haskell</code>中的一流值。</p>
+<p>在<code>Haskell</code>中，我们不直接读取文件，而是创建一个表示读取文件的值。通过在我们的语言的基本操作与<code>Haskell</code>中标准操作的现有函数实现之间建立映射，并使用<code>monadic</code>操作建立纯有效的计算结果，我们可以在<code>Haskell</code>中为我们的语言的解释程序建立非常清晰的模型的解释。经过评估，我们最终将得到的<code>IO</code>值提升到<code>Haskell</code>中并执行结果。这与<code>PHOAS</code>模型非常吻合，并且使我们能够简单地利用<code>Haskell</code>的实现，以非常少的代码有效地为我们的语言实现完整的解释器。</p>
+<p>要将<code>IO</code>操作嵌入我们的解释器中，我们创建了一个独特的<code>VEffect</code>值，该值将在评估过程中建立顺序<code>IO</code>计算。该值将传递给<code>Haskell</code>，并具体化为现实世界的<code>effects</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">data ExprP a</span><br><span class="line">  = VarP a</span><br><span class="line">  | GlobalP Name</span><br><span class="line">  | AppP (ExprP a) (ExprP a)</span><br><span class="line">  | LamP (a -&gt; ExprP a)</span><br><span class="line">  | LitP Char</span><br><span class="line">  | EffectP a</span><br><span class="line"></span><br><span class="line">data Value</span><br><span class="line">  = VChar Char</span><br><span class="line">  | VFun (Value -&gt; Value)</span><br><span class="line">  | VEffect (IO Value)</span><br><span class="line">  | VUnit</span><br><span class="line"></span><br><span class="line">fromVEff :: Value -&gt; (IO Value)</span><br><span class="line">fromVEff val = case val of</span><br><span class="line">  VEffect f -&gt; f</span><br><span class="line">  _         -&gt; error &quot;not an effect&quot;</span><br><span class="line">eval :: Expr -&gt; Value</span><br><span class="line">eval e = ev (unExpr e) where</span><br><span class="line">  ev (LamP f)      = VFun(ev . f)</span><br><span class="line">  ev (AppP e1 e2)  = fromVFun (ev e1) (ev e2)</span><br><span class="line">  ev (LitP n)      = VChar n</span><br><span class="line">  ev (EffectP v)   = v</span><br><span class="line">  ev (VarP v)      = v</span><br><span class="line">  ev (GlobalP op)  = prim op</span><br><span class="line"></span><br><span class="line">-- Lift an effect from our language into Haskell IO.</span><br><span class="line">run :: Expr -&gt; IO ()</span><br><span class="line">run f = void (fromVEff (eval f))</span><br></pre></td></tr></table></figure></p>
+<p><code>prim</code>函数将仅对一组内置操作执行查找，我们将使用一些语法糖来定义这些操作，以包装<code>Haskell</code>函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">unary :: (Value -&gt; Value) -&gt; Value</span><br><span class="line">unary f = lam $ \a -&gt; f a</span><br><span class="line"></span><br><span class="line">binary :: (Value -&gt; Value -&gt; Value) -&gt; Value</span><br><span class="line">binary f = lam $ \a -&gt;</span><br><span class="line">           lam $ \b -&gt; f a b</span><br><span class="line"></span><br><span class="line">prim :: Name -&gt; Value</span><br><span class="line">prim op = case op of</span><br><span class="line"> &quot;putChar#&quot; -&gt; unary $ \x -&gt;</span><br><span class="line">    VEffect $ do</span><br><span class="line">      putChar (fromVChar x)</span><br><span class="line">      return VUnit</span><br><span class="line"></span><br><span class="line"> &quot;getChar#&quot; -&gt; VEffect $ do</span><br><span class="line">      val &lt;- getChar</span><br><span class="line">      return (VChar val)</span><br><span class="line"></span><br><span class="line"> &quot;bindIO#&quot;   -&gt; binary $ \x y -&gt; bindIO x y</span><br><span class="line"> &quot;returnIO#&quot; -&gt; unary  $ \x   -&gt; returnIO x</span><br><span class="line"> &quot;thenIO#&quot;   -&gt; binary $ \x y -&gt; thenIO x y</span><br></pre></td></tr></table></figure></p>
+<p>例如，我们语言中的<code>thenIO＃</code>序列<code>effects</code>(效果)将简单地将两个<code>VEffect</code>对象压缩为一个复合<code>effects</code>，从而建立一个新的<code>VEffect</code>值，该值在內部<code>IO</code>值上使用<code>Haskell</code>的<code>monadic</code>序列.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bindIO :: Value -&gt; Value -&gt; Value</span><br><span class="line">bindIO (VEffect f) (VFun g) = VEffect (f &gt;&gt;= fromVEff . g)</span><br><span class="line"></span><br><span class="line">thenIO :: Value -&gt; Value -&gt; Value</span><br><span class="line">thenIO (VEffect f) (VEffect g) = VEffect (f &gt;&gt; g)</span><br><span class="line"></span><br><span class="line">returnIO :: Value -&gt; Value</span><br><span class="line">returnIO a = VEffect $ return a</span><br></pre></td></tr></table></figure></p>
+<p>实际上，我们只是重新创建了与<code>Haskell IO</code>及其运行时相同的概念关系，但是，我们的宿主语言使用<code>Haskell</code>作为运行时.</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '評估模型',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
