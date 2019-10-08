@@ -149,12 +149,12 @@
 <h3 id="Evaluation-評估"><a href="#Evaluation-評估" class="headerlink" title="Evaluation(評估)"></a>Evaluation(評估)</h3><p>尽管<code>lambda</code>演算极其简单，但评估和实现lambda表达式的约简的方式却多种多样。<br>评估的不同模型是评估策略。</p>
 <p>设计空间中存在兩點分歧:严格和非严格评估。</p>
 <p>如果在约简<code>lambda</code>之前必须先评估<code>lambda</code>表达式的参数，则稱评估策略是严格的。<br>在<code>lambda</code>约简之前不必对参数进行求值的语言是非严格的。</p>
-<p>换句话说，分歧项由<code>bottom</code>值(表示为<code>⊥f</code>)表示相等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f ⊥ ≠ ⊥</span><br></pre></td></tr></table></figure></p>
+<p>换句话说，<code>diverging terms</code>(分歧项)由<code>bottom</code>值(表示为<code>⊥f</code>)表示相等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f ⊥ ≠ ⊥</span><br></pre></td></tr></table></figure></p>
 <h3 id="評估模型"><a href="#評估模型" class="headerlink" title="評估模型"></a>評估模型</h3><p>有许多不同的模型及其各种混合形式。我们将考虑三种主要模型：</p>
 <ul>
 <li><code>Call-by-value</code>(按值调用): 在進入函数之前先评估参数</li>
-<li><code>Call-by-value</code>(按名称调用): 参数传递时未评估</li>
-<li><code>Call-by-value</code>(按需调用): 参数传递时不计算值，但表达式只評估一次，并在后续引用时共享</li>
+<li><code>Call-by-name</code>(按名称调用): 参数传递时未评估</li>
+<li><code>Call-by-need</code>(按需调用): 参数传递时未评估，但表达式只評估一次，并在后续引用时共享</li>
 </ul>
 <p>給定一個表達式: <code>fx</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Call-by-value:</span><br><span class="line">    1. 評估 xv</span><br><span class="line">    2. 評估 fλy.e</span><br><span class="line">    3. 評估 [y/v]e</span><br><span class="line"></span><br><span class="line">Call-by-name:</span><br><span class="line">    1. 評估 fλy.e</span><br><span class="line">    2. 評估 [y/x]e</span><br><span class="line"></span><br><span class="line">Call-by-need:</span><br><span class="line">    1. 分配一個thunk vx</span><br><span class="line">    2. 評估 fλy.e</span><br><span class="line">    3. 評估 [y/v]e</span><br></pre></td></tr></table></figure></p>
 <p>在一个模型中具有正常形式的术语在另一个模型中可能具有或不具有正常形式。<br>在<code>call-by-need</code>和<code>call-by-name</code>的评估中，不一定要在進入之前就评估不同的术语，因此在这些模型中具有正常形式的某些<code>term</code>(术语)可能会在<code>call-by-value</code>的情况下发生偏离。</p>
