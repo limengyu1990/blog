@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        代数数据类型的代数结构(上) - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Haskell类型的代数"><span class="toc-text">Haskell类型的代数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#counting-计数"><span class="toc-text">counting(计数)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#加法"><span class="toc-text">加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#乘法"><span class="toc-text">乘法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#零"><span class="toc-text">零</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Haskell类型代数中的定律"><span class="toc-text">Haskell类型代数中的定律</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sum类型定律-和"><span class="toc-text">sum类型定律(和)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#product类型定律-乘积"><span class="toc-text">product类型定律(乘积)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函數类型"><span class="toc-text">函數类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#函數类型定律"><span class="toc-text">函數类型定律</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下一篇"><span class="toc-text">下一篇</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        代数数据类型的代数结构(上)
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-01 16:24:03</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Haskell" title="Haskell">Haskell</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Algebra" title="Algebra">Algebra</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Chris Taylor" title="Chris Taylor">Chris Taylor</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p><a href="https://web.archive.org/web/20140222124650/http://chris-taylor.github.io/blog/2013/02/10/the-algebra-of-algebraic-data-types/" target="_blank" rel="noopener">查看原文</a></p>
+</blockquote>
+<p>我在2012年11月的<code>London Haskell</code>上做了关于这个主题的演讲。演讲的视频在<code>YouTube</code>上，幻灯片在<code>GitHub</code>上。<br>在这一系列文章中，我将解释为什么<code>Haskell</code>的数据类型被称为代数-而不提及範疇理论或高级数学。</p>
+<p>您在高中学习的代数以数字(例如<code>1、2、3...</code>)和运算符(例如加法和乘法)开始。运算符为您提供了一种组合数字并从中生成新数字的方法。例如，将<code>1</code>和<code>2</code>与加法运算相结合会得出另一个数字<code>3</code>, 我们通常表示为:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span> = <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>当你年纪稍大时，你会初次了解一些变量(例如<code>x，y，z...</code>)，这些变量可以代表数字。<br>更进一步，你会学到代数所遵循的<code>laws</code>(法律/定律/法則)。比如:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> + x = x</span><br><span class="line"><span class="number">1</span> ⋅ x = x</span><br></pre></td></tr></table></figure></p>
+<p>它适用于<code>x</code>的所有值。还有其他<code>laws</code>(法律)，它们定义数字或运算的性质。</p>
+<p>当数学家谈论代数时，他们指的是比这个更一般的东西。数学代数包括三个部分:</p>
+<ul>
+<li><strong>Objects</strong> (对象)是代数的<code>things</code>(事物/東西)。对象集合定义了我们所讨论的内容。</li>
+<li><strong>Operations</strong> (操作)为我们提供了将旧事物组合成新事物的方法。</li>
+<li><strong>Laws</strong> (法律)是对象与操作之间的关系。</li>
+</ul>
+<p>在高中代数中，对象是数字，运算是加法、乘法和<code>friends</code>(朋友/友元)。</p>
+<h3 id="Haskell类型的代数"><a href="#Haskell类型的代数" class="headerlink" title="Haskell类型的代数"></a>Haskell类型的代数</h3><p>在<code>Haskell</code>类型的代数中，<code>objects</code>(对象)是类型，例如<code>Bool</code>和<code>Int</code>。</p>
+<p><code>Operations</code>(操作)根据已经存在的类型并从中生成新的类型。一个例子是类型构造函数<code>Maybe</code>。它本身不是类型(类型构造子)，但您可以使用它来创建类型，例如类型可能是<code>Maybe Bool</code>和<code>Maybe Int</code>。另一个示例是<code>Either</code>，它从两个旧类型创建了一个新类型, 例如<code>Either Int Bool</code>。</p>
+<h4 id="counting-计数"><a href="#counting-计数" class="headerlink" title="counting(计数)"></a><code>counting</code>(计数)</h4><p>通过计算类型可能具有的值，可以看到与更熟悉的数字代数之間的联系。以<code>Bool</code>为例:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Bool</span> = <span class="type">False</span> | <span class="type">True</span></span></span><br></pre></td></tr></table></figure></p>
+<p><code>Bool</code>类型的对象可以有两个值，一个是<code>False</code>，另一个是<code>True</code>(从技术上讲，它也可以是<code>undefined</code>)，在后面的文章中我将忽略这一事实。<br>粗略地说，<code>Bool</code>类型对应于数字代数中的数字<code>2</code>.<br>如果<code>Bool</code>是<code>2</code>，那么<code>1</code>是什么？它应该是只有一个值的类型。<br>在计算机科学文献中，这种类型通常称为<code>Unit</code>(单位)，并定义为:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Unit</span> = <span class="type">Unit</span></span></span><br></pre></td></tr></table></figure></p>
+<p>在<code>Haskell</code>中，已经有一个只有一个值的类型–称为<code>()</code>(读作’单位’)。</p>
+<p>您不能自己定义它，但是如果可以定义的话:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> () = ()</span></span><br></pre></td></tr></table></figure></p>
+<p>使用这个计数法类比，<code>Int</code>对应于数字<code>$2^32$</code>(2的32次方)，因为这是<code>Int</code>类型的值的数量(至少它在我的机器上是這樣).</p>
+<h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><p>原则上，我们可以键入与3、4、5等相对应的类型。有时我们可能确实需要这样做, 例如，对应于7的类型对于编码星期几很有用。但是，如果我们能够从旧的基础上构建新的类型，那就更好了。这就是代数<code>operators</code>(运算符)的用武之地。</p>
+<p>对应于加法的类型是:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Add</span> a b = <span class="type">AddL</span> a | <span class="type">AddR</span> b</span></span><br></pre></td></tr></table></figure></p>
+<p>也就是说，类型<code>a + b</code>是<code>tagged union</code>(标记的并集)，持有<code>a</code>或<code>b</code>。要了解为什么这与加法相对应，我们可以重新考虑计数法。假设<code>a</code>为<code>Bool</code>，<code>b</code>为<code>()</code>，因此<code>a</code>有<code>2</code>个值，<code>b</code>有<code>1</code>个值。那麼<code>Add Bool ()</code>类型有多少個值？我们可以列出它们:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">addValues</span> = [<span class="type">AddL</span> <span class="type">False</span>, <span class="type">AddL</span> <span class="type">True</span>, <span class="type">AddR</span> ()]</span><br></pre></td></tr></table></figure></p>
+<p>有三个值，即<code>3 = 2 + 1</code>。这通常称为<code>sum</code>类型。在<code>Haskell</code>中，<code>sum</code>类型通常称为<code>Either</code>，定义为:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Either</span> a b = <span class="type">Left</span> a | <span class="type">Right</span> b</span></span><br></pre></td></tr></table></figure></p>
+<p>但我会坚持使用<code>Add</code>.</p>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><p>对应于乘法的类型是:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Mul</span> a b = <span class="type">Mul</span> a b</span></span><br></pre></td></tr></table></figure></p>
+<p>也就是说，类型<code>a · b</code>是既包含<code>a</code>又包含<code>b</code>的容器.<br>计数法证明了其与乘法的对应关系-如果我们将<code>a</code>和<code>b</code>都設置为<code>Bool</code>，则<code>Mul Bool Bool</code>类型的可能值为:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">mulValues</span> = [<span class="type">Mul</span> <span class="type">False</span> <span class="type">False</span>, <span class="type">Mul</span> <span class="type">False</span> <span class="type">True</span>, <span class="type">Mul</span> <span class="type">True</span> <span class="type">False</span>, <span class="type">Mul</span> <span class="type">True</span> <span class="type">True</span>]</span><br></pre></td></tr></table></figure></p>
+<p>有四个值，即<code>4 = 2 x 2</code>。这通常称为<code>product</code>类型。在<code>Haskell</code>中，<code>product</code>是<code>pair</code>(成對)类型:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> (,) a b = (<span class="title">a</span>, <span class="title">b</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>但我会坚持使用<code>Mul</code>.</p>
+<h4 id="零"><a href="#零" class="headerlink" title="零"></a>零</h4><p>使用加法和乘法，我们可以生成对应于从1到所有数字的类型-但是<code>0</code>呢？那将是一个没有值的类型。听起来很奇怪，但是您可以定义这样的类型:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Void</span></span></span><br></pre></td></tr></table></figure></p>
+<p>请注意，数据定义中没有构造函数，因此您永远无法构造<code>Void</code>类型的值–它有零個值，正是我们想要的！</p>
+<h3 id="Haskell类型代数中的定律"><a href="#Haskell类型代数中的定律" class="headerlink" title="Haskell类型代数中的定律"></a>Haskell类型代数中的定律</h3><p>我们刚刚定义的类型有哪些定律？就像在数字代数中一样，定律将断言两个<code>objects</code>(对象)的相等性-在我们的情况下，<code>objects</code>(对象)指类型。<br>但是，当谈到<code>equality</code>(相等性)时，我并不是指<code>Haskell</code>中<code>(==)</code>函數意义上的平等。<br>相反，我的意思是說两种类型是一一对应的，也就是说，当我说两种类型<code>a</code>和<code>b</code>相等时，我的意思是您可以编写两个函数:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">from</span> :: a -&gt; b</span><br><span class="line"><span class="title">to</span>   :: b -&gt; a</span><br></pre></td></tr></table></figure></p>
+<p>将<code>a</code>的值与<code>b</code>的值配对，因此下面的等式总是成立的(这里的<code>==</code>是真正的<code>haskell</code>风格的相等):<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> (from a) == a</span><br><span class="line"><span class="title">from</span> (to b) == b</span><br></pre></td></tr></table></figure></p>
+<p>例如，我认为类型<code>Bool</code>和<code>Add () ()</code>是等效的。我可以通过以下函数演示相等性:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> :: <span class="type">Bool</span> -&gt; <span class="type">Add</span> () ()</span><br><span class="line"><span class="title">to</span> <span class="type">False</span> = <span class="type">AddL</span> ()</span><br><span class="line"><span class="title">to</span> <span class="type">True</span>  = <span class="type">AddR</span> ()</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> :: <span class="type">Add</span> () () -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="title">from</span> (<span class="type">AddL</span> _) = <span class="type">False</span></span><br><span class="line"><span class="title">from</span> (<span class="type">AddR</span> _) = <span class="type">True</span></span><br></pre></td></tr></table></figure></p>
+<p>我将使用三重相等符号<code>===</code>来表示类型之间的这种相等性。</p>
+<h4 id="sum类型定律-和"><a href="#sum类型定律-和" class="headerlink" title="sum类型定律(和)"></a>sum类型定律(和)</h4><p>以下是两个补充法则:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Add</span> <span class="type">Void</span> a === a</span><br></pre></td></tr></table></figure></p>
+<p>表示<code>Add Void a</code>类型的值与<code>a</code>类型的值一样多。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Add</span> a b === <span class="type">Add</span> b a</span><br></pre></td></tr></table></figure></p>
+<p>表示<code>add</code>顺序并不重要。在数字代数中，您可能更熟悉这些定律:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> + x = x</span><br><span class="line"><span class="title">x</span> + y = y + x</span><br></pre></td></tr></table></figure></p>
+<p>如果您喜欢练习，则可以在<code>Haskell</code>代数中证明定律的正确性-可以使用计数法，也可以编写函数<code>from</code>和<code>to</code>.</p>
+<h4 id="product类型定律-乘积"><a href="#product类型定律-乘积" class="headerlink" title="product类型定律(乘积)"></a>product类型定律(乘积)</h4><p>有三个有用的乘法法则:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Mul</span> <span class="type">Void</span> a === <span class="type">Void</span></span><br></pre></td></tr></table></figure></p>
+<p>也就是说，如果您将任何东西乘以<code>Void</code>，將会得到<code>Void</code>，<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Mul</span> () a === a</span><br></pre></td></tr></table></figure></p>
+<p>表示如果您乘以<code>()</code>，则不会有任何改变.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Mul</span> a b === <span class="type">Mul</span> b a</span><br></pre></td></tr></table></figure></p>
+<p>表示乘的顺序無關緊要。这些定律的更常见形式是:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> ⋅ x = <span class="number">0</span></span><br><span class="line"><span class="number">1</span> ⋅ x = x</span><br><span class="line"><span class="title">x</span> ⋅ y = y ⋅ x</span><br></pre></td></tr></table></figure></p>
+<p>另外两个练习:</p>
+<ul>
+<li>在Haskell代数中证明这些定律的合法性</li>
+<li>解释为什么我们不需要以下形式的定律<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Mul</span> a <span class="type">Void</span> === <span class="type">Void</span></span><br><span class="line"><span class="type">Mul</span> a ()   === a</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>还有一条定律将加法和乘法运算符联系起来:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Mul</span> a (<span class="type">Add</span> b c) === <span class="type">Add</span> (<span class="type">Mul</span> a b) (<span class="type">Mul</span> a c)</span><br></pre></td></tr></table></figure></p>
+<p>这一个比较难理解，但是编写相应的<code>from</code>和<code>to</code>函数并不太难。<br>这个法则的算术版本看起来更友好,称为分配律:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">a</span> ⋅ ( b + c ) = a ⋅ b + a ⋅ c</span><br></pre></td></tr></table></figure></p>
+<h4 id="函數类型"><a href="#函數类型" class="headerlink" title="函數类型"></a>函數类型</h4><p>在<code>Haskell</code>中，除了<code>Int</code>和<code>Bool</code>这样的具体类型之外，还有<code>Int - &gt;Bool</code>或<code>Double -&gt; String</code>这样的函数类型，这些是如何融入代数的？</p>
+<p>为了弄清楚这一点，我们可以回到计数法。<br>有多少<code>a -&gt; b</code>类型的函數？</p>
+<p>具体来说，将<code>a</code>和<code>b</code>都設置为<code>Bool</code>。<br>則值<code>False</code>可以映射为<code>False</code>或<code>True</code>，对于值<code>True</code>是同样的，因此有<code>$2^2$</code>(2的2次方)个可能的<code>Bool-&gt; Bool</code>函数。<br>实际上，我们可以列举一下它们:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">f1</span> :: <span class="type">Bool</span> -&gt; <span class="type">Bool</span> <span class="comment">-- equivalent to 'id'</span></span><br><span class="line"><span class="title">f1</span> <span class="type">True</span>  = <span class="type">True</span></span><br><span class="line"><span class="title">f1</span> <span class="type">False</span> = <span class="type">False</span></span><br><span class="line"></span><br><span class="line"><span class="title">f2</span> :: <span class="type">Bool</span> -&gt; <span class="type">Bool</span> <span class="comment">-- equivalent to 'const False'</span></span><br><span class="line"><span class="title">f2</span> _     = <span class="type">False</span></span><br><span class="line"></span><br><span class="line"><span class="title">f3</span> :: <span class="type">Bool</span> -&gt; <span class="type">Bool</span> <span class="comment">-- equivalent to 'const True'</span></span><br><span class="line"><span class="title">f3</span> _     = <span class="type">True</span></span><br><span class="line"></span><br><span class="line"><span class="title">f4</span> :: <span class="type">Bool</span> -&gt; <span class="type">Bool</span> <span class="comment">-- equivalent to 'not'</span></span><br><span class="line"><span class="title">f4</span> <span class="type">True</span>  = <span class="type">False</span></span><br><span class="line"><span class="title">f4</span> <span class="type">False</span> = <span class="type">True</span></span><br></pre></td></tr></table></figure></p>
+<p>如果<code>b</code>仍然是<code>Bool</code>(具有两个值)并且<code>a</code>是具有三个值的类型，那会发生什么？<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Trio</span> = <span class="type">First</span> | <span class="type">Second</span> | <span class="type">Third</span></span></span><br></pre></td></tr></table></figure></p>
+<p>然后，<code>First</code>、<code>Second</code>和<code>Third</code>中的每一個都可以映射到两个可能的值，总共有<code>$2^3$</code>(2的3次方)个类型为<code>Trio -&gt; Bool</code>的函数。</p>
+<p>同样的论点在一般情况下也成立。如果有<code>A</code>类型的值，<code>B</code>类型的值，则<code>A -&gt; B</code>类型的值的数目为: <code>$B^A$</code>(<code>B的A次方</code>)<br>这证明了函数类型的常用术语为指数类型的.</p>
+<h5 id="函數类型定律"><a href="#函數类型定律" class="headerlink" title="函數类型定律"></a>函數类型定律</h5><p>涉及<code>unit</code>(单元)类型的函数类型有两条定律, 他们是:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">() -&gt; a === a</span><br></pre></td></tr></table></figure></p>
+<p>表示函数<code>() -&gt; a</code>的数量与类型<code>a</code>的值一样多.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">a</span> -&gt; () === ()</span><br></pre></td></tr></table></figure></p>
+<p>表示只有一个<code>a -&gt; ()</code>函數, 特别的。它就是: <code>const ()</code>. 这些定律的算术形式是:<br><img src="代数数据类型的代数结构-上/img/img05.png" alt=""></p>
+<p>还有一条法律允许从共同参数中提取因式分解:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a -&gt; b, a -&gt; c) === a -&gt; (b,c)</span><br></pre></td></tr></table></figure></p>
+<p>其算术形式为:</p>
+<p><img src="代数数据类型的代数结构-上/img/img06.png" alt=""></p>
+<p>有关返回其他函數的函數的法律:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">a</span> -&gt; (b -&gt; c) === (b,a) -&gt; c</span><br></pre></td></tr></table></figure></p>
+<p>其算术形式为:</p>
+<p><img src="代数数据类型的代数结构-上/img/img07.png" alt=""></p>
+<p>切换右侧部分的变量顺序，同时删除左侧的括号后，最后一个定律可能更熟悉:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">a</span> -&gt; b -&gt; c === (a,b) -&gt; c</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，我们可以使用<code>curry</code>和<code>uncurry</code>函数。同样，通过编写相应的<code>to</code>和<code>from</code>函数来证明所有这些定律也是一个有趣的练习。</p>
+<h3 id="下一篇"><a href="#下一篇" class="headerlink" title="下一篇"></a>下一篇</h3><p>在下一篇文章中，我将研究递归类型，例如列表和二叉树，并展示如何以各种方式滥用类型的代数来推断有关类型的有趣事实。</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '代数数据类型的代数结构(上)',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>

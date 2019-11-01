@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Algebraic-Relations-代数关系"><span class="toc-text">Algebraic Relations (代数关系)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Categories"><span class="toc-text">Categories</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Isomorphisms"><span class="toc-text">Isomorphisms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Duality"><span class="toc-text">Duality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functors"><span class="toc-text">Functors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Natural-Transformations"><span class="toc-text">Natural Transformations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Yoneda-Lemma"><span class="toc-text">Yoneda Lemma</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kleisli-Category"><span class="toc-text">Kleisli Category</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adjunctions"><span class="toc-text">Adjunctions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cartesian-Closed-Categories"><span class="toc-text">Cartesian Closed Categories</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Monoidal-Categories"><span class="toc-text">Monoidal Categories</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a></li></ol>
 </div>
     
 </div>
@@ -125,13 +125,44 @@
     <div class="post-meta">
         <span class="attr">发布于：<span>2019-10-16 19:35:25</span></span>
         
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Wish-Knew" title="Wish-Knew">Wish-Knew</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Haskell" title="Haskell">Haskell</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Categories" title="Categories">Categories</a>
+        <span>/</span>
+        
+        
         </span>
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
     <div class="post-content ">
-        
+        <blockquote>
+<p>这是高级部分，编写Haskell通常不需要<a href="http://dev.stephendiehl.com/hask/#categories" target="_blank" rel="noopener">范畴</a>理论知识。</p>
+</blockquote>
+<p>唉，我们来谈谈范畴理论。<br>有人可能会说，所有关于<code>Haskell</code>的讨论最终都会在某一点上引向这里，然而，范畴理论在<code>Haskell</code>语境中的整体重要性被夸大了，不幸的是在某种程度上被迷惑了。<br>事实上，直接适用于<code>Haskell</code>的范畴理论的数量大致相当于任何本科文本第一章的一个子集。即使这样，使用<code>Haskell</code>也不需要真正的范畴理论知识。</p>
+<h3 id="Algebraic-Relations-代数关系"><a href="#Algebraic-Relations-代数关系" class="headerlink" title="Algebraic Relations (代数关系)"></a>Algebraic Relations (代数关系)</h3><p>粗略地说，范畴理论对<code>haskell</code>编程并不十分重要，尽管一些库从这个主题中获得了一些灵感，但大多数库都没有。<br>更重要的是对等式推理有一个全面的了解，并熟悉各种代数关系。<br>某些关系出现得如此频繁，以至于我们通常按名称引用它们的属性(通常是从等价的抽象代数概念中提取)。<br>考虑一个二元运算(<code>a &#39;op&#39; b</code>)和一元运算<code>f</code>.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Associativity</span>(结合律)</span><br><span class="line"></span><br><span class="line"><span class="title">a</span> `op` (b `op` c) = (a `op` b) `op` c</span><br><span class="line"></span><br><span class="line"><span class="type">Commutativity</span>(交换律)</span><br><span class="line"></span><br><span class="line"><span class="title">a</span> `op` b = b `op` a</span><br><span class="line"></span><br><span class="line"><span class="type">Units</span>(单元)</span><br><span class="line"></span><br><span class="line"><span class="title">a</span> `op` e = a</span><br><span class="line"><span class="title">e</span> `op` a = a</span><br><span class="line"></span><br><span class="line"><span class="type">Inversion</span>(反转)</span><br><span class="line"></span><br><span class="line">(inv a) `op` a = e</span><br><span class="line"><span class="title">a</span> `op` (inv a) = e</span><br><span class="line"></span><br><span class="line"><span class="type">Zeros</span>(零点)</span><br><span class="line"></span><br><span class="line"><span class="title">a</span> `op` e = e</span><br><span class="line"><span class="title">e</span> `op` a = e</span><br><span class="line"></span><br><span class="line"><span class="type">Linearity</span>(线性度)</span><br><span class="line"></span><br><span class="line"><span class="title">f</span> (x `op` y) = f x `op` f y</span><br><span class="line"></span><br><span class="line"><span class="type">Idempotency</span>(幂等性)</span><br><span class="line"></span><br><span class="line"><span class="title">f</span> (f x) = f x</span><br><span class="line"></span><br><span class="line"><span class="type">Distributivity</span>(分配律)</span><br><span class="line"></span><br><span class="line"><span class="title">a</span> `f` (b `g` c) = (a `f` b) `g` (a `f` c)</span><br><span class="line">(b `g` c) `f` a = (b `f` a) `g` (c `f` a)</span><br><span class="line"></span><br><span class="line"><span class="type">Anticommutativity</span>(反交换律)</span><br><span class="line"></span><br><span class="line"><span class="title">a</span> `op` b = inv (b `op` a)</span><br></pre></td></tr></table></figure></p>
+<p>当然，这些属性在多个函数上的组合会产生在函数编程中反复出现的高阶关系系统，一旦我们认识到它们，我们就可以对它们进行抽象。<br>例如，<code>monoid</code>(幺半群)是一个<code>unit</code>(单元)和一组值上的单个关联操作的组合。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Structure</span>(結構)   <span class="type">Notation</span>(符號)</span><br><span class="line"><span class="comment">---------------|-----------------------</span></span><br><span class="line"><span class="type">Monoid</span>	       |  (<span class="type">M</span>, •)</span><br><span class="line"><span class="type">Monad</span>	       |  (<span class="type">T</span>, μ, η)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Categories"><a href="#Categories" class="headerlink" title="Categories"></a>Categories</h3><h3 id="Isomorphisms"><a href="#Isomorphisms" class="headerlink" title="Isomorphisms"></a>Isomorphisms</h3><h3 id="Duality"><a href="#Duality" class="headerlink" title="Duality"></a>Duality</h3><h3 id="Functors"><a href="#Functors" class="headerlink" title="Functors"></a>Functors</h3><h3 id="Natural-Transformations"><a href="#Natural-Transformations" class="headerlink" title="Natural Transformations"></a>Natural Transformations</h3><h3 id="Yoneda-Lemma"><a href="#Yoneda-Lemma" class="headerlink" title="Yoneda Lemma"></a>Yoneda Lemma</h3><h3 id="Kleisli-Category"><a href="#Kleisli-Category" class="headerlink" title="Kleisli Category"></a>Kleisli Category</h3><h3 id="Adjunctions"><a href="#Adjunctions" class="headerlink" title="Adjunctions"></a>Adjunctions</h3><blockquote>
+<p>TODO</p>
+</blockquote>
+<h3 id="Cartesian-Closed-Categories"><a href="#Cartesian-Closed-Categories" class="headerlink" title="Cartesian Closed Categories"></a>Cartesian Closed Categories</h3><blockquote>
+<p>TODO</p>
+</blockquote>
+<h3 id="Monoidal-Categories"><a href="#Monoidal-Categories" class="headerlink" title="Monoidal Categories"></a>Monoidal Categories</h3><p>在一個<code>symmetric monoidal closed category</code>(单项封闭类别)中，例如<code>lambda</code>演算</p>
+<h3 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h3><ul>
+<li><a href="http://www.amazon.com/Category-Theory-Oxford-Logic-Guides/dp/0199237182" target="_blank" rel="noopener">Category Theory, Awodey</a></li>
+<li><a href="https://www.youtube.com/watch?v=ZKmodCApZwk" target="_blank" rel="noopener">Category Theory Foundations</a></li>
+<li><a href="https://www.youtube.com/watch?v=I8LbkfSSR58&amp;list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_" target="_blank" rel="noopener">Category Theory for Programmers</a></li>
+<li><a href="http://www.youtube.com/user/TheCatsters" target="_blank" rel="noopener">The Catsters</a></li>
+</ul>
+
         
             <div class="donate-container">
     <div class="donate-button">
