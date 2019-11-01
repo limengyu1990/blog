@@ -203,13 +203,13 @@
 <p>同样的论点在一般情况下也成立。如果有<code>A</code>类型的值，<code>B</code>类型的值，则<code>A -&gt; B</code>类型的值的数目为: <code>$B^A$</code>(<code>B的A次方</code>)<br>这证明了函数类型的常用术语为指数类型的.</p>
 <h5 id="函數类型定律"><a href="#函數类型定律" class="headerlink" title="函數类型定律"></a>函數类型定律</h5><p>涉及<code>unit</code>(单元)类型的函数类型有两条定律, 他们是:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">() -&gt; a === a</span><br></pre></td></tr></table></figure></p>
 <p>表示函数<code>() -&gt; a</code>的数量与类型<code>a</code>的值一样多.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">a</span> -&gt; () === ()</span><br></pre></td></tr></table></figure></p>
-<p>表示只有一个<code>a -&gt; ()</code>函數, 特别的。它就是: <code>const ()</code>. 这些定律的算术形式是:<br><img src="代数数据类型的代数结构-上/img/img05.png" alt=""></p>
+<p>表示只有一个<code>a -&gt; ()</code>函數, 特别的。它就是: <code>const ()</code>. 这些定律的算术形式是:<br><img src="img/img05.png" alt=""></p>
 <p>还有一条法律允许从共同参数中提取因式分解:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a -&gt; b, a -&gt; c) === a -&gt; (b,c)</span><br></pre></td></tr></table></figure></p>
 <p>其算术形式为:</p>
-<p><img src="代数数据类型的代数结构-上/img/img06.png" alt=""></p>
+<p><img src="img/img06.png" alt=""></p>
 <p>有关返回其他函數的函數的法律:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">a</span> -&gt; (b -&gt; c) === (b,a) -&gt; c</span><br></pre></td></tr></table></figure></p>
 <p>其算术形式为:</p>
-<p><img src="代数数据类型的代数结构-上/img/img07.png" alt=""></p>
+<p><img src="img/img07.png" alt=""></p>
 <p>切换右侧部分的变量顺序，同时删除左侧的括号后，最后一个定律可能更熟悉:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">a</span> -&gt; b -&gt; c === (a,b) -&gt; c</span><br></pre></td></tr></table></figure></p>
 <p>也就是说，我们可以使用<code>curry</code>和<code>uncurry</code>函数。同样，通过编写相应的<code>to</code>和<code>from</code>函数来证明所有这些定律也是一个有趣的练习。</p>
 <h3 id="下一篇"><a href="#下一篇" class="headerlink" title="下一篇"></a>下一篇</h3><p>在下一篇文章中，我将研究递归类型，例如列表和二叉树，并展示如何以各种方式滥用类型的代数来推断有关类型的有趣事实。</p>
