@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Maybe"><span class="toc-text">Maybe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recursive-Types"><span class="toc-text">Recursive Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lists"><span class="toc-text">Lists</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trees"><span class="toc-text">Trees</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Seven-Trees-In-One-七棵树合而为一"><span class="toc-text">Seven Trees In One (七棵树合而为一)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#An-Explanation-一个解释"><span class="toc-text">An Explanation? (一个解释?)</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -146,6 +146,85 @@
         <blockquote>
 <p><a href="https://web.archive.org/web/20140222124650/http://chris-taylor.github.io/blog/2013/02/11/the-algebra-of-algebraic-data-types-part-ii/" target="_blank" rel="noopener">查看原文</a></p>
 </blockquote>
+<p>上一章節，我介紹了<code>unit</code>類型<code>Unit</code>或<code>()</code>，以及<code>zero</code>類型<code>Void</code>,同時也介紹了运算符<code>Add</code>和<code>Mul</code>,還有函數類型<code>a -&gt; b</code>.</p>
+<p>在这篇文章中，我将同时使用<code>Haskell</code>表示法和数学表示法。下表将帮助您在两者之间来回转换.</p>
+<p><img src="img/img01.png" alt=""></p>
+<p>在这篇文章中，我将讨论<code>recursive</code>(递归)类型，并展示如何利用类型代数来推断它们的有趣之处.</p>
+<h2 id="Maybe"><a href="#Maybe" class="headerlink" title="Maybe"></a>Maybe</h2><p>让我们来探索<code>Maybe a</code>。此类型指示它可能包含类型<code>a</code>的值，但也可能为空。它是这样定义的:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Maybe</span> a = <span class="type">Nothing</span> | <span class="type">Just</span> a</span></span><br></pre></td></tr></table></figure></p>
+<p>竖线表示这是一个<code>sum</code>类型，因此，如果我们首先定义<code>Nothing</code>和<code>Just a</code>类型，则可以使用之前定义的<code>Add</code>类型来编写它。它看起来像这样:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Nothing</span> = <span class="type">Nothing</span></span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Just</span> a  = <span class="type">Just</span> a</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">Maybe</span> a = <span class="type">Add</span> <span class="type">Nothing</span> (<span class="type">Just</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>看看我们如何将<code>data</code>声明替换为<code>type</code>声明？这意味着<code>Just a</code>不再是一种新类型, 只是我们已经知道的一种类型的同义词。</p>
+<p>但是我们可以更进一步。请注意，<code>Nothing</code>仅具有一个值，因此等效于<code>()</code>.</p>
+<p>同样，<code>Just</code>是一个具有类型<code>a</code>的单个值的容器，因此等效于<code>a</code>。因此，我们有:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">Maybe</span> a = <span class="type">Add</span> () a</span></span><br></pre></td></tr></table></figure></p>
+<p>但这就相当于说, <code>Maybe a</code>与<code>1 + a</code>相同。<code>Maybe</code>所做的只是为类型增加一个可能的值.</p>
+<h2 id="Recursive-Types"><a href="#Recursive-Types" class="headerlink" title="Recursive Types"></a>Recursive Types</h2><h3 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h3><p><code>Haskell</code>中的基本列表是一个链表。<br><code>as</code>的列表要么是空的，表示为<code>[]</code>，要么是单个<code>a</code>的<code>cons</code>到另一个<code>as</code>的列表中，表示为<code>a:as</code>。如果我们想定义自己的列表，我们可以写类似:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">List</span> a = <span class="type">Nil</span> | <span class="type">Cons</span> a (<span class="type">List</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>让我们花点时间看一下此声明的结构。就像<code>Maybe</code>一样，<code>List</code>类型是两个简单类型的<code>sum</code>.</p>
+<p>第一个<code>summand</code>(被加数)是<code>Nil</code>，这是一个等效于<code>()</code>的<code>nullary</code>(空的)构造函数.</p>
+<p>第二个<code>summand</code>是<code>Cons a (List a)</code>，它是由<code>a</code>和<code>as</code>列表组成的<code>product</code>.</p>
+<p>如果我们将列表写为<code>L(a)</code>，则代数形式为:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">L</span>(a) = <span class="number">1</span> + a ⋅ <span class="type">L</span>(a)</span><br></pre></td></tr></table></figure></p>
+<p>似乎我们应该能够在<code>Haskell</code>中将列表类型编写为:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">List</span> a = <span class="type">Add</span> () (<span class="title">a</span>, (<span class="type">List</span> <span class="title">a</span>))</span></span><br></pre></td></tr></table></figure></p>
+<p>但事实上，这不会编译。<br>原因是类型同义词在编译时、类型检查之后、编译之前<code>expanded</code>(展开)。这个定义永远不会完成<code>expanding</code>(展开)，它只会继续增长:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Add</span> () (a, <span class="type">Add</span> () (a, <span class="type">Add</span> () (a, ...)))</span><br></pre></td></tr></table></figure></p>
+<p>等等。这样做无效的原因与<code>Haskell</code>处理递归类型定义的方式有关(就像大多数具有复杂类型系统的语言一样，它使用<a href="https://web.archive.org/web/20140222144454/http://en.wikipedia.org/wiki/Recursive_data_type#Isorecursive_types" target="_blank" rel="noopener">isorecursive类型而不是equirecursive类型</a>)。</p>
+<p>解决方法是使用<code>newtype</code>声明而不是<code>type</code>声明，并将类型包装在新的构造函数<code>L</code>中:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">newtype</span> <span class="type">List</span> a = <span class="type">L</span> (<span class="type">Add</span> () (<span class="title">a</span>, <span class="type">List</span> <span class="title">a</span>))</span></span><br></pre></td></tr></table></figure></p>
+<p>这只是为了在编译代码时满足类型检查器的要求，额外的构造函数将被优化掉，剩下的将与上面的<code>type</code>声明相同。</p>
+<p>如果我将<code>List a</code>类型写为<code>L(a)</code>，那么这个列表声明说明:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">L</span>(a) = <span class="number">1</span> + a ⋅ <span class="type">L</span>(a)</span><br></pre></td></tr></table></figure></p>
+<p>要查看真正的列表，我们可以通过重复<code>substitution</code>(替换)开始<code>expanding</code>(扩展/展开)定义。在<code>expansion</code>(展开)中，每当看到<code>a · a</code>的形式时，我都会将其替换为<code>a²</code>以节省空间。</p>
+<p>练习：表达式<code>a²</code>可以表示為一对<code>(a，a)</code>或函数<code>2 → a</code>。显示这些都是一样的.<br><img src="img/img02.png" alt=""></p>
+<p>这告诉我们<code>A</code>的列表要么是空的列表，要么是包含单个<code>A</code>的列表，要么是包含两个<code>A</code>的列表，或者是三个<code>A</code>的列表，等等。也许你已经知道了——但是代数告诉我们这很好！</p>
+<p>但现在，这里有一些非常酷的东西, 让我们从列表的等式开始，而不是一再替换，我们会暂时忘记对象是类型，并假装它们是任意的数学表达式。这意味着我们有理由使用任何我们喜欢的方法来解出<code>L(a)</code>.</p>
+<p>首先，从两边减去<code>a * L(a)</code>:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">L</span>(a) − a⋅<span class="type">L</span>(a) = <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>现在将左侧的<code>L(a)</code>提出来(<code>factor out</code>):<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>−a) ⋅ <span class="type">L</span>(a) = <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，将两边都除以<code>1-a</code>:</p>
+<p><img src="img/img03.png" alt=""></p>
+<p>这看起来很荒谬，因为我们不知道从另一种类型减去一种类型的含义，而且我们当然也不知道将一种类型<code>divide</code>(除以)另一种类型的含义。 但这是否告诉我们一些有趣的事情？</p>
+<p>如果你学习微积分，你可能记得许多函数都有<code>Taylor Series</code>(泰勒级数)<code>expansion</code>(展开式)。</p>
+<p>我们可以问<code>Wolfram Alpha</code>, <code>1/(1-a)</code>的泰勒级数是什么，它告诉我们:<br><img src="img/img04.png" alt=""></p>
+<p>也就是说，<code>L(a)</code>的级数展开正是我们从重复<code>substitutions</code>(替换)中推导出来的.<br>尽管我们严重地滥用了代数，通过对类型执行完全不合理的操作，我们最终还是得到了一个合理的答案.</p>
+<h3 id="Trees"><a href="#Trees" class="headerlink" title="Trees"></a>Trees</h3><p>考虑在节点处具有值的二叉树的类型。在<code>Haskell</code>中，您可以将其写为:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Empty</span> | <span class="type">Node</span> a (<span class="type">Tree</span> <span class="title">a</span>) (<span class="type">Tree</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>在某种程度上，我们可能已经很熟悉了，我们可以把它看作是两种类型的<code>sum</code>, 一种等价于<code>()</code>的空类型，一种<code>product</code>类型。</p>
+<p>这一次它是由三个<code>terms</code>组成的<code>product</code>,但这不是问题——我们只是使用一个嵌套的<code>product</code>,形式是<code>(a,(b,c))</code>。</p>
+<p>用我们已经知道的运算符定义(同样，使用<code>newtype</code>允许我们有递归定义)是:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">newtype</span> <span class="type">Tree</span> a = <span class="type">T</span> (<span class="type">Add</span> () (<span class="title">a</span>, (<span class="type">Tree</span> <span class="title">a</span>, <span class="type">Tree</span> <span class="title">a</span>)))</span></span><br></pre></td></tr></table></figure></p>
+<p>用代数语言，对于树的类型为<code>T(a)</code>，我们将写為:</p>
+<p><img src="img/img05.png" alt=""></p>
+<p>为了更好地理解树是什么，我们可以像处理列表那样应用重复替换，但这会更混乱相反，我们能用重新排列方程的技巧来求解<code>T(a)</code>吗？</p>
+<p>首先，重新排列以获得等式一侧的所有内容:</p>
+<p><img src="img/img06.png" alt=""></p>
+<p>我们现在可以把它看作<code>t(a)</code>的<a href="https://web.archive.org/web/20140222144454/http://en.wikipedia.org/wiki/Quadratic_equation" target="_blank" rel="noopener">二次方程</a>，我们可以用二次方程来求解，得到:</p>
+<p><img src="img/img07.png" alt=""></p>
+<p>这比列表方程式更没有意义。 取一个类型的平方根到底意味着什么？但是，保持冷静，我们再次要求<code>Wolfram Alpha</code>进行级数展开，它告诉我们:</p>
+<p><img src="img/img08.png" alt=""></p>
+<p>我们如何理解这一点？前两个术语告诉我们，一棵树可以是空的(如果是<code>Empty</code>)，也可以有一个类型为<code>a</code>的值(如果它是<code>Node a Empty Empty</code>)。</p>
+<p>下一个术语告诉我们一棵树可以用2种不同的方式包含2个<code>A</code>类型的值，而下一个术语告诉我们可以用5种不同的方式包含3个<code>A</code>类型的值。</p>
+<p>但是，如果我们枚举所有的二叉树，并按照它们包含的值的数量对它们进行分组，这正是我们注意到的。一棵树没有值，一棵树只有一个值。然后，有两棵树具有两个值，五棵树具有三个值–如图(从<code>Flajolet</code>和<code>Sedgewick</code>的出色著作<code>Analytic Combinatorics</code>中借用):</p>
+<p><img src="img/img09.png" alt=""></p>
+<p>该方程计算可以存在的不同二叉树的数目。这个计数属性与我们在第一篇文章中看到的简单值计数示例有关，也与组合物种有关，如<code>Brent Yorgey</code>所广泛描述的。物种和类型有很多共同点，尽管它们不是一回事。</p>
+<ul>
+<li><a href="https://web.archive.org/web/20140222144454/http://en.wikipedia.org/wiki/Combinatorial_species" target="_blank" rel="noopener">combinatorial species</a></li>
+<li><a href="https://web.archive.org/web/20140222144454/http://byorgey.wordpress.com/" target="_blank" rel="noopener">Brent Yorgey</a></li>
+</ul>
+<h3 id="Seven-Trees-In-One-七棵树合而为一"><a href="#Seven-Trees-In-One-七棵树合而为一" class="headerlink" title="Seven Trees In One (七棵树合而为一)"></a>Seven Trees In One (七棵树合而为一)</h3><p>如果我们限制到只包含<code>unit</code>(单位)类型的树，即<code>Tree ()</code>，则出现在<code>T(a)</code>中的<code>a</code>等于1，我们可以将树的定义方程写为:</p>
+<p><img src="img/img10.png" alt=""></p>
+<p>通过玩代数，反复使用<code>t2 = t - 1</code>这个事实，我们可以推断出:</p>
+<p><img src="img/img11.png" alt=""></p>
+<p>当用类型语言解释时，它表示六元组树相当于单位类型。</p>
+<p>换句话说，只有一棵六元组的树。<br>这显然是胡说八道，出什么事了？更神秘的是，如果我们把方程的两边乘以<code>t</code>，我们就得到:</p>
+<p><img src="img/img12.png" alt=""></p>
+<p>这不是胡说八道-它说七元树等于一個<code>single</code>棵树。</p>
+<p>乍一看，这不是一个深刻的结果。 具有<code>countably infinite</code>(<a href="https://web.archive.org/web/20140222144454/http://en.wikipedia.org/wiki/Countable_infinity" target="_blank" rel="noopener">无限数量</a>)的可能值的任何两种类型都是等效的-这就是<code>countable</code>(可数)的含义。</p>
+<p>然而，这比这更微妙。在<a href="https://web.archive.org/web/20140222144454/http://arxiv.org/pdf/math/9405205v1.pdf" target="_blank" rel="noopener">七棵树合一</a>的论文中，<code>Andreas Blass</code>不仅展示了如何找到一个从七棵树到一棵树再回到另一棵树的显式映射（本质上他告诉你如何编写上一篇文章中的<code>from</code>和<code>to</code>函数），而且还展示了函数在任何一棵树中都不需要看超过四层的深度。</p>
+<p>最后，他解释了为什么推断<code>$T^7$ = T|</code>是有效的，而<code>$T^6$ = 1</code>不是事实证明，你可以把我在上面给出的使用减法的推导转化为一个不使用减法的<code>诚实</code>证明，因此对类型有效, 但只有当你开始使用的<code>t</code>的幂大于6的倍数时。</p>
+<p>因此，可以将<code>t7</code>進一步<code>reduce</code>(化簡為)为<code>t</code>(因为<code>7=6+1</code>),但不能将<code>t6</code>(化簡為)为1.</p>
+<h3 id="An-Explanation-一个解释"><a href="#An-Explanation-一个解释" class="headerlink" title="An Explanation? (一个解释?)"></a>An Explanation? (一个解释?)</h3><p>如果你认为这篇文章提出的问题比它提供的答案还多，这是公平的。例如:</p>
+<ul>
+<li>减去、除以或取类型的平方根是什么意思？</li>
+<li>对于一个仍然有意义的<code>computational interpretation</code>(计算解释)的类型方程，你还能做些什么呢？</li>
+<li>为什么对类型方程的不合理操作会产生合理的答案呢？</li>
+</ul>
+<p>作为最后一个问题的总结，对类型进行建模的数学结构是<code>semirings</code>(半环)。</p>
+<p>这只是一种说法，可以加和乘<code>objects</code>(对象)，你有对应于0和1的对象。<code>MarceloFiore</code>和<code>Tom Leinster</code>发表的一篇论文表明，如果你能从<code>equation</code>(方程)定义的复数<code>t</code>开始:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">t</span> = p(t)</span><br></pre></td></tr></table></figure></p>
+<p>对于某些多项式<code>p</code>，并推导:</p>
+<p><img src="img/img13.png" alt=""></p>
+<p>如果<code>q1</code>和<code>q2</code>不是常数(它们不能只是1)，那么同样的结果也适用于<code>semirings</code>(半环)尤其是对于类型，这是正确的，并且您可以找到不使用<code>subtraction</code>(减法)的证明，或者找到对类型非法的任何其他运算符。</p>
+<p>下次，我将解释什么是<code>zippers</code>(拉链)，并描述如何对类型进行微积分。</p>
 
         
             <div class="donate-container">
