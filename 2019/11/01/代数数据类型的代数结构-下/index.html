@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Zippers"><span class="toc-text">Zippers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-Zippers"><span class="toc-text">List Zippers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#One-Hole-Contexts"><span class="toc-text">One-Hole Contexts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#One-Hole-Contexts-for-Tuples"><span class="toc-text">One-Hole Contexts for Tuples</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#One-Tuples"><span class="toc-text">One-Tuples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Two-Tuples"><span class="toc-text">Two-Tuples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Three-Tuples"><span class="toc-text">Three-Tuples</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Finding-the-pattern-寻找模式"><span class="toc-text">Finding the pattern(寻找模式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Calculus-of-Types-类型演算"><span class="toc-text">Calculus of Types(类型演算)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Constants"><span class="toc-text">Constants</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sums"><span class="toc-text">Sums</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Products"><span class="toc-text">Products</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Composition"><span class="toc-text">Composition</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deriving-Zippers"><span class="toc-text">Deriving Zippers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List-Zippers-1"><span class="toc-text">List Zippers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tree-Zippers"><span class="toc-text">Tree Zippers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next-Time"><span class="toc-text">Next Time</span></a></li></ol>
 </div>
     
 </div>
@@ -146,6 +146,81 @@
         <blockquote>
 <p><a href="https://web.archive.org/web/20140222124650/http://chris-taylor.github.io/blog/2013/02/13/the-algebra-of-algebraic-data-types-part-iii/" target="_blank" rel="noopener">查看原文</a></p>
 </blockquote>
+<p>上次我描述了递归类型，展示了如何将其写为代数方程式，然后您可以求解方程式以推断出有关类型的有趣事实。在本文中，我将解释对类型进行演算的含义。</p>
+<h2 id="Zippers"><a href="#Zippers" class="headerlink" title="Zippers"></a>Zippers</h2><p>常规的<code>Haskell</code>列表是一个链接列表。 尽管它们易于定义且易于使用，但它们也有缺点。如果要将元素添加到长度为n的列表，则需要<code>O(n)</code>时间。在列表中途访问或修改元素也很慢。链接列表不支持有效的随机访问。</p>
+<p>您可以使用数组解决此问题，但不可变数组有其自身的问题。例如，如果您希望数组的元素在内存中是连续的，则数据共享会更加困难。</p>
+<p>幸运的是，并非所有应用程序都需要随机访问。有时，您只想跟踪列表中的位置，并能够在列表中四处移动，并可以随时修改元素。</p>
+<p>这正是<code>zipper</code>所提供的功能，<code>zipper</code>是一种数据结构，具有指向可分辨位置的指针，称为<code>focus</code>。</p>
+<h2 id="List-Zippers"><a href="#List-Zippers" class="headerlink" title="List Zippers"></a>List Zippers</h2><p>你可以为任何数据结构写一个<code>zipper</code>拉链，但我将重点放在列表上。<br>要存储指针，我们可以用一个<code>Int</code>将列表包装起来，该<code>Int</code>将当前位置存储在<code>focus</code>中。<br>不过，这充满了各种各样的困难，而且它不符合我们对<code>focus</code>中元素的高效访问的要求。<br>相反，我们定义了一个新类型，它由<code>focus</code>中的元素和一对列表组成，其中一个列表包含<code>focus</code>之前的元素，另一个包含<code>focus</code>之后的元素, 示意图如下:</p>
+<p><img src="img/img01.png" alt=""></p>
+<p><code>focus</code>中的元素在中心，两个列表在两侧。在<code>Haskell</code>中，我们将写為:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Zipper</span> a = <span class="type">Z</span> [a] a [a]</span></span><br></pre></td></tr></table></figure></p>
+<p>为了使拉链有用，我们需要定义一些函数来左右移动焦点。</p>
+<p>出于效率方面的考虑，我们以相反的顺序存储第一个列表-我们需要从列表的末尾（而不是头）有效地添加和删除元素：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">left</span>  (<span class="type">Z</span> (l:ls) c rs) = <span class="type">Z</span> ls l (c:rs)</span><br><span class="line"><span class="title">right</span> (<span class="type">Z</span> ls c (r:rs)) = <span class="type">Z</span> (c:ls) r rs</span><br></pre></td></tr></table></figure></p>
+<p>如果您想了解有关<code>zippers</code>的更多信息，那么<a href="https://web.archive.org/web/20140222183509/http://learnyouahaskell.com/zippers" target="_blank" rel="noopener">Learn You a Haskell</a>的最后一章将进行出色的介绍。</p>
+<h2 id="One-Hole-Contexts"><a href="#One-Hole-Contexts" class="headerlink" title="One-Hole Contexts"></a>One-Hole Contexts</h2><p><code>zipper</code>是一种<code>product</code>类型-它是两个<code>as</code>列表和一个<code>a</code>列表的<code>product</code>。<br>记住, 列表为<code>L(a)= 1/(1-a)</code>，列表拉链<code>LZ(a)</code>表示为:</p>
+<p><img src="img/img02.png" alt=""></p>
+<p>因为<code>zipper</code>是一种<code>product</code>类型，所以可以将它分开，将其分解为一个单独的数据，并与两个列表配对。这两个列表告诉我们<code>focus</code>在哪里，我们通过填写<code>focus</code>所在的数据来完成<code>zipper</code>。代数上我们有:</p>
+<p><img src="img/img03.png" alt=""></p>
+<p>这显然等同于前面的表达式。<code>product</code>的第一部分只是一段数据，我们可以把第二部分看作是一个有<code>hole</code>(洞)的数据结构当我们用一些数据来配对’填充’这个<code>hole</code>(洞)时，我们会得到一个<code>zipper</code>。</p>
+<p>此’带<code>hole</code>(洞)的数据结构’使用<code>one-hole context</code>(单洞上下文)的名称。对于列表拉链，如下所示：</p>
+<p><img src="img/img04.png" alt=""></p>
+<p>空圆圈是一个<code>hole</code>(孔)，代表<code>无数据</code>-它是数据的占位符。不包含数据的类型是<code>unit</code>(单位)类型<code>()</code>，因此我们可以说孔的类型是<code>()</code>.</p>
+<p>列表拉链没有什么特别的-任何拉链都可以分解为<code>one-hole</code>上下文，并且一条数据可以填充<code>hole</code>(洞)。</p>
+<h2 id="One-Hole-Contexts-for-Tuples"><a href="#One-Hole-Contexts-for-Tuples" class="headerlink" title="One-Hole Contexts for Tuples"></a>One-Hole Contexts for Tuples</h2><p>我说过，您可以为任何数据类型编写一个拉链，所以让我们为元组编写一些拉链-也就是说，<code>$a^n$</code>形式的类型代表某个整数<code>n</code>。</p>
+<h3 id="One-Tuples"><a href="#One-Tuples" class="headerlink" title="One-Tuples"></a>One-Tuples</h3><p>最简单的情况是一元组，它只是一个数据片段。一元组的拉链很简单-只有一个数据位置，所以只有一个<code>focus</code>(焦点), 一元组<code>a</code>的拉链只是一个<code>a</code>。</p>
+<p>但是请记住，<code>zippers</code>是与<code>one-hole</code>上下文配对的一段数据，那么<code>one-hole</code>上下文是什么？只有一个地方可以放这个<code>hole</code>(洞)，一旦我们在一段数据中放了一个<code>hole</code>(洞)，我们就只剩下这个洞了！示意图上，数据与<code>one-hole</code>上下文的配对如下所示:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a,∘)</span><br></pre></td></tr></table></figure></p>
+<p><code>one-hole</code>上下文的类型必须为<code>()</code>或<code>1</code>，这样，当我们将其与数据<code>a</code>配对时，我们将再次获得<code>a</code>。</p>
+<h3 id="Two-Tuples"><a href="#Two-Tuples" class="headerlink" title="Two-Tuples"></a>Two-Tuples</h3><p>在两元组中，该<code>hole</code>(洞)有两个可能的位置。请记住，<code>sum</code>表示一个选择，无论是左侧构造函数还是右侧构造函数，数据和<code>one-hole</code>上下文的配对如下所示:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a,(∘,a)+(a,∘))</span><br></pre></td></tr></table></figure></p>
+<p>请记住，<code>hole</code>的类型为1，<code>one-hole</code>上下文的类型为<code>a + a</code>或<code>2a</code>。</p>
+<h3 id="Three-Tuples"><a href="#Three-Tuples" class="headerlink" title="Three-Tuples"></a>Three-Tuples</h3><p>在三元组中，该<code>hole</code>有三个可能的位置。数据和<code>one-hole</code>上下文的配对看起来像:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a,(∘,a,a)+(a,∘,a)+(a,a,∘))</span><br></pre></td></tr></table></figure></p>
+<p><code>one-hole</code>上下文的类型为<code>a²+a²+a²</code>或<code>3a²</code>。</p>
+<h2 id="Finding-the-pattern-寻找模式"><a href="#Finding-the-pattern-寻找模式" class="headerlink" title="Finding the pattern(寻找模式)"></a>Finding the pattern(寻找模式)</h2><p>也许您已经看到了这种模式。 左列是<code>n = 1、2、3</code>的<code>n</code>元组的类型，右列是其相应的拉链:<br><img src="img/img05.png" alt=""></p>
+<p>如果你研究过任何微积分，你会立即发现这个模式——对于一个类型为<code>a^n</code>的<code>n</code>元组，拉链的类型是<code>na^n-1</code>，这正是<code>a^n</code>的<code>derivative</code>(导数)。</p>
+<p>实际上，这种模式始终适用！<code>Conor McBride</code>在一篇<a href="https://web.archive.org/web/20140222183509/http://strictlypositive.org/diff.pdf" target="_blank" rel="noopener">论文</a>中指出了这一点，其标题给出了关键的见解:</p>
+<p><code>The Derivative of a Regular Type is its Type of One-Hole Contexts</code>(常规类型的导数是其<code>one-hole</code>上下文的类型)</p>
+<p>如果采用类型表达式并对其进行区分，则结果是该类型的<code>one-hole</code>上下文类型。这样就很容易找出如何为任意数据类型编写<code>zipper</code>。</p>
+<h2 id="Calculus-of-Types-类型演算"><a href="#Calculus-of-Types-类型演算" class="headerlink" title="Calculus of Types(类型演算)"></a>Calculus of Types(类型演算)</h2><p>我将使用符号<code>∂a</code>来表示’对<code>a</code>求导’。您可能已经熟悉了用于区分的符号<code>d/da</code>, 这没有什么不同，但它的优点是可以在一行上排版！</p>
+<p>我们能把一个类型的导数和它的<code>one-hole</code>上下文之间的类比推多远？<br>在所有上下文中区分类型是否有效，还是必须小心? 我们当然应该检查微分运算在应用于我们已经知道的类型时是否有意义，例如.</p>
+<h3 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h3><p>这是微积分的一条简单规则–任何常数的导数为零:</p>
+<p><img src="img/img06.png" alt=""></p>
+<p>要对类型解释这一点，请记住派生运算符<code>d/d a</code>在包含类型<code>A</code>的数据的数据结构中创建了<code>hole</code>。此公式表示，如果类型没有任何类型<code>A</code>的数据，则其<code>one-hole</code>上下文为<code>Void</code>，即您不能创建它的任何实例。</p>
+<h3 id="Sums"><a href="#Sums" class="headerlink" title="Sums"></a>Sums</h3><p>导数的求和规则是，对于任何<code>f(a)</code>和<code>g(a)</code>，<code>sum</code>与分别求和然后在求和相同:</p>
+<p><img src="img/img07.png" alt=""></p>
+<p>这告诉我们，在<code>sum</code>类型中创建一个<code>hole</code>相当于在每个<code>summands</code>(被加数)中创建一个<code>hole</code>，并取它们的和。在更明确的语言中，如果<code>F a</code>和<code>G a</code>是具有<code>one-hole</code>上下文<code>DF a</code>和<code>DG a</code>的类型，则<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">Sum</span> a = <span class="type">Add</span> (<span class="type">F</span> <span class="title">a</span>) (<span class="type">G</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p><code>one-hole</code>上下文為:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">DSum</span> a = <span class="type">Add</span> (<span class="type">DF</span> <span class="title">a</span>) (<span class="type">DG</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Products"><a href="#Products" class="headerlink" title="Products"></a>Products</h3><p>在微积分中，<code>product</code>的导数由<a href="https://web.archive.org/web/20140222183509/http://en.wikipedia.org/wiki/Product_rule" target="_blank" rel="noopener">莱布尼兹的product规则</a>给出:</p>
+<p><img src="img/img08.png" alt=""></p>
+<p>解释为有关类型的说明，这告诉我们在两种类型的<code>product</code>中打<code>hole</code>(孔)等同于在第一种类型中打孔(并保留第二种形式)或在第二种类型中打孔(并保留第一个原样)。就是说，<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">Prod</span> a = (<span class="type">F</span> <span class="title">a</span>, <span class="type">G</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>的<code>one-hole</code>上下文為:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">DProd</span> a = <span class="type">Add</span> (<span class="type">DF</span> <span class="title">a</span>, <span class="type">G</span> <span class="title">a</span>) (<span class="type">F</span> <span class="title">a</span>, <span class="type">DG</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Composition"><a href="#Composition" class="headerlink" title="Composition"></a>Composition</h3><p>我们还没见过<code>composition</code>。如果数据结构<code>F</code>包含<code>G a</code>类型的元素，则会发生这种情况。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Compose</span> f g a = <span class="type">Compose</span> (<span class="title">f</span> (<span class="title">g</span> <span class="title">a</span>))</span></span><br></pre></td></tr></table></figure></p>
+<p>其中<code>f</code>和<code>g</code>的种类为<code>* -&gt; *</code>，而<code>a</code>的种类为<code>*</code>，尽管保持语法简洁并只写<code>f(g a)</code>更简单。</p>
+<p>在微积分中，<a href="https://web.archive.org/web/20140222183509/http://en.wikipedia.org/wiki/Chain_rule" target="_blank" rel="noopener">链式规则</a>告诉我们如何区分<code>compositions</code>(组成):</p>
+<p><img src="img/img09.png" alt=""></p>
+<p>作为一个类型方程，这意味着要在分层数据结构中创建一个<code>hole</code>(孔)，我们需要一个<code>product</code>,一半的<code>product</code>告诉我们孔在外部结构中的位置，另一半则跟踪内部结构中的孔。也就是说，<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">Comp</span> a = <span class="type">F</span> (<span class="type">G</span> <span class="title">a</span>)</span></span><br></pre></td></tr></table></figure></p>
+<p>的<code>one-hole</code>上下文為:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">DComp</span> a = (<span class="type">DG</span> <span class="title">a</span>, <span class="type">DF</span> (<span class="type">G</span> <span class="title">a</span>))</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Deriving-Zippers"><a href="#Deriving-Zippers" class="headerlink" title="Deriving Zippers"></a>Deriving Zippers</h2><p>我说过，知道<code>ADT</code>的派生与其<code>one-hole</code>上下文类型相对应，就可以轻松地为任意数据类型派生拉链。现在，我将证明该主张的合理性。</p>
+<h3 id="List-Zippers-1"><a href="#List-Zippers-1" class="headerlink" title="List Zippers"></a>List Zippers</h3><p>列表的类型是:</p>
+<p><img src="img/img10.png" alt=""></p>
+<p>我们可以使用<code>quotient</code>(商)规则和<code>chain</code>(链)规则对此进行区分，發現:</p>
+<p><img src="img/img11.png" alt=""></p>
+<p>它说列表的<code>one-hole</code>上下文是一对列表，正如我们之前所看到的。为了获得列表拉链，我们将<code>a</code>与一对列表<code>L(*a)</code>進行<code>product</code>.</p>
+<h3 id="Tree-Zippers"><a href="#Tree-Zippers" class="headerlink" title="Tree Zippers"></a>Tree Zippers</h3><p>请记住，二叉树<code>T(a)</code>的类型由递归方程定义:</p>
+<p><img src="img/img12.png" alt=""></p>
+<p>我们可以像上一篇文章一样求解<code>T(a)</code>，然后区分结果。但是，使用<a href="https://web.archive.org/web/20140222183509/http://en.wikipedia.org/wiki/Implicit_differentiation#Implicit_differentiation" target="_blank" rel="noopener">隐式差异</a>来区分上述表达式要容易得多，得到:</p>
+<p><img src="img/img13.png" alt=""></p>
+<p>然后我们可以针对<code>dT/da</code>解决此问题，找到:</p>
+<p><img src="img/img14.png" alt=""></p>
+<p>为了理解这一点，请记住类型<code>1/(1-x)</code>与<code>x</code>列表中的类型<code>L(x)</code>同义。<br>所以树拉链是:</p>
+<p><img src="img/img15.png" alt=""></p>
+<p>也就是说，树的<code>one-hole</code>上下文是两棵树和一个包含类型元素<code>(bool，a，tree a)</code>的列表的<code>product</code>。看起来是这样的:</p>
+<p><img src="img/img16.png" alt=""></p>
+<p><code>hole</code>是我们当前的位置，<code>focus</code>(焦点)。洞的下面是两棵树，它们容纳了我们还没有穿过的那部分树。在这张照片中，它们都是单元素树。</p>
+<p>回到树顶的红色节点的序列是<code>past</code>(过去)-我们经过的树元素最终在<code>hole</code>(孔)处结束。</p>
+<p>每个节点都与一个<code>Bool</code>相关联，该<code>Bool</code>告诉我们经过该节点后是左分支还是右分支，以及一个<code>Tree a</code>，其中包含所有我们未沿另一条路径错过的元素。</p>
+<p>练习：为二进制树编码拉链，记住拉链是与数据配对的<code>one-hole</code>上下文。您需要编写<code>left/right</code>函数，以在特定节点上使用<code>left</code>或<code>right</code>路径，并使用<code>up</code>返回上一级树。</p>
+<p>练习：玫瑰树是每个节点上具有任意多个分支的树。在<code>Haskell</code>中，您可以通过以下方式定义它们:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Rose</span> a = <span class="type">Rose</span> a [<span class="type">Rose</span> a]</span></span><br></pre></td></tr></table></figure></p>
+<p>玫瑰树拉链长什么样？</p>
+<h2 id="Next-Time"><a href="#Next-Time" class="headerlink" title="Next Time"></a>Next Time</h2><p>在这篇文章中，我们了解了采用<code>ADT</code>的派生(对<code>ADT</code>求导)是什么意思，以及如何操作类型代数来自动为任意数据类型派生<code>zipper</code>。<br>下一次我将讨论给类型的减法和除法赋予一个意义，我可能会继续提到<code>combinatorial species</code>(组合种类)。</p>
 
         
             <div class="donate-container">
