@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Haskell-Prelude - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-to-Avoid"><span class="toc-text">What to Avoid?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-Should-be-in-Base"><span class="toc-text">What Should be in Base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Custom-Preludes"><span class="toc-text">Custom Preludes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Protolude"><span class="toc-text">Protolude</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Partial-Functions-偏函數"><span class="toc-text">Partial Functions(偏函數)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safe"><span class="toc-text">Safe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean-Blindness"><span class="toc-text">Boolean Blindness</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Foldable-Traversable"><span class="toc-text">Foldable / Traversable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Corecursion"><span class="toc-text">Corecursion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#split包"><span class="toc-text">split包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#monad-loops包"><span class="toc-text">monad-loops包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Foundation包"><span class="toc-text">Foundation包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Strings-and-Bytearrays"><span class="toc-text">Strings and Bytearrays</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Container-Interface"><span class="toc-text">Container Interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Numerical-Tower"><span class="toc-text">Numerical Tower</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Haskell-Prelude
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-05 16:57:56</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Wish-Knew" title="Wish-Knew">Wish-Knew</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Haskell" title="Haskell">Haskell</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Prelude" title="Prelude">Prelude</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="What-to-Avoid"><a href="#What-to-Avoid" class="headerlink" title="What to Avoid?"></a>What to Avoid?</h3><p><code>Haskell</code>是一门拥有25年历史的语言，它见证了我们构造和编写功能程序的方式的几次革命。 但是结果是，《Prelude》的许多部分仍然反映了旧思想流派，而这些思想流派只有在不破坏生态系统的重要部分的情况下才能被消除。</p>
+<p>目前，它实际上仅存在于民间传说中，哪些部分需要使用，哪些部分不使用，尽管几乎所有入门书籍都没有提到这个主题，而是为了简单起见广泛使用了<code>Prelude</code>。</p>
+<p>关于<code>Prelude</code>前奏的建议的简短版本是:</p>
+<ul>
+<li>避免<code>String</code>(字符串).</li>
+<li>使用<code>fmap</code>代替<code>map</code>.</li>
+<li>使用<code>Foldable</code>和<code>Traversable</code>替代<code>Control.Monad</code>和<code>Data.List</code>版本的<code>traversals</code>(遍歷).</li>
+<li>避免使用<code>head</code>和<code>read</code>之类的部分函數，或者使用其全部变体.</li>
+<li>避免異常，使用<code>ExceptT</code>或<code>Either</code>替代.</li>
+<li>避免布尔<code>blind</code>(盲)函数.</li>
+</ul>
+<p>列表类型的<code>Foldable</code>实例经常与<code>Prelude</code>中的<code>monomorphic</code>(单態)版本冲突，这是出于历史原因而保留的。因此，通常需要从隐式导入中显式屏蔽这些函數，并强制使用<code>Foldable</code>和<code>Traversable</code>。</p>
+<p>当然，通常情况下，人们只希望显式地使用<code>Prelude</code>，而人们可以显式地导入<code>Prelude</code>，并根据需要使用片段，而无需隐式导入整个名称空间。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Prelude <span class="keyword">as</span> P</span><br></pre></td></tr></table></figure></p>
+<h3 id="What-Should-be-in-Base"><a href="#What-Should-be-in-Base" class="headerlink" title="What Should be in Base"></a>What Should be in Base</h3><p>要完成工作，您可能需要.</p>
+<ul>
+<li>async</li>
+<li>bytestring</li>
+<li>containers</li>
+<li>mtl</li>
+<li>stm</li>
+<li>text</li>
+<li>transformers</li>
+<li>unordered-containers</li>
+<li>vector</li>
+<li>filepath</li>
+<li>directory</li>
+<li>process</li>
+<li>unix</li>
+<li>deepseq</li>
+<li>optparse-applicative</li>
+</ul>
+<h3 id="Custom-Preludes"><a href="#Custom-Preludes" class="headerlink" title="Custom Preludes"></a>Custom Preludes</h3><p>可以通过旋转<code>-XNoImplicitPrelude</code>标志来完全禁用默认的<code>Prelude</code>。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE NoImplicitPrelude #-&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，我们可以自由地构建等效的<code>Prelude</code>，这更符合我们的喜好。使用模块重新导出，我们可以提取<code>Prelude</code>的大部分内容和<code>safe</code>之类的库，以建立更加工业化的默认功能集。例如:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Custom (</span><br><span class="line">  <span class="title">module</span> <span class="type">Exports</span>,</span><br><span class="line">) <span class="keyword">where</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Data.Int <span class="keyword">as</span> Exports</span><br><span class="line"><span class="keyword">import</span> Data.Tuple <span class="keyword">as</span> Exports</span><br><span class="line"><span class="keyword">import</span> Data.Maybe <span class="keyword">as</span> Exports</span><br><span class="line"><span class="keyword">import</span> Data.String <span class="keyword">as</span> Exports</span><br><span class="line"><span class="keyword">import</span> Data.Foldable <span class="keyword">as</span> Exports</span><br><span class="line"><span class="keyword">import</span> Data.Traversable <span class="keyword">as</span> Exports</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Control.Monad.Trans.Except</span><br><span class="line">  <span class="keyword">as</span> <span class="type">Exports</span></span><br><span class="line">  (<span class="type">ExceptT</span>(<span class="type">ExceptT</span>), <span class="type">Except</span>, except, runExcept, runExceptT,</span><br><span class="line">   mapExcept, mapExceptT, withExcept, withExceptT)</span><br></pre></td></tr></table></figure></p>
+<p><code>Prelude</code>本身也是完全可复制的，假设整个项目的编译没有隐含的前奏曲。已经出现了几个包，它们以一种更符合现代设计原则的方式提供了许多相同的功能。</p>
+<h3 id="Protolude"><a href="#Protolude" class="headerlink" title="Protolude"></a>Protolude</h3><p><code>Protolude</code>是一个极简的<code>Prelude</code>，它为编写现代<code>Haskell</code>提供了许多合理的默认值，并且与现有代码兼容。</p>
+<ul>
+<li><a href="http://hackage.haskell.org/package/protolude" target="_blank" rel="noopener">Protolude</a></li>
+</ul>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE NoImplicitPrelude #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Protolude</span><br></pre></td></tr></table></figure>
+<p>其他可供选择的<code>Prelude</code>示例包括(您的<code>mileage</code>(里程)可能因这些而异):</p>
+<ul>
+<li>base-prelude</li>
+<li>basic-prelude</li>
+<li>classy-prelude</li>
+<li>Other Preludes</li>
+</ul>
+<h3 id="Partial-Functions-偏函數"><a href="#Partial-Functions-偏函數" class="headerlink" title="Partial Functions(偏函數)"></a>Partial Functions(偏函數)</h3><p>偏函數是一个函数，它不会<code>terminate</code>(终止)并为所有给定的输入产生一个值。相反，<code>total</code>(全)函数终止，并始终为所有输入定义。如前所述，<code>Prelude</code>的某些历史部分充满了偏函數。</p>
+<p>部分函数和全部函数之间的区别在于编译器不能仅仅从语言中指定的信息来推断部分函数的运行时安全性，因此安全性的证明留给用户来保证。当用户可以保证无效输入不会发生时，它们可以安全地使用，但与任何未检查的属性一样，它的安全与否将取决于程序员的勤奋，这非常有悖于<code>Haskell</code>的整体哲学，因此，在没有必要的时候，不鼓励使用.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">head</span> :: [a] -&gt; a</span><br><span class="line"><span class="title">read</span> :: <span class="type">Read</span> a =&gt; <span class="type">String</span> -&gt; a</span><br><span class="line">(!!) :: [a] -&gt; <span class="type">Int</span> -&gt; a</span><br></pre></td></tr></table></figure></p>
+<h3 id="Safe"><a href="#Safe" class="headerlink" title="Safe"></a>Safe</h3><p>在某些情况下，<code>Prelude</code>具有历史部分函數(例如<code>Text.Read.readMaybe</code>)的全部变体，但通常可以在各种实用程序库(如<code>safe</code>)中找到这些变体。</p>
+<p>提供的<code>total</code>版本分为以下三种情况:</p>
+<ul>
+<li><strong>May</strong> - 未为输入定义函数时，返回<code>Nothing</code></li>
+<li><strong>Def</strong> - 未为输入定义函數时，提供默认值</li>
+<li><strong>Note</strong> - 当没有为输入定义函数时，使用自定义错误消息调用错误。这是不安全的，但稍微容易调试！</li>
+</ul>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Total</span></span><br><span class="line"><span class="title">headMay</span> :: [a] -&gt; <span class="type">Maybe</span> a</span><br><span class="line"><span class="title">readMay</span> :: <span class="type">Read</span> a =&gt; <span class="type">String</span> -&gt; <span class="type">Maybe</span> a</span><br><span class="line"><span class="title">atMay</span> :: [a] -&gt; <span class="type">Int</span> -&gt; <span class="type">Maybe</span> a</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Total</span></span><br><span class="line"><span class="title">headDef</span> :: a -&gt; [a] -&gt; a</span><br><span class="line"><span class="title">readDef</span> :: <span class="type">Read</span> a =&gt; a -&gt; <span class="type">String</span> -&gt; a</span><br><span class="line"><span class="title">atDef</span>   :: a -&gt; [a] -&gt; <span class="type">Int</span> -&gt; a</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Partial</span></span><br><span class="line"><span class="title">headNote</span> :: <span class="type">String</span> -&gt; [a] -&gt; a</span><br><span class="line"><span class="title">readNote</span> :: <span class="type">Read</span> a =&gt; <span class="type">String</span> -&gt; <span class="type">String</span> -&gt; a</span><br><span class="line"><span class="title">atNote</span>   :: <span class="type">String</span> -&gt; [a] -&gt; <span class="type">Int</span> -&gt; a</span><br></pre></td></tr></table></figure>
+<h3 id="Boolean-Blindness"><a href="#Boolean-Blindness" class="headerlink" title="Boolean Blindness"></a>Boolean Blindness</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Bool</span> = <span class="type">True</span> | <span class="type">False</span></span></span><br><span class="line"></span><br><span class="line"><span class="title">isJust</span> :: <span class="type">Maybe</span> a -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="title">isJust</span> (<span class="type">Just</span> x) = <span class="type">True</span></span><br><span class="line"><span class="title">isJust</span> <span class="type">Nothing</span>  = <span class="type">False</span></span><br></pre></td></tr></table></figure>
+<p>布尔类型的问题在于，在类型级别上，<code>True</code>和<code>False</code>之间实际上没有区别。</p>
+<p>将值赋给<code>Bool</code>的命题将获取给定的任何信息并将其销毁。</p>
+<p>要对行为进行推理，我们必须追溯从中得到布尔答案的命题的出处，这为误解提供了很多可能性。 在最坏的情况下，推理函数安全和不安全使用的唯一方法是相信谓词的词法名称能够反映其出处！</p>
+<p>例如，在布尔值上测试一些表示分支是否可以在存在<code>null</code>的情况下安全地执行计算的命题会导致意外交换。</p>
+<p>考虑到在像<code>C</code>或<code>Python</code>这样的语言中，测试值是否为<code>null</code>与该语言测试值是否不为<code>null</code>是没有区别的。这些程序中的哪个程序编码安全使用，哪个段错误编码？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># This one?</span><br><span class="line">if p(x):</span><br><span class="line">    <span class="meta"># use x</span></span><br><span class="line">elif not p(x):</span><br><span class="line">    # don't use x</span><br><span class="line"></span><br><span class="line"># Or <span class="keyword">this</span> one?</span><br><span class="line">if p(x):</span><br><span class="line">    # don't use x</span><br><span class="line">elif not p(x):</span><br><span class="line">    <span class="meta"># use x</span></span><br></pre></td></tr></table></figure>
+<p>从检查中我们无法得知<code>p</code>是如何定义的，编译器也不能区分这两个，因此如果我们碰巧把它们弄混了，语言也救不了我们。</p>
+<p>与其使无效状态不可表示，不如使无效状态与有效状态不可区分！</p>
+<p>更可取的做法是，在<code>terms</code>(术语)上进行匹配，这些<code>terms</code>(术语)明确地将命题视为一种类型，否则不会进行类型检查。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">case</span> x <span class="keyword">of</span></span><br><span class="line">  <span class="type">Just</span> a  -&gt; use x</span><br><span class="line">  <span class="type">Nothing</span> -&gt; don't use x</span><br><span class="line"></span><br><span class="line"><span class="comment">-- not ideal</span></span><br><span class="line"><span class="title">case</span> p x <span class="keyword">of</span></span><br><span class="line">  <span class="type">True</span>  -&gt; use x</span><br><span class="line">  <span class="type">False</span> -&gt; don't use x</span><br><span class="line"></span><br><span class="line"><span class="comment">-- not ideal</span></span><br><span class="line"><span class="title">if</span> p x</span><br><span class="line">  <span class="keyword">then</span> use x</span><br><span class="line">  <span class="keyword">else</span> don't use x</span><br></pre></td></tr></table></figure></p>
+<p>公平地说，许多流行的语言完全没有<code>sum</code>类型的概念（我认为很多麻烦的根源），而只有<code>product</code>类型，因此这种推理有时与不熟悉<code>ML</code>族语言的人没有直接的对等关系。</p>
+<p>在<code>Haskell</code>中，<code>Prelude</code>提供了诸如<code>isJust</code>和<code>fromJust</code>之类的函數，这两种函數均可用于颠覆这种推理，并易于引入错误，应经常避免使用。</p>
+<h3 id="Foldable-Traversable"><a href="#Foldable-Traversable" class="headerlink" title="Foldable / Traversable"></a>Foldable / Traversable</h3><p>如果来自命令式的背景，再训练一个人从<code>maps</code>(映射)、<code>folds</code>(折叠)和<code>scans</code>(扫描)的角度来思考列表的迭代可能是具有挑战性的。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Prelude</span>.foldl :: (a -&gt; b -&gt; a) -&gt; a -&gt; [b] -&gt; a</span><br><span class="line"><span class="type">Prelude</span>.foldr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; b</span><br><span class="line"></span><br><span class="line"><span class="comment">-- pseudocode</span></span><br><span class="line"><span class="title">foldr</span> f z [a...] = f a (f b ( ... (f y z) ... ))</span><br><span class="line"><span class="title">foldl</span> f z [a...] = f ... (f (f z a) b) ... y</span><br></pre></td></tr></table></figure></p>
+<p>具体来说，考虑二进制运算符<code>(+)</code>上的简单算术序列:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- foldr (+) 1 [2..]</span></span><br><span class="line">(<span class="number">1</span> + (<span class="number">2</span> + (<span class="number">3</span> + (<span class="number">4</span> + ...))))</span><br><span class="line"><span class="comment">-- foldl (+) 1 [2..]</span></span><br><span class="line">((((<span class="number">1</span> + <span class="number">2</span>) + <span class="number">3</span>) + <span class="number">4</span>) + ...)</span><br></pre></td></tr></table></figure></p>
+<p><code>Foldable</code>和<code>Traversable</code>是任何数据结构的所有遍历和折叠的通用接口，这些数据结构通过其元素类型(<code>List</code>, <code>Map</code>, <code>Set</code>, <code>Maybe</code>…)进行参数化。这两个类在现代<code>Haskell</code>中随处可见，并且非常重要。</p>
+<p>一个<code>foldable</code>的实例允许我们将函数应用于<code>monoidal</code>值的数据类型，这些值使用<code>mappend</code>之上的某种逻辑折叠结构。</p>
+<p><code>traversable</code>的实例允许我们将函数应用于数据类型，这些数据类型在<code>applicative</code>上下文中从左到右遍历结构。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> (<span class="type">Functor</span> <span class="title">f</span>, <span class="type">Foldable</span> <span class="title">f</span>) =&gt; <span class="type">Traversable</span> f <span class="keyword">where</span></span></span><br><span class="line">  traverse :: <span class="type">Applicative</span> g =&gt; (a -&gt; g b) -&gt; f a -&gt; g (f b)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Foldable</span> f <span class="keyword">where</span></span></span><br><span class="line">  foldMap :: <span class="type">Monoid</span> m =&gt; (a -&gt; m) -&gt; f a -&gt; m</span><br></pre></td></tr></table></figure>
+<p><code>foldMap</code>函数是非常通用的，并且非直观地，许多单态列表折叠本身可以根据此单个多态函数来编写。</p>
+<p><code>foldMap</code>将值的函数带到一个<code>monoidal quantity</code>(幺半群)，在这些值上使用一个函子，并将该函子折叠成<code>monoid</code>。例如，对于琐碎的<code>Sum monoid</code>:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">λ: foldMap <span class="type">Sum</span> [<span class="number">1.</span><span class="number">.10</span>]</span><br><span class="line"><span class="type">Sum</span> &#123;getSum = <span class="number">55</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>例如，如果我们想基于模式匹配将一些抽象元素类型的列表映射到元素的哈希表中，则可以使用它。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Data.Foldable</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Map <span class="keyword">as</span> Map</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Elt</span></span></span><br><span class="line">  = <span class="type">Elt</span> <span class="type">Int</span> <span class="type">Double</span></span><br><span class="line">  | <span class="type">Nil</span></span><br><span class="line"></span><br><span class="line"><span class="title">foo</span> :: [<span class="type">Elt</span>] -&gt; <span class="type">Map</span>.<span class="type">Map</span> <span class="type">Int</span> <span class="type">Double</span></span><br><span class="line"><span class="title">foo</span> = foldMap go</span><br><span class="line">  <span class="keyword">where</span></span><br><span class="line">    go (<span class="type">Elt</span> x y) = <span class="type">Map</span>.singleton x y</span><br><span class="line">    go <span class="type">Nil</span> = <span class="type">Map</span>.empty</span><br></pre></td></tr></table></figure></p>
+<p>完整的<code>Foldable</code>类(具有所有默认实现)包含各种派生函数，它们本身可以用<code>foldMap</code>和<code>Endo</code>编写.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">newtype</span> <span class="type">Endo</span> a = <span class="type">Endo</span> &#123;<span class="title">appEndo</span> :: <span class="title">a</span> -&gt; <span class="title">a</span>&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Monoid</span> (<span class="type">Endo</span> <span class="title">a</span>) <span class="keyword">where</span></span></span><br><span class="line">  mempty = <span class="type">Endo</span> id</span><br><span class="line">  <span class="type">Endo</span> f `mappend` <span class="type">Endo</span> g = <span class="type">Endo</span> (f . g)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Foldable</span> t <span class="keyword">where</span></span></span><br><span class="line">    fold    :: <span class="type">Monoid</span> m =&gt; t m -&gt; m</span><br><span class="line">    foldMap :: <span class="type">Monoid</span> m =&gt; (a -&gt; m) -&gt; t a -&gt; m</span><br><span class="line"></span><br><span class="line">    foldr   :: (a -&gt; b -&gt; b) -&gt; b -&gt; t a -&gt; b</span><br><span class="line">    foldr'  :: (a -&gt; b -&gt; b) -&gt; b -&gt; t a -&gt; b</span><br><span class="line"></span><br><span class="line">    foldl   :: (b -&gt; a -&gt; b) -&gt; b -&gt; t a -&gt; b</span><br><span class="line">    foldl'  :: (b -&gt; a -&gt; b) -&gt; b -&gt; t a -&gt; b</span><br><span class="line"></span><br><span class="line">    foldr1  :: (a -&gt; a -&gt; a) -&gt; t a -&gt; a</span><br><span class="line">    foldl1  :: (a -&gt; a -&gt; a) -&gt; t a -&gt; a</span><br></pre></td></tr></table></figure></p>
+<p>例如:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">foldr</span> :: (a -&gt; b -&gt; b) -&gt; b -&gt; t a -&gt; b</span><br><span class="line"><span class="title">foldr</span> f z t = appEndo (foldMap (<span class="type">Endo</span> . f) t) z</span><br></pre></td></tr></table></figure></p>
+<p>列表上的大多数操作可以用<code>Foldable</code>和<code>Traversable</code>的组合来概括，从而派生出更通用的函数，这些函数可以在实现<code>Foldable</code>的所有数据结构上工作.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Data</span>.<span class="type">Foldable</span>.elem    :: (<span class="type">Eq</span> a, <span class="type">Foldable</span> t) =&gt; a -&gt; t a -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="type">Data</span>.<span class="type">Foldable</span>.sum     :: (<span class="type">Num</span> a, <span class="type">Foldable</span> t) =&gt; t a -&gt; a</span><br><span class="line"><span class="type">Data</span>.<span class="type">Foldable</span>.minimum :: (<span class="type">Ord</span> a, <span class="type">Foldable</span> t) =&gt; t a -&gt; a</span><br><span class="line"><span class="type">Data</span>.<span class="type">Traversable</span>.mapM :: (<span class="type">Monad</span> m, <span class="type">Traversable</span> t) =&gt; (a -&gt; m b) -&gt; t a -&gt; m (t b)</span><br></pre></td></tr></table></figure></p>
+<p>不幸的是，由于历史原因，<code>foldable</code>导出的名称经常与<code>Prelude</code>中定义的名称冲突，要么将其<code>qualified</code>导入，要么仅禁用<code>Prelude</code>。<code>Foldable</code>中的所有操作都专门针对相同的操作，并且行为与<code>Prelude for List</code>类型中的操作相同.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Data.Monoid</span><br><span class="line"><span class="keyword">import</span> Data.Foldable</span><br><span class="line"><span class="keyword">import</span> Data.Traversable</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Control.Applicative</span><br><span class="line"><span class="keyword">import</span> Control.Monad.Identity (<span class="title">runIdentity</span>)</span><br><span class="line"><span class="keyword">import</span> Prelude <span class="keyword">hiding</span> (<span class="title">mapM_</span>, <span class="title">foldr</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Rose Tree</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Node</span> a [<span class="type">Tree</span> a] <span class="keyword">deriving</span> (<span class="type">Show</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Functor</span> <span class="type">Tree</span> <span class="keyword">where</span></span></span><br><span class="line">  fmap f (<span class="type">Node</span> x ts) = <span class="type">Node</span> (f x) (fmap (fmap f) ts)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Traversable</span> <span class="type">Tree</span> <span class="keyword">where</span></span></span><br><span class="line">  traverse f (<span class="type">Node</span> x ts) = <span class="type">Node</span> &lt;$&gt; f x &lt;*&gt; traverse (traverse f) ts</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Foldable</span> <span class="type">Tree</span> <span class="keyword">where</span></span></span><br><span class="line">  foldMap f (<span class="type">Node</span> x ts) = f x `mappend` foldMap (foldMap f) ts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title">tree</span> :: <span class="type">Tree</span> <span class="type">Integer</span></span><br><span class="line"><span class="title">tree</span> = <span class="type">Node</span> <span class="number">1</span> [<span class="type">Node</span> <span class="number">1</span> [], <span class="type">Node</span> <span class="number">2</span> [] ,<span class="type">Node</span> <span class="number">3</span> []]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title">example1</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">example1</span> = mapM_ print tree</span><br><span class="line"></span><br><span class="line"><span class="title">example2</span> :: <span class="type">Integer</span></span><br><span class="line"><span class="title">example2</span> = foldr (+) <span class="number">0</span> tree</span><br><span class="line"></span><br><span class="line"><span class="title">example3</span> :: <span class="type">Maybe</span> (<span class="type">Tree</span> <span class="type">Integer</span>)</span><br><span class="line"><span class="title">example3</span> = traverse (\x -&gt; <span class="keyword">if</span> x &gt; <span class="number">2</span> <span class="keyword">then</span> <span class="type">Just</span> x <span class="keyword">else</span> <span class="type">Nothing</span>) tree</span><br><span class="line"></span><br><span class="line"><span class="title">example4</span> :: <span class="type">Tree</span> <span class="type">Integer</span></span><br><span class="line"><span class="title">example4</span> = runIdentity $ traverse (\x -&gt; pure (x+<span class="number">1</span>)) tree</span><br></pre></td></tr></table></figure>
+<p>我们上面定义的实例也可以由<code>GHC</code>使用多种语言扩展自动导出。自动实例与上面的手写版本相同.<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE DeriveFunctor #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE DeriveFoldable #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE DeriveTraversable #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Node</span> a [<span class="type">Tree</span> a]</span></span><br><span class="line">  <span class="keyword">deriving</span> (<span class="type">Show</span>, <span class="type">Functor</span>, <span class="type">Foldable</span>, <span class="type">Traversable</span>)</span><br></pre></td></tr></table></figure></p>
+<p>請看:</p>
+<ul>
+<li><a href="http://wiki.haskell.org/Typeclassopedia" target="_blank" rel="noopener">Typeclassopedia</a></li>
+</ul>
+<h3 id="Corecursion"><a href="#Corecursion" class="headerlink" title="Corecursion"></a>Corecursion</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">unfoldr</span> :: (b -&gt; <span class="type">Maybe</span> (a, b)) -&gt; b -&gt; [a]</span><br></pre></td></tr></table></figure>
+<p>递归函数消耗数据并最终终止，<code>corecursive</code>函数生成数据并终止。</p>
+<p>如果一个<code>corecursive</code>函数总是能够在有限的时间内计算出更多的结果值，那么它就是<code>productive</code>(有效率)的。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Data.List</span><br><span class="line"></span><br><span class="line"><span class="title">f</span> :: <span class="type">Int</span> -&gt; <span class="type">Maybe</span> (<span class="type">Int</span>, <span class="type">Int</span>)</span><br><span class="line"><span class="title">f</span> <span class="number">0</span> = <span class="type">Nothing</span></span><br><span class="line"><span class="title">f</span> x = <span class="type">Just</span> (x, x<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">rev</span> :: [<span class="type">Int</span>]</span><br><span class="line"><span class="title">rev</span> = unfoldr f <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="title">fibs</span> :: [<span class="type">Int</span>]</span><br><span class="line"><span class="title">fibs</span> = unfoldr (\(a,b) -&gt; <span class="type">Just</span> (a,(b,a+b))) (<span class="number">0</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="split包"><a href="#split包" class="headerlink" title="split包"></a>split包</h3><p><a href="http://hackage.haskell.org/package/split-0.1.1/docs/Data-List-Split.html" target="_blank" rel="noopener">split</a>软件包为拆分列表和字符串类型提供了许多缺少的功能。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Data.List.Split</span><br><span class="line"></span><br><span class="line"><span class="title">example1</span> :: [<span class="type">String</span>]</span><br><span class="line"><span class="title">example1</span> = splitOn <span class="string">"."</span> <span class="string">"foo.bar.baz"</span></span><br><span class="line"><span class="comment">-- ["foo","bar","baz"]</span></span><br><span class="line"></span><br><span class="line"><span class="title">example2</span> :: [<span class="type">String</span>]</span><br><span class="line"><span class="title">example2</span> = chunksOf <span class="number">10</span> <span class="string">"To be or not to be that is the question."</span></span><br><span class="line"><span class="comment">-- ["To be or n","ot to be t","hat is the"," question."]</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="monad-loops包"><a href="#monad-loops包" class="headerlink" title="monad-loops包"></a>monad-loops包</h3><p><a href="http://hackage.haskell.org/package/monad-loops-0.4.2/docs/Control-Monad-Loops.html" target="_blank" rel="noopener">monad-loops</a>程序包为<code>monadic</code>上下文中的控制逻辑提供了许多缺少的功能。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">whileM</span> :: <span class="type">Monad</span> m =&gt; m <span class="type">Bool</span> -&gt; m a -&gt; m [a]</span><br><span class="line"><span class="title">untilM</span> :: <span class="type">Monad</span> m =&gt; m a -&gt; m <span class="type">Bool</span> -&gt; m [a]</span><br><span class="line"><span class="title">iterateUntilM</span> :: <span class="type">Monad</span> m =&gt; (a -&gt; <span class="type">Bool</span>) -&gt; (a -&gt; m a) -&gt; a -&gt; m a</span><br><span class="line"><span class="title">whileJust</span> :: <span class="type">Monad</span> m =&gt; m (<span class="type">Maybe</span> a) -&gt; (a -&gt; m b) -&gt; m [b]</span><br></pre></td></tr></table></figure></p>
+<h3 id="Foundation包"><a href="#Foundation包" class="headerlink" title="Foundation包"></a>Foundation包</h3><blockquote>
+<p>TODO</p>
+</blockquote>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE NoImplicitPrelude #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"><span class="keyword">import</span> Foundation.IO</span><br><span class="line"><span class="keyword">import</span> Foundation.String</span><br><span class="line"><span class="keyword">import</span> Foundation.VFS.FilePath</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Foundation.Collection</span><br><span class="line"></span><br><span class="line"><span class="title">example</span> :: <span class="type">String</span></span><br><span class="line"><span class="title">example</span> = <span class="string">"Violence is the last refuge of the incompetent."</span></span><br><span class="line"></span><br><span class="line"><span class="title">bytes</span> :: <span class="type">UArray</span> <span class="type">Word8</span></span><br><span class="line"><span class="title">bytes</span> = toBytes <span class="type">UTF8</span> example</span><br><span class="line"></span><br><span class="line"><span class="title">file</span> :: <span class="type">IO</span> (<span class="type">UArray</span> <span class="type">Word8</span>)</span><br><span class="line"><span class="title">file</span> = readFile <span class="string">"foundation.hs"</span></span><br><span class="line"></span><br><span class="line"><span class="title">fileString</span> :: <span class="type">IO</span> (<span class="type">String</span>, <span class="type">Maybe</span> <span class="type">ValidationFailure</span>, <span class="type">UArray</span> <span class="type">Word8</span>)</span><br><span class="line"><span class="title">fileString</span> = fromBytes <span class="type">UTF8</span> &lt;$&gt; file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title">xs</span> :: <span class="type">NonEmpty</span> [<span class="type">Int</span>]</span><br><span class="line"><span class="title">xs</span> = fromList [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="title">x</span> :: <span class="type">Int</span></span><br><span class="line"><span class="title">x</span> = head xs</span><br></pre></td></tr></table></figure>
+<h4 id="Strings-and-Bytearrays"><a href="#Strings-and-Bytearrays" class="headerlink" title="Strings and Bytearrays"></a>Strings and Bytearrays</h4><h4 id="Container-Interface"><a href="#Container-Interface" class="headerlink" title="Container Interface"></a>Container Interface</h4><h4 id="Numerical-Tower"><a href="#Numerical-Tower" class="headerlink" title="Numerical Tower"></a>Numerical Tower</h4><p>請看:</p>
+<ul>
+<li><a href="https://github.com/haskell-foundation/foundation" target="_blank" rel="noopener">Foundation</a></li>
+</ul>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Haskell-Prelude',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
