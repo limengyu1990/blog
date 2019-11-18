@@ -143,7 +143,10 @@
 </span>
     </div>
     <div class="post-content ">
-        <h3 id="Block-Diagram-程序框图"><a href="#Block-Diagram-程序框图" class="headerlink" title="Block Diagram (程序框图)"></a>Block Diagram (程序框图)</h3><p>经过<code>GHC</code>的代码流是在几种中间语言之间进行翻译以及对其进行优化和转换的过程。<br>这些<code>AST</code>类型中的许多类型的通用模式是，它们是根据<code>binder</code>类型进行参数化设置的，并且在各个阶段，<code>binder</code>将被转换。<br>当用户输入由包含模块和程序包名称的<code>qualified</code>(合格)名称参数化的<code>HsSyn</code>参数时，<code>Renamer pass</code>(传递)有效地将<code>AST</code>参数化的超文本字符串中的<code>HsSyn</code>数据类型转换为更高级别的<code>Name</code>类型。</p>
+        <blockquote>
+<p><a href="http://dev.stephendiehl.com/hask/#ghc" target="_blank" rel="noopener">原文</a></p>
+</blockquote>
+<h3 id="Block-Diagram-程序框图"><a href="#Block-Diagram-程序框图" class="headerlink" title="Block Diagram (程序框图)"></a>Block Diagram (程序框图)</h3><p>经过<code>GHC</code>的代码流是在几种中间语言之间进行翻译以及对其进行优化和转换的过程。<br>这些<code>AST</code>类型中的许多类型的通用模式是，它们是根据<code>binder</code>类型进行参数化设置的，并且在各个阶段，<code>binder</code>将被转换。<br>当用户输入由包含模块和程序包名称的<code>qualified</code>(合格)名称参数化的<code>HsSyn</code>参数时，<code>Renamer pass</code>(传递)有效地将<code>AST</code>参数化的超文本字符串中的<code>HsSyn</code>数据类型转换为更高级别的<code>Name</code>类型。</p>
 <h4 id="GHC-Compiler"><a href="#GHC-Compiler" class="headerlink" title="GHC Compiler"></a>GHC Compiler</h4><p><img src="img/img01.png" alt=""></p>
 <h4 id="GHC-Compiler-Passes"><a href="#GHC-Compiler-Passes" class="headerlink" title="GHC Compiler Passes"></a>GHC Compiler Passes</h4><ul>
 <li><p><strong>Parser/Frontend</strong> 从人类语法转换而来的巨大<code>AST</code>，使得所有可表达的语法(声明，<code>do-notation</code>，<code>where</code>子句，语法扩展，模板<code>haskell</code>等)都可以显式地实现。这是未经过滤的<code>Haskell</code>，它非常庞大.</p>

@@ -144,7 +144,7 @@
     </div>
     <div class="post-content ">
         <blockquote>
-<p>[<a href="http://dev.stephendiehl.com/fun/006_hindley_milner.html]" target="_blank" rel="noopener">http://dev.stephendiehl.com/fun/006_hindley_milner.html]</a></p>
+<p><a href="http://dev.stephendiehl.com/fun/006_hindley_milner.html" target="_blank" rel="noopener">原文</a></p>
 </blockquote>
 <h3 id="HM类型系统"><a href="#HM类型系统" class="headerlink" title="HM类型系统"></a>HM类型系统</h3><p>辛德雷-米尔纳类型系统(也称为<code>Damas-Hindley-Milner</code>或<code>HM</code>)是一组类型系统,它们承认有一个可处理的算法可以从非类型化语法确定类型,这是一个偶然的特性。<br>这是通过一个称为<code>unification</code>(统一)的过程来实现的,在这个过程中,一个结构良好的程序的类型会产生一组约束,当解决这些约束时,总是有一个惟一的主体类型。</p>
 <p>最简单的<code>Hindley Milner</code>类型系统由一组非常短的规则定义。<br>前四个规则描述了我们可以如何判断将每个句法结构(<code>Lam</code>，<code>App</code>，<code>Var</code>，<code>Let</code>)映射到它们的预期类型,我们很快就会详细阐述这些规则。<br><img src="img/HM0.png" alt=""><br>米尔纳的观察是,因为类型规则映射到唯一的语法,我们实际上可以向后运行类型规则,每当我们没有子表达式的已知类型时,我们通过在其位置放置一个新变量,<br>收集关于其后续类型判断引起的使用限制来进行”猜测”.<br>这是ML族语言中类型推断的本质,通过生成和解决一种统一(<code>unification</code>)问题,我们可以从语法中唯一地重构类型,算法本身很大程度上只是统一求解器的结构化使用.<br>然而,完整的类型推断使我们有点束缚,因为虽然推理问题在这种简单的语言和简单的扩展中是易处理的,但几乎所有对语言的重要补充都会破坏在没有注释的情况下推断类型的能力,<br>或者使推理算法严重复杂化.然而,<code>Hindley-Milner</code>家族在设计领域代表了一个非常有用,富有成效的”甜蜜点”.</p>

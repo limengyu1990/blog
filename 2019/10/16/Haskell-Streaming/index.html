@@ -144,7 +144,7 @@
     </div>
     <div class="post-content ">
         <blockquote>
-<p><a href="http://dev.stephendiehl.com/hask/#streaming" target="_blank" rel="noopener">http://dev.stephendiehl.com/hask/#streaming</a></p>
+<p><a href="http://dev.stephendiehl.com/hask/#streaming" target="_blank" rel="noopener">原文</a></p>
 </blockquote>
 <h3 id="Lazy-IO"><a href="#Lazy-IO" class="headerlink" title="Lazy IO"></a>Lazy IO</h3><p>使用常规的<code>monadic</code>方法处理通过<code>IO</code>积累的数据的问题在于，<code>Prelude</code>工具要求我们在开始计算之前就一次在内存中显示大量数据。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">mapM</span> :: (<span class="type">Monad</span> m, <span class="type">Traversable</span> t) =&gt; (a -&gt; m b) -&gt; t a -&gt; m (t b)</span><br><span class="line"><span class="title">sequence</span> :: (<span class="type">Monad</span> m, <span class="type">Traversable</span> t) =&gt; t (m a) -&gt; m (t a)</span><br></pre></td></tr></table></figure></p>
 <p>从文件中读取将为强制读取的字符串创建一个<code>thunk</code>，然后读取文件。问题在于，这种方法将<code>IO effects</code>(效果)的顺序与评估顺序联系在一起，而这很难在很大程度上进行推理。</p>
