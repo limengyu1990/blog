@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Haskell-Language-Extensions - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Benign"><span class="toc-text">The Benign</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Dangerous"><span class="toc-text">The Dangerous</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NoMonomorphismRestriction"><span class="toc-text">NoMonomorphismRestriction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExtendedDefaultRules"><span class="toc-text">ExtendedDefaultRules</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safe"><span class="toc-text">Safe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PartialTypeSignatures"><span class="toc-text">PartialTypeSignatures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RecursiveDo"><span class="toc-text">RecursiveDo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ApplicativeDo"><span class="toc-text">ApplicativeDo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PatternGuards"><span class="toc-text">PatternGuards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ViewPatterns"><span class="toc-text">ViewPatterns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TupleSections"><span class="toc-text">TupleSections</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MultiWayIf"><span class="toc-text">MultiWayIf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EmptyCase"><span class="toc-text">EmptyCase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LambdaCase"><span class="toc-text">LambdaCase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NumDecimals"><span class="toc-text">NumDecimals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PackageImports"><span class="toc-text">PackageImports</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RecordWildCards"><span class="toc-text">RecordWildCards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NamedFieldPuns"><span class="toc-text">NamedFieldPuns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PatternSynonyms"><span class="toc-text">PatternSynonyms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeriveFunctor"><span class="toc-text">DeriveFunctor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeriveTraversable"><span class="toc-text">DeriveTraversable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeriveFoldable"><span class="toc-text">DeriveFoldable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeriveGeneric"><span class="toc-text">DeriveGeneric</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeriveAnyClass"><span class="toc-text">DeriveAnyClass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StaticPointers"><span class="toc-text">StaticPointers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DuplicateRecordFields"><span class="toc-text">DuplicateRecordFields</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OverloadedLabels"><span class="toc-text">OverloadedLabels</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPP"><span class="toc-text">CPP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Historical-Extensions"><span class="toc-text">Historical Extensions</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Haskell-Language-Extensions
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-19 15:22:29</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Wish-Knew" title="Wish-Knew">Wish-Knew</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Haskell" title="Haskell">Haskell</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Language-Extensions" title="Language-Extensions">Language-Extensions</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p><a href="http://dev.stephendiehl.com/hask/#language-extensions" target="_blank" rel="noopener">原文</a></p>
+</blockquote>
+<p>区分<code>general</code>(通用)和<code>specialized</code>(专用)语言扩展的不同类别非常重要。</p>
+<p>将扩展分类为通用和专用类别的固有问题是它是一个主观分类。进行类型系统研究的<code>Haskeller</code>与<code>Web</code>编程人员对<code>Haskell</code>的解释将有很大不同。</p>
+<p>因此，这是一个保守的评估，作为一个任意基准，我们将<code>everyday</code>(日常)考虑<code>FlexibleInstances</code>和<code>OverloadedStrings</code>，而将<code>GADT</code>和<code>TypeFamilies</code>进行<code>specialized</code>.</p>
+<p><strong><em>Key</em></strong></p>
+<ul>
+<li><p><code>Benign</code>暗示，导入扩展名不会改变模块的语义(如果不使用模块)，并且启用该扩展名也不会轻易使自己陷入困境.</p>
+</li>
+<li><p><code>Historical</code>暗示，不应使用此扩展，它纯粹是为了向后兼容而在<code>GHC</code>中使用。有时启用这些功能很危险。</p>
+</li>
+<li><p><code>Steals</code>语法意味着启用此扩展意味着将不再接受在<code>vanilla</code>(香草)<code>Haskell</code>中有效的某些代码。例如，<code>f $(a)</code>与<code>Haskell 98</code>中的<code>f $ (a)</code>相同，但是<code>TemplateHaskell</code>会将<code>$(a)</code>解释为一个<code>splice</code>(拼接)。</p>
+</li>
+</ul>
+<p>請看:</p>
+<ul>
+<li><a href="http://www.haskell.org/ghc/docs/7.8.2/html/users_guide/flag-reference.html#idp14615552s" target="_blank" rel="noopener">GHC Extension Reference</a></li>
+</ul>
+<h3 id="The-Benign"><a href="#The-Benign" class="headerlink" title="The Benign"></a>The Benign</h3><p>哪些扩展是最常见的还不清楚，但是可以肯定地说以下扩展是良性的并且可以安全地广泛使用:</p>
+<ul>
+<li>OverloadedStrings</li>
+<li>FlexibleContexts</li>
+<li>FlexibleInstances</li>
+<li>GeneralizedNewtypeDeriving</li>
+<li>TypeSynonymInstances</li>
+<li>MultiParamTypeClasses</li>
+<li>FunctionalDependencies</li>
+<li>NoMonomorphismRestriction</li>
+<li>GADTs</li>
+<li>BangPatterns</li>
+<li>DeriveGeneric</li>
+<li>ScopedTypeVariables</li>
+</ul>
+<h3 id="The-Dangerous"><a href="#The-Dangerous" class="headerlink" title="The Dangerous"></a>The Dangerous</h3><p><code>GHC</code>的类型检查器有时只是偶然地告诉我们在无法解决某些问题时启用语言扩展。这些包括:</p>
+<ul>
+<li>DatatypeContexts</li>
+<li>OverlappingInstances</li>
+<li>IncoherentInstances</li>
+<li>ImpredicativeTypes</li>
+<li>AllowAmbigiousTypes</li>
+</ul>
+<p>这些几乎总是表明存在设计缺陷，不应打开它来纠正手头的错误，就像<code>GHC</code>可能建议的那样！</p>
+<h3 id="NoMonomorphismRestriction"><a href="#NoMonomorphismRestriction" class="headerlink" title="NoMonomorphismRestriction"></a>NoMonomorphismRestriction</h3><p><code>NoMonomorphismRestriction</code>允许我们默认禁用<code>GHC</code>使用的单态限制类型規则。请参见<a href="http://dev.stephendiehl.com/hask/#monomorphism-restriction" target="_blank" rel="noopener">单态限制</a>。</p>
+<p>例如，如果我们将以下模块加载到<code>GHCi</code>中:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Bad (<span class="title">foo</span>,<span class="title">bar</span>) <span class="keyword">where</span></span><br><span class="line"><span class="title">foo</span> x y = x + y</span><br><span class="line"><span class="title">bar</span> = foo <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>然后我们尝试用<code>Double</code>调用函数<code>bar</code>，我们得到一个类型错误:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">λ: bar <span class="number">1.1</span></span><br><span class="line">&lt;interactive&gt;:<span class="number">2</span>:<span class="number">5</span>: error:</span><br><span class="line">    • <span class="type">No</span> <span class="keyword">instance</span> for (<span class="type">Fractional</span> <span class="type">Integer</span>)</span><br><span class="line">      arising from the literal ‘<span class="number">1.0</span>’</span><br><span class="line">    • <span class="type">In</span> the first argument <span class="keyword">of</span> ‘bar’, namely ‘<span class="number">1.0</span>’</span><br><span class="line">      <span class="type">In</span> the expression: bar <span class="number">1.0</span></span><br><span class="line">      <span class="type">In</span> an equation for ‘it’: it = bar <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+<p>问题是，GHC推断出了一种过于<code>specific</code>(特殊化)的类型:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">λ: :t bar</span><br><span class="line"><span class="title">bar</span> :: <span class="type">Integer</span> -&gt; <span class="type">Integer</span></span><br></pre></td></tr></table></figure>
+<p>我们可以使用这个扩展来阻止<code>GHC</code>特殊化类型，即:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE NoMonomorphismRestriction #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> Good (<span class="title">foo</span>,<span class="title">bar</span>) <span class="keyword">where</span></span><br><span class="line"><span class="title">foo</span> x y = x + y</span><br><span class="line"><span class="title">bar</span> = foo <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>现在一切都会按预期进行:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">λ: :t bar</span><br><span class="line"><span class="title">bar</span> :: <span class="type">Num</span> a =&gt; a -&gt; a</span><br></pre></td></tr></table></figure>
+<h3 id="ExtendedDefaultRules"><a href="#ExtendedDefaultRules" class="headerlink" title="ExtendedDefaultRules"></a>ExtendedDefaultRules</h3><p>在没有显式类型签名的情况下，<code>Haskell</code>通常使用几个默认规则解析不明确的文本。</p>
+<p>当一个不明确的文本被类型检查时，如果它的类型类约束中至少有一个是<code>numeric</code>(数值)的，并且它的所有类都是标准库类，则会查阅模块的默认列表，并且列表中满足类型变量上下文的第一个类型将被实例化。</p>
+<p>例如，给定以下默认规则:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">default</span> (<span class="type">C1</span> <span class="title">a</span>,...,<span class="type">Cn</span> <span class="title">a</span>)</span><br></pre></td></tr></table></figure>
+<p>下面的一组启发式方法用于确定将不明确类型变量实例化到的对象。</p>
+<ul>
+<li>类型变量<code>a</code>没有其他限制</li>
+<li>所有的<code>Ci</code>类都是标准的。</li>
+<li><code>Ci</code>类中至少有一个是数值类。</li>
+</ul>
+<p>默认的<code>default</code>是<code>(Integer，Double)</code></p>
+<p>通常，这很好，但是有时我们希望对默认设置进行更精细的控制。</p>
+<p><code>-XExtendedDefaultRules</code>放宽了我们对数值类型类的使用的约束，以及我们只能与标准库类一起使用的约束。</p>
+<p>如果我们想让我们的字符串文字(使用<code>-XOverloadedStrings</code>)自动默认为更有效的<code>Text</code>实现，而不是<code>String</code>，我们可以<code>twiddle</code>(旋转)标志，<code>GHC</code>将执行正确的<code>substitution</code>(替换)，而无需在每个字符串文字上进行显式注释.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE ExtendedDefaultRules #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text <span class="keyword">as</span> T</span><br><span class="line"></span><br><span class="line"><span class="keyword">default</span> (<span class="type">T</span>.<span class="type">Text</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">example</span> = <span class="string">"foo"</span></span><br></pre></td></tr></table></figure>
+<p>对于在<code>GHCi</code>提示符下<code>typed</code>(键入的)代码，<code>-XExtendedDefaultRules</code>标志始终处于打开状态，无法关闭。</p>
+<p>請看:</p>
+<ul>
+<li><a href="http://dev.stephendiehl.com/hask/#monomorphism-restriction" target="_blank" rel="noopener">Monomorphism Restriction</a></li>
+</ul>
+<h3 id="Safe"><a href="#Safe" class="headerlink" title="Safe"></a>Safe</h3><p>当每个人最终发现在<code>GHC</code>的实现中有几种功能(不是<code>Haskell</code>语言)可用于颠覆类型系统时，它们被标记为前缀<code>unsafe</code>。仅当可以手动证明表達式的合理性但不能在类型系统或<code>Haskell</code>的<code>externalities</code>(外在性)中表达此属性时，这些函数才存在。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">unsafeCoerce</span> :: a -&gt; b</span><br><span class="line"><span class="title">unsafePerformIO</span> :: <span class="type">IO</span> a -&gt; a</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用这些函數来颠覆<code>Haskell</code>类型系统将导致所有无法定义的行为，并带有无法想象的疼痛和痛苦，并且强烈建议不要这样做。当最初使用<code>Haskell</code>时，完全没有理由在一段时间内使用这些函數。</p>
+</blockquote>
+<p><code>Safe</code>语言扩展允许我们使用<code>-XSafe</code>限制不安全语言功能的使用，<code>-XSafe</code>限制了自身标记为安全的模块的导入。</p>
+<p>它还禁止使用某些可用于生成不安全代码的语言扩展(<code>-XTemplateHaskell</code>)。这些扩展的主要用例是安全审计。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE Safe #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE Trustworthy #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE Safe #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Unsafe.Coerce</span><br><span class="line"><span class="keyword">import</span> System.IO.Unsafe</span><br><span class="line"></span><br><span class="line"><span class="title">bad1</span> :: <span class="type">String</span></span><br><span class="line"><span class="title">bad1</span> = unsafePerformIO getLine</span><br><span class="line"></span><br><span class="line"><span class="title">bad2</span> :: a</span><br><span class="line"><span class="title">bad2</span> = unsafeCoerce <span class="number">3.14</span> ()</span><br><span class="line"><span class="type">Unsafe</span>.<span class="type">Coerce</span>: <span class="type">Can't</span> be safely imported!</span><br><span class="line"><span class="type">The</span> <span class="keyword">module</span> itself isn't safe.</span><br></pre></td></tr></table></figure>
+<p>請看:</p>
+<ul>
+<li><a href="https://ghc.haskell.org/trac/ghc/wiki/SafeHaskell" target="_blank" rel="noopener">Safe Haskell</a></li>
+</ul>
+<h3 id="PartialTypeSignatures"><a href="#PartialTypeSignatures" class="headerlink" title="PartialTypeSignatures"></a>PartialTypeSignatures</h3><p>通常，一个函数要么被赋予完整的显式类型签名，要么根本不被赋予。部分类型签名扩展允许介于两者之间。</p>
+<p>可以使用部分类型来避免编写无用的签名，这在开发中很方便:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# OPTIONS -XPartialTypeSignatures #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">triple</span> :: <span class="type">Int</span> -&gt; _</span><br><span class="line"><span class="title">triple</span> i = (i,i,i)</span><br></pre></td></tr></table></figure>
+<p>如果设置了<code>-Wpartial-type-signatures GHC</code>选项，则部分类型仍将触发警告。</p>
+<p>請看:</p>
+<ul>
+<li><a href="https://ghc.haskell.org/trac/ghc/wiki/PartialTypeSignatures" target="_blank" rel="noopener">Partial Type Signatures</a></li>
+</ul>
+<h3 id="RecursiveDo"><a href="#RecursiveDo" class="headerlink" title="RecursiveDo"></a>RecursiveDo</h3><p>递归<code>do</code>表示法允许在<code>monadic</code>绑定的两侧使用自引用表达式。<br>例如，以下使用惰性评估来生成无限列表。有时，它用于实例化需要保留对其自身的引用的<code>monadic</code>上下文中的循环数据类型。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE RecursiveDo #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">justOnes</span> :: <span class="type">Maybe</span> [<span class="type">Int</span>]</span><br><span class="line"><span class="title">justOnes</span> = <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">rec</span> xs &lt;- <span class="type">Just</span> (<span class="number">1</span>:xs)</span><br><span class="line">  return (map negate xs)</span><br></pre></td></tr></table></figure>
+<p>請看:</p>
+<ul>
+<li><a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#the-recursive-do-notation" target="_blank" rel="noopener">Recursive Do Notation</a></li>
+</ul>
+<h3 id="ApplicativeDo"><a href="#ApplicativeDo" class="headerlink" title="ApplicativeDo"></a>ApplicativeDo</h3><p>默认情况下，<code>GHC</code>使用隐式调用<code>bind</code>和<code>return</code>來<code>desugars</code>(脫糖)<code>do</code>符号:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">test</span> :: <span class="type">Monad</span> m =&gt; m (a, b, c)</span><br><span class="line"><span class="title">test</span> = <span class="keyword">do</span></span><br><span class="line">  a &lt;- f</span><br><span class="line">  b &lt;- g</span><br><span class="line">  c &lt;- h</span><br><span class="line">  return (a, b, c)</span><br></pre></td></tr></table></figure>
+<p>脫糖為:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">test</span> :: <span class="type">Monad</span> m =&gt; m (a, b, c)</span><br><span class="line"><span class="title">test</span> =</span><br><span class="line"><span class="title">f</span> &gt;&gt;= \a -&gt;</span><br><span class="line">  g &gt;&gt;= \b -&gt;</span><br><span class="line">    h &gt;&gt;= \c -&gt;</span><br><span class="line">      return (a, b, c)</span><br></pre></td></tr></table></figure>
+<p>使用<code>applicatvedo</code>，这将减少使用<code>applicative</code>组合器和<code>laxer</code>(更宽松)的<code>applicative</code>约束。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">test</span> :: <span class="type">Applicative</span> m =&gt; m (a, b, c)</span><br><span class="line"><span class="title">test</span> = (,,) &lt;$&gt; f &lt;*&gt; g &lt;*&gt; h</span><br></pre></td></tr></table></figure>
+<h3 id="PatternGuards"><a href="#PatternGuards" class="headerlink" title="PatternGuards"></a>PatternGuards</h3><p>模式守卫是模式匹配语法的扩展。</p>
+<p>给定一个<code>&lt;-</code>模式限定符，计算右侧并与左侧的模式匹配。如果匹配失败了，那么整个<code>guard</code>就失败了，并尝试下一个方程式。如果成功，则在扩展环境中进行适当的绑定，并匹配下一个限定符。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE PatternGuards #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">combine</span> env x y</span><br><span class="line">   | <span class="type">Just</span> a &lt;- lookup x env</span><br><span class="line">   , <span class="type">Just</span> b &lt;- lookup y env</span><br><span class="line">   = <span class="type">Just</span> $ a + b</span><br><span class="line"></span><br><span class="line">   | otherwise = <span class="type">Nothing</span></span><br></pre></td></tr></table></figure>
+<h3 id="ViewPatterns"><a href="#ViewPatterns" class="headerlink" title="ViewPatterns"></a>ViewPatterns</h3><p><code>ViewPatterns</code>就像可以嵌套在其他模式内部的模式守卫。它们是与代数数据类型的值进行模式匹配的便捷方法:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE ViewPatterns #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE NoMonomorphismRestriction #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Safe</span><br><span class="line"></span><br><span class="line"><span class="title">lookupDefault</span> :: <span class="type">Eq</span> a =&gt; a -&gt; b -&gt; [(a,b)] -&gt; b</span><br><span class="line"><span class="title">lookupDefault</span> k _ (lookup k -&gt; <span class="type">Just</span> s) = s</span><br><span class="line"><span class="title">lookupDefault</span> _ d _ = d</span><br><span class="line"></span><br><span class="line"><span class="title">headTup</span> :: (a, [t]) -&gt; [t]</span><br><span class="line"><span class="title">headTup</span> (headMay . snd -&gt; <span class="type">Just</span> n) = [n]</span><br><span class="line"><span class="title">headTup</span> _ = []</span><br><span class="line"></span><br><span class="line"><span class="title">headNil</span> :: [a] -&gt; [a]</span><br><span class="line"><span class="title">headNil</span> (headMay -&gt; <span class="type">Just</span> x) = [x]</span><br><span class="line"><span class="title">headNil</span> _ = []</span><br></pre></td></tr></table></figure>
+<h3 id="TupleSections"><a href="#TupleSections" class="headerlink" title="TupleSections"></a>TupleSections</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE TupleSections #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">first</span> :: a -&gt; (a, <span class="type">Bool</span>)</span><br><span class="line"><span class="title">first</span> = (,<span class="type">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">second</span> :: a -&gt; (<span class="type">Bool</span>, a)</span><br><span class="line"><span class="title">second</span> = (<span class="type">True</span>,)</span><br><span class="line"><span class="title">f</span> :: t -&gt; t1 -&gt; t2 -&gt; t3 -&gt; (t, (), t1, (), (), t2, t3)</span><br><span class="line"><span class="title">f</span> = (,(),,(),(),,)</span><br></pre></td></tr></table></figure>
+<h3 id="MultiWayIf"><a href="#MultiWayIf" class="headerlink" title="MultiWayIf"></a>MultiWayIf</h3><p><code>Multi-way if</code>扩展了传统的<code>if</code>语句，以允许模式匹配条件，该条件等于一系列<code>if-then-else</code>语句。这使我们可以在值上编写”模式匹配谓词”。这会更改<code>Haskell</code>语言的语法。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE MultiWayIf #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">bmiTell</span> :: <span class="type">Float</span> -&gt; <span class="type">Text</span></span><br><span class="line"><span class="title">bmiTell</span> bmi = <span class="keyword">if</span></span><br><span class="line">  | bmi &lt;= <span class="number">18.5</span> -&gt; <span class="string">"Underweight."</span></span><br><span class="line">  | bmi &lt;= <span class="number">25.0</span> -&gt; <span class="string">"Average weight."</span></span><br><span class="line">  | bmi &lt;= <span class="number">30.0</span> -&gt; <span class="string">"Overweight."</span></span><br><span class="line">  | otherwise   -&gt; <span class="string">"Clinically overweight."</span></span><br></pre></td></tr></table></figure>
+<h3 id="EmptyCase"><a href="#EmptyCase" class="headerlink" title="EmptyCase"></a>EmptyCase</h3><p>在<code>case</code>语句中，<code>GHC</code>通常至少需要一个模式分支这个限制可以用<code>-XEmptyCase</code>放宽。<br>如果对<code>case</code>语句求值，那么它将立即生成一个<code>Non-exhaustive patterns in case</code>.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">test</span> = <span class="keyword">case</span> <span class="keyword">of</span></span><br></pre></td></tr></table></figure>
+<h3 id="LambdaCase"><a href="#LambdaCase" class="headerlink" title="LambdaCase"></a>LambdaCase</h3><p>对于<code>case</code>语句，<code>LambdaCase</code>允许消除纯粹为了模式匹配而引入的冗余自由变量.</p>
+<p>沒有<code>LambdaCase</code>時:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\temp -&gt; <span class="keyword">case</span> temp <span class="keyword">of</span></span><br><span class="line">  p1 -&gt; <span class="number">32</span></span><br><span class="line">  p2 -&gt; <span class="number">32</span></span><br></pre></td></tr></table></figure>
+<p>有<code>LambdaCase</code>時:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">\<span class="keyword">case</span></span><br><span class="line">  p1 -&gt; <span class="number">32</span></span><br><span class="line">  p2 -&gt; <span class="number">32</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE LambdaCase #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Exp</span> a</span></span><br><span class="line">  = <span class="type">Lam</span> a (<span class="type">Exp</span> a)</span><br><span class="line">  | <span class="type">Var</span> a</span><br><span class="line">  | <span class="type">App</span> (<span class="type">Exp</span> a) (<span class="type">Exp</span> a)</span><br><span class="line"></span><br><span class="line"><span class="title">example</span> :: <span class="type">Exp</span> a -&gt; a</span><br><span class="line"><span class="title">example</span> = \<span class="keyword">case</span></span><br><span class="line">  <span class="type">Lam</span> a b -&gt; a</span><br><span class="line">  <span class="type">Var</span> a   -&gt; a</span><br><span class="line">  <span class="type">App</span> a b -&gt; example a</span><br></pre></td></tr></table></figure>
+<h3 id="NumDecimals"><a href="#NumDecimals" class="headerlink" title="NumDecimals"></a>NumDecimals</h3><p><code>NumDecimals</code>允许对不一定是浮点数的<code>integral literals</code>(整数文字)使用指数表示法。没有它，任何使用指数表示法都会引起<code>Fractional</code>(分数)类约束:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">googol</span> :: <span class="type">Fractional</span> a =&gt; a</span><br><span class="line"><span class="title">googol</span> = <span class="number">1e100</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE NumDecimals #-&#125;</span></span><br><span class="line"><span class="title">googol</span> :: <span class="type">Num</span> a =&gt; a</span><br><span class="line"><span class="title">googol</span> = <span class="number">1e100</span></span><br></pre></td></tr></table></figure>
+<h3 id="PackageImports"><a href="#PackageImports" class="headerlink" title="PackageImports"></a>PackageImports</h3><p><code>Package imports</code>允许我们通过它们各自的包<code>key</code>来消除分层包名称的歧义。这在必须导入公开同一模块的包的情况下非常有用。实际上，大多数公共库都注意避免名称空间中的冲突，这在大多数现代<code>Haskell</code>中通常不是问题。</p>
+<p>例如，我们可以明确要求<code>GHC</code>解决从<code>mtl</code>库提取的<code>Control.Monad.Error</code>包:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> "mtl" Control.Monad.Error <span class="keyword">as</span> Error</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> "mtl" Control.Monad.State <span class="keyword">as</span> State</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> "mtl" Control.Monad.Reader <span class="keyword">as</span> Reader</span><br></pre></td></tr></table></figure>
+<h3 id="RecordWildCards"><a href="#RecordWildCards" class="headerlink" title="RecordWildCards"></a>RecordWildCards</h3><p><code>Record</code>通配符使我们能够将<code>Record</code>的名称扩展为隐式包含在<code>Record</code>标签中的变量。</p>
+<p>该扩展名可用于将变量名称提取到作用域中或分配给<code>Record</code>图中的变量，使<code>Record</code>的标签与作用域中的变量对齐以进行分配。</p>
+<p>引入的语法是模式选择器<code>{..}</code>.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE RecordWildCards #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Data.Text</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span>  <span class="type">Example</span> = <span class="type">Example</span></span></span><br><span class="line">  &#123; e1 :: <span class="type">Int</span></span><br><span class="line">  , e2 :: <span class="type">Text</span></span><br><span class="line">  , e3 :: <span class="type">Text</span></span><br><span class="line">  &#125; <span class="keyword">deriving</span> (<span class="type">Show</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用通配符从记录中提取</span></span><br><span class="line"><span class="title">scope</span> :: <span class="type">Example</span> -&gt; (<span class="type">Int</span>, <span class="type">Text</span>, <span class="type">Text</span>)</span><br><span class="line"><span class="title">scope</span> <span class="type">Example</span> &#123;..&#125; = (e1, e2, e3)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用通配符分配给记录</span></span><br><span class="line"><span class="title">assign</span> :: <span class="type">Example</span></span><br><span class="line"><span class="title">assign</span> = <span class="type">Example</span> &#123;..&#125;</span><br><span class="line">  <span class="keyword">where</span></span><br><span class="line">    (e1, e2, e3) = (<span class="number">1</span>, <span class="string">"Kirk"</span>, <span class="string">"Picard"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="NamedFieldPuns"><a href="#NamedFieldPuns" class="headerlink" title="NamedFieldPuns"></a>NamedFieldPuns</h3><p>提供用于访问模式匹配中的<code>Record</code>字段的替代语法:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">D</span> = <span class="type">D</span> &#123;<span class="title">a</span> :: <span class="type">Int</span>, <span class="title">b</span> :: <span class="type">Int</span>&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">f</span> :: <span class="type">D</span> -&gt; <span class="type">Int</span></span><br><span class="line"><span class="title">f</span> <span class="type">D</span> &#123;a, b&#125; = a - b</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 顺序没关系</span></span><br><span class="line"><span class="title">g</span> :: <span class="type">D</span> -&gt; <span class="type">Int</span></span><br><span class="line"><span class="title">g</span> <span class="type">D</span> &#123;b, a&#125; = a - b</span><br></pre></td></tr></table></figure>
+<h3 id="PatternSynonyms"><a href="#PatternSynonyms" class="headerlink" title="PatternSynonyms"></a>PatternSynonyms</h3><p>假设我们正在编写一个类型检查器，通常会包含一个<code>distinct</code>(独特)的<code>TArr</code>术语来<code>ease</code>(简化)函数签名的<code>telescoping</code>(伸缩)，这就是<code>GHC</code>在其<code>Core</code>语言中所做的。</p>
+<p>即使从技术上讲，它也可以用<code>(-&gt;)</code>构造函数的更基本的应用来编写.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Type</span></span></span><br><span class="line">  = <span class="type">TVar</span> <span class="type">TVar</span></span><br><span class="line">  | <span class="type">TCon</span> <span class="type">TyCon</span></span><br><span class="line">  | <span class="type">TApp</span> <span class="type">Type</span> <span class="type">Type</span></span><br><span class="line">  | <span class="type">TArr</span> <span class="type">Type</span> <span class="type">Type</span></span><br><span class="line">  <span class="keyword">deriving</span> (<span class="type">Show</span>, <span class="type">Eq</span>, <span class="type">Ord</span>)</span><br></pre></td></tr></table></figure>
+<p>使用<code>pattern synonyms</code>，我们可以消除无关的构造函数，而不会失去在<code>arrow</code>类型上进行模式匹配的便利性:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE PatternSynonyms #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">pattern</span> <span class="type">TArr</span> t1 t2 = <span class="type">TApp</span> (<span class="type">TApp</span> (<span class="type">TCon</span> <span class="string">"(-&gt;)"</span>) t1) t2</span><br></pre></td></tr></table></figure>
+<p>因此，现在我们可以非常自然地为<code>arrow</code>类型编写<code>eliminator</code>(消除器)和构造函数。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE PatternSynonyms #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Data.List (<span class="title">foldl1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">Name</span>  = <span class="type">String</span></span></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">TVar</span>  = <span class="type">String</span></span></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">TyCon</span> = <span class="type">String</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Type</span></span></span><br><span class="line">  = <span class="type">TVar</span> <span class="type">TVar</span></span><br><span class="line">  | <span class="type">TCon</span> <span class="type">TyCon</span></span><br><span class="line">  | <span class="type">TApp</span> <span class="type">Type</span> <span class="type">Type</span></span><br><span class="line">  <span class="keyword">deriving</span> (<span class="type">Show</span>, <span class="type">Eq</span>, <span class="type">Ord</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title">pattern</span> <span class="type">TArr</span> t1 t2 = <span class="type">TApp</span> (<span class="type">TApp</span> (<span class="type">TCon</span> <span class="string">"(-&gt;)"</span>) t1) t2</span><br><span class="line"></span><br><span class="line"><span class="title">tapp</span> :: <span class="type">TyCon</span> -&gt; [<span class="type">Type</span>] -&gt; <span class="type">Type</span></span><br><span class="line"><span class="title">tapp</span> tcon args = foldl <span class="type">TApp</span> (<span class="type">TCon</span> tcon) args</span><br><span class="line"></span><br><span class="line"><span class="title">arr</span> :: [<span class="type">Type</span>] -&gt; <span class="type">Type</span></span><br><span class="line"><span class="title">arr</span> ts = foldl1' (\t1 t2 -&gt; tapp <span class="string">"(-&gt;)"</span> [t1, t2]) ts</span><br><span class="line"></span><br><span class="line"><span class="title">elimTArr</span> :: <span class="type">Type</span> -&gt; [<span class="type">Type</span>]</span><br><span class="line"><span class="title">elimTArr</span> (<span class="type">TArr</span> (<span class="type">TArr</span> t1 t2) t3) = t1 : t2 : elimTArr t3</span><br><span class="line"><span class="title">elimTArr</span> (<span class="type">TArr</span> t1 t2) = t1 : elimTArr t2</span><br><span class="line"><span class="title">elimTArr</span> t = [t]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- (-&gt;) a ((-&gt;) b a)</span></span><br><span class="line"><span class="comment">-- a -&gt; b -&gt; a</span></span><br><span class="line"><span class="title">to</span> :: <span class="type">Type</span></span><br><span class="line"><span class="title">to</span> = arr [<span class="type">TVar</span> <span class="string">"a"</span>, <span class="type">TVar</span> <span class="string">"b"</span>, <span class="type">TVar</span> <span class="string">"a"</span>]</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> :: [<span class="type">Type</span>]</span><br><span class="line"><span class="title">from</span> = elimTArr to</span><br></pre></td></tr></table></figure>
+<p><code>Pattern synonyms</code>可以像其他定义一样从模块中导出，方法是为它们加上前缀<code>pattern</code>:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">module</span> MyModule (</span><br><span class="line">  <span class="title">pattern</span> <span class="type">Elt</span></span><br><span class="line">) <span class="keyword">where</span></span><br><span class="line"></span><br><span class="line"><span class="title">pattern</span> <span class="type">Elt</span> = [a]</span><br></pre></td></tr></table></figure>
+<p>請看:</p>
+<ul>
+<li><a href="http://mpickering.github.io/posts/2015-12-12-pattern-synonyms-8.html" target="_blank" rel="noopener">Pattern Synonyms in GHC 8</a></li>
+</ul>
+<h3 id="DeriveFunctor"><a href="#DeriveFunctor" class="headerlink" title="DeriveFunctor"></a>DeriveFunctor</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE DeriveFunctor #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Node</span> a [<span class="type">Tree</span> a]</span></span><br><span class="line">  <span class="keyword">deriving</span> (<span class="type">Show</span>, <span class="type">Functor</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">tree</span> :: <span class="type">Tree</span> <span class="type">Int</span></span><br><span class="line"><span class="title">tree</span> = fmap (+<span class="number">1</span>) (<span class="type">Node</span> <span class="number">1</span> [<span class="type">Node</span> <span class="number">2</span> [], <span class="type">Node</span> <span class="number">3</span> []])</span><br></pre></td></tr></table></figure>
+<h3 id="DeriveTraversable"><a href="#DeriveTraversable" class="headerlink" title="DeriveTraversable"></a>DeriveTraversable</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE DeriveTraversable #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE PartialTypeSignatures #-&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Tree</span> a = <span class="type">Node</span> a [<span class="type">Tree</span> a]</span></span><br><span class="line">  <span class="keyword">deriving</span> (<span class="type">Show</span>, <span class="type">Functor</span>, <span class="type">Foldable</span>, <span class="type">Traversable</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">tree</span> :: <span class="type">Maybe</span> [<span class="type">Int</span>]</span><br><span class="line"><span class="title">tree</span> = foldMap go (<span class="type">Node</span> [<span class="number">1</span>] [<span class="type">Node</span> [<span class="number">2</span>] [], <span class="type">Node</span> [<span class="number">3</span>,<span class="number">4</span>] []])</span><br><span class="line">  <span class="keyword">where</span></span><br><span class="line">    go [] = <span class="type">Nothing</span></span><br><span class="line">    go xs = <span class="type">Just</span> xs</span><br></pre></td></tr></table></figure>
+<h3 id="DeriveFoldable"><a href="#DeriveFoldable" class="headerlink" title="DeriveFoldable"></a>DeriveFoldable</h3><blockquote>
+<p>TODO</p>
+</blockquote>
+<h3 id="DeriveGeneric"><a href="#DeriveGeneric" class="headerlink" title="DeriveGeneric"></a>DeriveGeneric</h3><blockquote>
+<p>TODO</p>
+</blockquote>
+<h3 id="DeriveAnyClass"><a href="#DeriveAnyClass" class="headerlink" title="DeriveAnyClass"></a>DeriveAnyClass</h3><p>使用<code>-XDeriveAnyClass</code>，我们可以派生任何类。派生逻辑为没有显式定义方法的类型生成实例声明。<br>如果<code>typeclass</code>为每个方法实现一个默认值，那么这将得到很好的定义并产生一个自动实例。</p>
+<h3 id="StaticPointers"><a href="#StaticPointers" class="headerlink" title="StaticPointers"></a>StaticPointers</h3><blockquote>
+<p>TODO</p>
+</blockquote>
+<h3 id="DuplicateRecordFields"><a href="#DuplicateRecordFields" class="headerlink" title="DuplicateRecordFields"></a>DuplicateRecordFields</h3><p><code>GHC 8.0</code>引入了<code>DuplicateRecordFields</code>扩展，它放宽了<code>GHC</code>对具有相同访问器的同一模块中的记录的限制。正被投射到的确切类型现在被推迟到<code>callsite</code>.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE DuplicateRecordFields #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Person</span> = <span class="type">Person</span> &#123; <span class="title">id</span> :: <span class="type">Int</span> &#125;</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Animal</span> = <span class="type">Animal</span> &#123; <span class="title">id</span> :: <span class="type">Int</span> &#125;</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Vegetable</span> = <span class="type">Vegetable</span> &#123; <span class="title">id</span> :: <span class="type">Int</span> &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title">test</span> :: (<span class="type">Person</span>, <span class="type">Animal</span>, <span class="type">Vegetable</span>)</span><br><span class="line"><span class="title">test</span> = (<span class="type">Person</span> &#123;id = <span class="number">1</span>&#125;, <span class="type">Animal</span> &#123;id = <span class="number">2</span>&#125;, <span class="type">Vegetable</span> &#123;id = <span class="number">3</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>仅使用<code>DuplicateRecordFields</code>，仍不支持<code>projection</code>(投影)，因此以下操作将不起作用。<br><code>OverloadedLabels</code>在某种程度上解决了这个问题.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">test</span> :: (<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>)</span><br><span class="line"><span class="title">test</span> = (id (<span class="type">Person</span> <span class="number">1</span>), id (<span class="type">Animal</span> <span class="number">2</span>), id (<span class="type">Animal</span> <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="OverloadedLabels"><a href="#OverloadedLabels" class="headerlink" title="OverloadedLabels"></a>OverloadedLabels</h3><p><code>GHC 8.0</code>还引入了<code>OverloadedLabels</code>扩展，该扩展允许在共享相同名称的标签上使用有限形式的多态。</p>
+<p>要使用重载的标签类型，我们需要启用多种语言扩展，以与作为其实现基础的<code>promoted</code>(提升的)字符串和多参数类型类一起使用。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">extract</span> :: <span class="type">IsLabel</span> <span class="string">"id"</span> t =&gt; t</span><br><span class="line"><span class="title">extract</span> = #id</span><br><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedLabels #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE FlexibleInstances #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE MultiParamTypeClasses #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE DuplicateRecordFields #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE ExistentialQuantification #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> GHC.Records (<span class="type">HasField(..)</span>)  <span class="comment">-- Since base 4.10.0.0</span></span><br><span class="line"><span class="keyword">import</span> GHC.OverloadedLabels (<span class="type">IsLabel(..)</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">S</span> = <span class="type">MkS</span> &#123; <span class="title">foo</span> :: <span class="type">Int</span> &#125;</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">T</span> x y z = forall b . <span class="type">MkT</span> &#123; <span class="title">foo</span> :: <span class="title">y</span>, <span class="title">bar</span> :: <span class="title">b</span> &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">HasField</span> x r a =&gt; <span class="type">IsLabel</span> x (<span class="title">r</span> -&gt; <span class="title">a</span>) <span class="keyword">where</span></span></span><br><span class="line">  fromLabel = getField</span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = <span class="keyword">do</span></span><br><span class="line">  print (#foo (<span class="type">MkS</span> <span class="number">42</span>))</span><br><span class="line">  print (#foo (<span class="type">MkT</span> <span class="type">True</span> <span class="type">False</span>))</span><br></pre></td></tr></table></figure>
+<p>請看:</p>
+<ul>
+<li><a href="http://www.well-typed.com/blog/2015/03/overloadedrecordfields-revived/" target="_blank" rel="noopener">OverloadedRecordFields revived</a></li>
+</ul>
+<h3 id="CPP"><a href="#CPP" class="headerlink" title="CPP"></a>CPP</h3><p>每当我们确实需要分离必须跨越多个版本的<code>GHC</code>和语言更改而又要保持向后兼容性的逻辑时，<code>C++</code>预处理器就是<code>fallback</code>。它可以派发用于编译模块的<code>GHC</code>版本。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE CPP #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#if (__GLASGOW_HASKELL__ &gt; 710)</span></span><br><span class="line"><span class="comment">-- Imports for GHC 7.10.x</span></span><br><span class="line"><span class="meta">#else</span></span><br><span class="line"><span class="comment">-- Imports for other GHC</span></span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+<p>根据编译的操作系统划分代码:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE CPP #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#ifdef OS_Linux</span></span><br><span class="line">  <span class="comment">-- Linux specific logic</span></span><br><span class="line"><span class="meta">#else</span></span><br><span class="line"><span class="meta"># ifdef OS_Win32</span></span><br><span class="line">  <span class="comment">-- Windows specific logic</span></span><br><span class="line"><span class="meta"># else</span></span><br><span class="line"><span class="meta"># ifdef OS_Mac</span></span><br><span class="line">  <span class="comment">-- Macintosh specific logic</span></span><br><span class="line"><span class="meta"># else</span></span><br><span class="line">  <span class="comment">-- Other operating systems</span></span><br><span class="line"><span class="meta"># endif</span></span><br><span class="line"><span class="meta"># endif</span></span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+<p>或使用的基本库的版本:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#if !MIN_VERSION_base(4,6,0)</span></span><br><span class="line">  <span class="comment">-- Base specific logic</span></span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+<p>它也可能被滥用来做可怕的事情，例如用字符串进行元编程，但是请不要这样做。</p>
+<h3 id="Historical-Extensions"><a href="#Historical-Extensions" class="headerlink" title="Historical Extensions"></a>Historical Extensions</h3><p>一些语言扩展要么被吸收到核心语言中，要么被弃用以支持其他语言。其他的被认为是不适合的。</p>
+<p><code>Historical</code>暗示，不应使用此扩展，它纯粹是为了向后兼容而在<code>GHC</code>中使用。有时启用这些功能很危险。</p>
+<ul>
+<li><p>Rank2Types - <code>Rank2Types</code>已包含在<code>RankNTypes</code>中.</p>
+</li>
+<li><p>XPolymorphicComponents - 是不再存在的<code>higher-rank</code>多态性的实现细节.</p>
+</li>
+<li><p>NPlusKPatterns - 这些基本上被认为是模式匹配语言的一个丑陋案例，最好将其删除.</p>
+</li>
+<li><p>TraditionalRecordSyntax - 传统<code>Record</code>语法是<code>Haskell 98</code>规范的扩展，现在我们认为是标准<code>Record</code>语法.</p>
+</li>
+<li><p>OverlappingInstances - 包含在显式的<code>OVERLAPPING pragmas</code>中.</p>
+</li>
+<li><p>IncoherentInstances - 包含在显式的<code>INCOHERENT pragmas</code>中.</p>
+</li>
+<li><p>NullaryTypeClasses - 包含在不带参数的显式<code>Multiparameter Typeclasses</code>中.</p>
+</li>
+</ul>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Haskell-Language-Extensions',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>

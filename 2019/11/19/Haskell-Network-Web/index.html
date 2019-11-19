@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Haskell-Network-Web - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blaze"><span class="toc-text">Blaze</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Warp"><span class="toc-text">Warp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scotty"><span class="toc-text">Scotty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servant"><span class="toc-text">Servant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hastache"><span class="toc-text">Hastache</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 我，Lionel Messi，我不是天生强大，我只是天生要强。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Haskell-Network-Web
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-19 12:14:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Wish-Knew" title="Wish-Knew">Wish-Knew</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Haskell" title="Haskell">Haskell</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Network-Web" title="Network-Web">Network-Web</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p><a href="http://dev.stephendiehl.com/hask/#network-web-programming" target="_blank" rel="noopener">原文</a></p>
+</blockquote>
+<p><code>Network &amp; Web Programming</code></p>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p><code>Haskell</code>具有各种<code>HTTP</code>请求和处理库。最简单，最灵活的是<a href="https://hackage.haskell.org/package/HTTP" target="_blank" rel="noopener">HTTP</a>库.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Network.HTTP.Types</span><br><span class="line"><span class="keyword">import</span> Network.HTTP.Client</span><br><span class="line"><span class="keyword">import</span> Control.Applicative</span><br><span class="line"><span class="keyword">import</span> Control.Concurrent.Async</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">URL</span> = <span class="type">String</span></span></span><br><span class="line"></span><br><span class="line"><span class="title">get</span> :: <span class="type">Manager</span> -&gt; <span class="type">URL</span> -&gt; <span class="type">IO</span> <span class="type">Int</span></span><br><span class="line"><span class="title">get</span> m url = <span class="keyword">do</span></span><br><span class="line">  req &lt;- parseUrl url</span><br><span class="line">  statusCode &lt;$&gt; responseStatus &lt;$&gt; httpNoBody req m</span><br><span class="line"></span><br><span class="line"><span class="title">single</span> :: <span class="type">IO</span> <span class="type">Int</span></span><br><span class="line"><span class="title">single</span> = <span class="keyword">do</span></span><br><span class="line">  withManager defaultManagerSettings $ \m -&gt; <span class="keyword">do</span></span><br><span class="line">    get m <span class="string">"http://haskell.org"</span></span><br><span class="line"></span><br><span class="line"><span class="title">parallel</span> :: <span class="type">IO</span> [<span class="type">Int</span>]</span><br><span class="line"><span class="title">parallel</span> = <span class="keyword">do</span></span><br><span class="line">  withManager defaultManagerSettings $ \m -&gt; <span class="keyword">do</span></span><br><span class="line">    <span class="comment">-- Fetch w3.org 10 times concurrently</span></span><br><span class="line">    <span class="keyword">let</span> urls = replicate <span class="number">10</span> <span class="string">"http://www.w3.org"</span></span><br><span class="line">    mapConcurrently (get m) urls</span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = <span class="keyword">do</span></span><br><span class="line">  print =&lt;&lt; single</span><br><span class="line">  print =&lt;&lt; parallel</span><br></pre></td></tr></table></figure>
+<h3 id="Blaze"><a href="#Blaze" class="headerlink" title="Blaze"></a>Blaze</h3><p><code>Blaze</code>是<code>HTML</code>组合器库，它提供了以编程方式构建<code>HTML</code>的可组合位的能力。</p>
+<p>它没有像<a href="http://dev.stephendiehl.com/hask/#hastache" target="_blank" rel="noopener">Hastache</a>这样的字符串模板库，而是提供了一个<code>API</code>，用于从逻辑上构建<code>HTML</code>文档，在逻辑上，程序会生成输出的格式。</p>
+<p>为了对<code>HTML</code>元素进行排序，这些元素可以按<code>monad</code>或使用<code>monoid</code>操作进行排序.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> Html <span class="keyword">where</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Text.Blaze.Html5</span><br><span class="line"><span class="keyword">import</span> Text.Blaze.Html.Renderer.Text</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text.Lazy.IO <span class="keyword">as</span> T</span><br><span class="line"></span><br><span class="line"><span class="title">example</span> :: <span class="type">Html</span></span><br><span class="line"><span class="title">example</span> = <span class="keyword">do</span></span><br><span class="line">  h1 <span class="string">"First header"</span></span><br><span class="line">  p $ ul $ mconcat [li <span class="string">"First"</span>, li <span class="string">"Second"</span>]</span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = <span class="keyword">do</span></span><br><span class="line">  <span class="type">T</span>.putStrLn $ renderHtml example</span><br></pre></td></tr></table></figure>
+<p>对于自定义数据类型，我们可以实现<code>ToMarkupclass</code>以在<code>Haskell</code>数据结构和<code>HTML</code>表示之间进行转换.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE RecordWildCards #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> Html <span class="keyword">where</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Text.Blaze.Html5</span><br><span class="line"><span class="keyword">import</span> Text.Blaze.Html.Renderer.Text</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text.Lazy <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text.Lazy.IO <span class="keyword">as</span> T</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Employee</span> = <span class="type">Employee</span></span></span><br><span class="line">  &#123; name :: <span class="type">T</span>.<span class="type">Text</span></span><br><span class="line">  , age :: <span class="type">Int</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">ToMarkup</span> <span class="type">Employee</span> <span class="keyword">where</span></span></span><br><span class="line">  toMarkup <span class="type">Employee</span> &#123;..&#125; = ul $ mconcat</span><br><span class="line">    [ li (toHtml name)</span><br><span class="line">    , li (toHtml age)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"><span class="title">fred</span> :: <span class="type">Employee</span></span><br><span class="line"><span class="title">fred</span> = <span class="type">Employee</span> &#123; name = <span class="string">"Fred"</span>, age = <span class="number">35</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = <span class="keyword">do</span></span><br><span class="line">  <span class="type">T</span>.putStrLn $ renderHtml (toHtml fred)</span><br></pre></td></tr></table></figure>
+<h3 id="Warp"><a href="#Warp" class="headerlink" title="Warp"></a>Warp</h3><p><code>Warp</code>是一种高效的<code>Web</code>服务器，它是几种流行的<code>Haskell Web</code>框架背后的后端请求引擎。内部已经过微调，可以利用<code>Haskell</code>的并发运行时，并且能够处理大量并发请求.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Network.Wai</span><br><span class="line"><span class="keyword">import</span> Network.Wai.Handler.Warp (<span class="title">run</span>)</span><br><span class="line"><span class="keyword">import</span> Network.HTTP.Types</span><br><span class="line"></span><br><span class="line"><span class="title">app</span> :: <span class="type">Application</span></span><br><span class="line"><span class="title">app</span> req = return $ responseLBS status200 [] <span class="string">"Engage!"</span></span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = run <span class="number">8000</span> app</span><br></pre></td></tr></table></figure>
+<p>請看:</p>
+<ul>
+<li><a href="http://aosabook.org/en/posa/warp.html" target="_blank" rel="noopener">Warp</a></li>
+</ul>
+<h3 id="Scotty"><a href="#Scotty" class="headerlink" title="Scotty"></a>Scotty</h3><p>继续我们在网络库中的跋涉，<code>Scotty</code>是一个网络微框架，其原理与<code>Python</code>中的<code>Flask</code>或<code>Ruby</code>中的<code>Sinatra</code>相似。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Web.Scotty</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Text.Blaze.Html5 <span class="keyword">as</span> H</span><br><span class="line"><span class="keyword">import</span> Text.Blaze.Html5 (<span class="title">toHtml</span>, <span class="type">Html</span>)</span><br><span class="line"><span class="keyword">import</span> Text.Blaze.Html.Renderer.Text (<span class="title">renderHtml</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">greet</span> :: <span class="type">String</span> -&gt; <span class="type">Html</span></span><br><span class="line"><span class="title">greet</span> user = <span class="type">H</span>.html $ <span class="keyword">do</span></span><br><span class="line">  <span class="type">H</span>.head $</span><br><span class="line">    <span class="type">H</span>.title <span class="string">"Welcome!"</span></span><br><span class="line">  <span class="type">H</span>.body $ <span class="keyword">do</span></span><br><span class="line">    <span class="type">H</span>.h1 <span class="string">"Greetings!"</span></span><br><span class="line">    <span class="type">H</span>.p (<span class="string">"Hello "</span> &gt;&gt; toHtml user &gt;&gt; <span class="string">"!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">app</span> = <span class="keyword">do</span></span><br><span class="line">  get <span class="string">"/"</span> $</span><br><span class="line">    text <span class="string">"Home Page"</span></span><br><span class="line"></span><br><span class="line">  get <span class="string">"/greet/:name"</span> $ <span class="keyword">do</span></span><br><span class="line">    name &lt;- param <span class="string">"name"</span></span><br><span class="line">    html $ renderHtml (greet name)</span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = scotty <span class="number">8000</span> app</span><br></pre></td></tr></table></figure>
+<p>需要注意的重要一点是，这里使用的<code>Blaze</code>库重载了<code>do-notation</code>，但它本身并不是<code>proper</code>(适当的)<code>monad</code>，因此通常适用于<code>monad</code>的各种定律和不变量可能会因错误而失效或失败。</p>
+<p>可以在<code>Scotty Wiki</code>上找到有用的相关资源的集合:</p>
+<ul>
+<li><a href="https://github.com/scotty-web/scotty/wiki" target="_blank" rel="noopener">Scotty教程和示例</a></li>
+</ul>
+<h3 id="Servant"><a href="#Servant" class="headerlink" title="Servant"></a>Servant</h3><blockquote>
+<p>TODO</p>
+</blockquote>
+<h3 id="Hastache"><a href="#Hastache" class="headerlink" title="Hastache"></a>Hastache</h3><p><code>Hastache</code>是基于<code>Mustache</code>样式的字符串模板，该样式使用双括号<code></code>编码元变量。</p>
+<p><code>Hastache</code>支持将许多<code>Haskell</code>类型自动转换为字符串，并使用高效的<code>Text</code>函数进行格式化。</p>
+<p>在将变量名称映射到可打印的<code>MuType</code>值的函数中，指定了加载到模板中的变量。例如使用函數。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Text.Hastache</span><br><span class="line"><span class="keyword">import</span> Text.Hastache.Context</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text.Lazy <span class="keyword">as</span> TL</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text.Lazy.IO <span class="keyword">as</span> TL</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Data.Data</span><br><span class="line"></span><br><span class="line"><span class="title">template</span> :: <span class="type">FilePath</span> -&gt; <span class="type">MuContext</span> <span class="type">IO</span> -&gt; <span class="type">IO</span> <span class="type">TL</span>.<span class="type">Text</span></span><br><span class="line"><span class="title">template</span> = hastacheFile defaultConfig</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Function strContext</span></span><br><span class="line"><span class="title">context</span> :: <span class="type">String</span> -&gt; <span class="type">MuType</span> <span class="type">IO</span></span><br><span class="line"><span class="title">context</span> <span class="string">"body"</span>  = <span class="type">MuVariable</span> (<span class="string">"Hello World"</span> :: <span class="type">TL</span>.<span class="type">Text</span>)</span><br><span class="line"><span class="title">context</span> <span class="string">"title"</span> = <span class="type">MuVariable</span> (<span class="string">"Haskell is lovely"</span> :: <span class="type">TL</span>.<span class="type">Text</span>)</span><br><span class="line"><span class="title">context</span> _       = <span class="type">MuVariable</span> ()</span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = <span class="keyword">do</span></span><br><span class="line">  output &lt;- template <span class="string">"templates/home.html"</span> (mkStrContext context)</span><br><span class="line">  <span class="type">TL</span>.putStrLn output</span><br></pre></td></tr></table></figure>
+<p>或使用<code>Data-Typeable</code>记录和<code>mkGenericContext</code>，将<code>Haskell</code>字段名称转换为变量名称.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;-# LANGUAGE OverloadedStrings #-&#125;</span></span><br><span class="line"><span class="meta">&#123;-# LANGUAGE DeriveDataTypeable #-&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Text.Hastache</span><br><span class="line"><span class="keyword">import</span> Text.Hastache.Context</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text.Lazy <span class="keyword">as</span> TL</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">qualified</span> Data.Text.Lazy.IO <span class="keyword">as</span> TL</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Data.Data</span><br><span class="line"></span><br><span class="line"><span class="title">template</span> :: <span class="type">FilePath</span> -&gt; <span class="type">MuContext</span> <span class="type">IO</span> -&gt; <span class="type">IO</span> <span class="type">TL</span>.<span class="type">Text</span></span><br><span class="line"><span class="title">template</span> = hastacheFile defaultConfig</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Record context</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">TemplateCtx</span> = <span class="type">TemplateCtx</span></span></span><br><span class="line">  &#123; body :: <span class="type">TL</span>.<span class="type">Text</span></span><br><span class="line">  , title :: <span class="type">TL</span>.<span class="type">Text</span></span><br><span class="line">  &#125; <span class="keyword">deriving</span> (<span class="type">Data</span>, <span class="type">Typeable</span>)</span><br><span class="line"></span><br><span class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</span><br><span class="line"><span class="title">main</span> = <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">let</span> ctx = <span class="type">TemplateCtx</span> &#123; body = <span class="string">"Hello"</span>, title = <span class="string">"Haskell"</span> &#125;</span><br><span class="line">  output &lt;- template <span class="string">"templates/home.html"</span> (mkGenericContext ctx)</span><br><span class="line">  <span class="type">TL</span>.putStrLn output</span><br></pre></td></tr></table></figure>
+<p><code>MuType</code>和<code>MuContext</code>类型可以由实现<code>MonadIO</code>的任何<code>monad</code>或转换器(而不仅仅是<code>IO</code>)进行参数化.</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Haskell-Network-Web',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
