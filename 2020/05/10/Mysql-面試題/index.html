@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Mysql-面試題 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#索引"><span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#普通索引"><span class="toc-text">普通索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#唯一索引"><span class="toc-text">唯一索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主键索引"><span class="toc-text">主键索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复合索引"><span class="toc-text">复合索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最左匹配特性"><span class="toc-text">最左匹配特性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外键索引"><span class="toc-text">外键索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全文索引"><span class="toc-text">全文索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚簇索引-密集索引"><span class="toc-text">聚簇索引/密集索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非聚簇索引-辅助索引-二级索引-稀疏索引"><span class="toc-text">非聚簇索引/辅助索引/二级索引/稀疏索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#覆盖索引"><span class="toc-text">覆盖索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页-预读"><span class="toc-text">页/预读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-Tree"><span class="toc-text">B-Tree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-Tree-1"><span class="toc-text">B+Tree</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单页，以及前一页和后一页的指针"><span class="toc-text">单页，以及前一页和后一页的指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引入页目录加快查詢-插入时进行排序的原因"><span class="toc-text">引入页目录加快查詢(插入时进行排序的原因)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多頁"><span class="toc-text">多頁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多页和目录"><span class="toc-text">多页和目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#宏观图"><span class="toc-text">宏观图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyISAM-B-Tree"><span class="toc-text">MyISAM B+Tree</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的特性"><span class="toc-text">事务的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的并发问题"><span class="toc-text">事务的并发问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务隔离级别"><span class="toc-text">事务隔离级别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#锁"><span class="toc-text">锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#锁的粒度"><span class="toc-text">锁的粒度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#锁机制"><span class="toc-text">锁机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#悲观锁-乐观锁"><span class="toc-text">悲观锁/乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVCC多版本并发控制"><span class="toc-text">MVCC多版本并发控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引优化"><span class="toc-text">索引优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain列"><span class="toc-text">Explain列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL查询执行顺序"><span class="toc-text">SQL查询执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redo-Undo"><span class="toc-text">Redo/Undo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主从复制的流程"><span class="toc-text">主从复制的流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清理-MySQL-binlog"><span class="toc-text">清理 MySQL binlog</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Mysql-面試題
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-05-10 12:54:44</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#面試" title="面試">面試</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Mysql" title="Mysql">Mysql</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#索引" title="索引">索引</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#锁" title="锁">锁</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h3><p>最基本的索引，没有任何约束。</p>
+<h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><p>与普通索引类似，但具有唯一性约束。</p>
+<h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><p>特殊的唯一索引，不允许有空值。</p>
+<h3 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h3><p>将多个列组合在一起创建索引，可以覆盖多个列。</p>
+<h4 id="最左匹配特性"><a href="#最左匹配特性" class="headerlink" title="最左匹配特性"></a>最左匹配特性</h4><p>假如存在复合索引(name, age, sex):</p>
+<ul>
+<li><p>(张三, 20, F):  优先比较name，如果name相同，再依次比較age和sex。</p>
+</li>
+<li><p>(20, F):       将不会走该索引。</p>
+</li>
+<li><p>(张三, F):      先查询出name=张三的数据，然后再过滤出所有sex=F的数据。</p>
+</li>
+<li><p>最左前缀匹配原则，MySQL会一直向右匹配直到遇到范围查询(<code>&gt;、&lt;、between、like</code>)就停止匹配，比如<code>a=3 and b=4 and c&gt;5 and d=6</code>,如果建立<code>(a,b,c,d)</code>顺序的索引，<code>d</code>是无法使用索引的，如果建立<code>(a,b,d,c)</code>的索引则都可以使用到，<code>a、b、d</code>的顺序可以任意调整。</p>
+</li>
+<li><p>=和in可以乱序，比如<code>a=1 and b=2 and c=3</code>建立<code>(a,b,c)</code>索引可以任意顺序，MySQL的查询优化器会帮你优化成索引可以识别的形式。</p>
+</li>
+</ul>
+<h3 id="外键索引"><a href="#外键索引" class="headerlink" title="外键索引"></a>外键索引</h3><p>只有InnoDB类型的表才可以使用外键索引，保证数据的一致性、完整性和实现级联操作。</p>
+<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><p>MySQL自带的全文索引只能用于InnoDB、MyISAM，并且只能对英文进行全文检索，一般使用全文索引引擎(Elasticsearch、Solr)。</p>
+<h3 id="聚簇索引-密集索引"><a href="#聚簇索引-密集索引" class="headerlink" title="聚簇索引/密集索引"></a>聚簇索引/密集索引</h3><p>聚簇索引是将索引和数据都存放在叶子节点中。在InnoDB里，主键索引也被称为聚集索引(clustered index)。</p>
+<h3 id="非聚簇索引-辅助索引-二级索引-稀疏索引"><a href="#非聚簇索引-辅助索引-二级索引-稀疏索引" class="headerlink" title="非聚簇索引/辅助索引/二级索引/稀疏索引"></a>非聚簇索引/辅助索引/二级索引/稀疏索引</h3><p>非聚簇索引就是将数据和索引分开，查找时需要先查找到索引(索引文件仅保存数据记录的地址)，然后通过索引回表找到相应的数据。</p>
+<p>InnoDB有且只有一个聚簇索引，其他都是非聚簇索引，而MyISAM中都是非聚簇索引。</p>
+<ul>
+<li>InnoDB: 需查询两次，先通过辅助索引查询到主键，再通过主键从聚簇索引中查询到数据。</li>
+<li>MyISAM: 叶子节点中保存的是行数据的地址，需要根据地址再寻址一次才能得到数据。</li>
+</ul>
+<p><img src="select.png" alt="&quot;&quot;"></p>
+<h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><ul>
+<li><p>覆盖索引(covering index)指一个查询语句的执行只用从索引中就能够取得，不必从数据表中读取。也可以称之为实现了索引覆盖。<br>当一条查询语句符合覆盖索引条件时，MySQL只需要通过索引就可以返回查询所需要的数据，这样避免了查到索引后再返回表操作，减少I/O提高效率。</p>
+</li>
+<li><p>指的是基于非聚簇索引查询，但是查询字段只有主键ID ，那么在二级索引中就可以查找到。</p>
+</li>
+</ul>
+<p>如: 表<code>covering_index_sample</code>中有一个普通索引<code>idx_key1_key2(key1,key2)</code>。当我们通过SQL语句：<code>select key2 from covering_index_sample where key1 = &#39;keytest&#39;;</code>的时候，就可以通过覆盖索引查询，无需回表。</p>
+<h3 id="页-预读"><a href="#页-预读" class="headerlink" title="页/预读"></a>页/预读</h3><p>系统从磁盘读取数据到内存时是以磁盘块(<code>block</code>)为基本单位的，位于同一个磁盘块中的数据会被一次性读取出来，而不是需要什么取什么。</p>
+<p><code>InnoDB</code>存储引擎中有页(<code>Page</code>)的概念，页是其磁盘管理的最小单位。<code>InnoDB</code>存储引擎中默认每个页的大小为<code>16KB</code>(<code>show variables like &#39;innodb_page_size&#39;;</code>).</p>
+<p>而系统一个磁盘块的存储空间往往没有这么大，因此<code>InnoDB</code>每次申请磁盘空间时都会是若干地址连续磁盘块来达到页的大小<code>16KB</code>。InnoDB 在把磁盘数据读入到磁盘时会以页为基本单位，在查询数据时如果一个页中的每条数据都能有助于定位数据记录的位置，这将会减少磁盘 I/O 次数，提高查询效率。</p>
+<h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h3><p><img src="b-tree.png" alt="&quot;&quot;"></p>
+<p>從<code>B-Tree</code>结构图中可以看到，每个节点中不仅包含数据的<code>key</code>值，还有<code>data</code>值。而每一个页的存储空间是有限的，如果<code>data</code>数据较大时将会导致每个节点(即一个页)能存储的<code>key</code>的数量很小，当存储的数据量很大时同样会导致<code>B-Tree</code>的深度较大，增大查询时的磁盘<code>I/O</code>次数，进而影响查询效率。</p>
+<p>在<code>B+Tree</code>中，所有数据记录节点都是按照键值大小顺序存放在同一层的叶子节点上，而非叶子节点上只存储<code>key</code>值信息，这样可以大大加大每个节点存储的<code>key</code>值数量，降低<code>B+Tree</code>的高度。</p>
+<h3 id="B-Tree-1"><a href="#B-Tree-1" class="headerlink" title="B+Tree"></a>B+Tree</h3><p><img src="b+tree.png" alt="&quot;&quot;"></p>
+<p><img src="b+tree2.png" alt="&quot;&quot;"></p>
+<h4 id="单页，以及前一页和后一页的指针"><a href="#单页，以及前一页和后一页的指针" class="headerlink" title="单页，以及前一页和后一页的指针"></a>单页，以及前一页和后一页的指针</h4><p><img src="page1.png" alt="&quot;&quot;"></p>
+<h4 id="引入页目录加快查詢-插入时进行排序的原因"><a href="#引入页目录加快查詢-插入时进行排序的原因" class="headerlink" title="引入页目录加快查詢(插入时进行排序的原因)"></a>引入页目录加快查詢(插入时进行排序的原因)</h4><p><img src="page2.png" alt="&quot;&quot;"></p>
+<h4 id="多頁"><a href="#多頁" class="headerlink" title="多頁"></a>多頁</h4><p><img src="page3.png" alt="&quot;&quot;"></p>
+<h4 id="多页和目录"><a href="#多页和目录" class="headerlink" title="多页和目录"></a>多页和目录</h4><p><img src="page4.png" alt="&quot;&quot;"></p>
+<h4 id="宏观图"><a href="#宏观图" class="headerlink" title="宏观图"></a>宏观图</h4><p><img src="page5.png" alt="&quot;&quot;"></p>
+<h3 id="MyISAM-B-Tree"><a href="#MyISAM-B-Tree" class="headerlink" title="MyISAM B+Tree"></a>MyISAM B+Tree</h3><p>可以看到<code>MyISAM</code>叶子节点中保存的是行数据的地址，需要根据地址再寻址一次才能得到数据。</p>
+<p><img src="myisam.png" alt="&quot;&quot;"></p>
+<p><img src="myisam2.png" alt="&quot;&quot;"></p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>事务就是对一系列的数据库操作(比如插入多条数据)进行统一的提交或回滚操作，如果插入成功，那么一起成功，如果中间有一条出现异常，那么回滚之前的所有操作。这样可以防止出现脏数据，防止数据库数据出现问题。</p>
+<h3 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h3><ul>
+<li><p><code>原子性 Atomicity</code>：一个事务(transaction)中的所有操作，或者全部完成，或者全部不完成，不会结束在中间某个环节.</p>
+</li>
+<li><p><code>一致性 Consistency</code>：应用系统从一个正确的状态到另一个正确的状态.而ACID就是说事务能够通过AID来保证这个C的过程.C是目的,AID都是手段.</p>
+</li>
+<li><p><code>隔离性 Isolation</code>：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。</p>
+</li>
+<li><p><code>持久性 Durability</code>：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失.</p>
+</li>
+</ul>
+<h3 id="事务的并发问题"><a href="#事务的并发问题" class="headerlink" title="事务的并发问题"></a>事务的并发问题</h3><ul>
+<li><p>脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据。</p>
+</li>
+<li><p>不可重复读：事务A多次读取同一数据，事务B在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果不一致。</p>
+</li>
+<li><p>幻读：系统管理员A将数据库中所有学生的成绩从具体分数改为<code>ABCDE</code>等级，但是系统管理员B就在这个时候插入了一条具体分数的记录，当系统管理员A改结束后发现还有一条记录没有改过来，就好像发生了幻觉一样，这就叫幻读。</p>
+</li>
+</ul>
+<blockquote>
+<p>不可重复读侧重于修改，幻读侧重于新增或删除。解决不可重复读的问题只需锁住满足条件的行，解决幻读需要锁表。</p>
+</blockquote>
+<h3 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h3><ul>
+<li><p>读未提交(<code>Read uncommitted</code>)：事务中的修改，即使没有提交，对其他事务也都是可见的</p>
+</li>
+<li><p>读提交(<code>read committed</code>)：事务从开始直到提交之前，所做的任何修改对其他事务都是不可见的</p>
+</li>
+<li><p>可重复读(<code>repeatable read</code>)：一个事务按相同的查询条件读取以前检索过的数据，其他事务插入了满足其查询条件的新数据。产生幻行。</p>
+</li>
+<li><p>串行化(<code>Serializable</code>)：强制事务串行执行</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">事务隔离级别</th>
+<th style="text-align:right">脏读</th>
+<th style="text-align:center">不可重复读</th>
+<th style="text-align:center">幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">读未提交</td>
+<td style="text-align:right">是(允許)</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:left">读未提交</td>
+<td style="text-align:right">否(不允許)</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:left">可重复读</td>
+<td style="text-align:right">否</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是 (X)</td>
+</tr>
+<tr>
+<td style="text-align:left">串行化</td>
+<td style="text-align:right">否</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>MySQL默认的事务隔离级别为可重复读(repeatable-read)</p>
+</li>
+<li><p>MySQL通过<code>MVCC</code>+事务第一次调用<code>SELECT</code>语句才生成快照，实现其在可重复读(<code>repeatable-read</code>)的隔离级别下，不存在幻读问题，即上图<code>X</code>处，需要改成”否”</p>
+</li>
+</ul>
+<blockquote>
+<p>查詢隔离级别：SELECT @@tx_isolation;</p>
+</blockquote>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a><a href="https://mp.weixin.qq.com/s?__biz=MzI1Mzg4OTMxNQ==&amp;mid=100000550&amp;idx=1&amp;sn=8a5cdff008fc1eed7b5c623c1bdf4ed1&amp;chksm=69ccdd6a5ebb547c7b7baf6be78763fc5065e0a58de202f3e25d8d8ed56e6d1c1146332cfec1#rd" target="_blank" rel="noopener">锁</a></h2><h3 id="锁的粒度"><a href="#锁的粒度" class="headerlink" title="锁的粒度"></a>锁的粒度</h3><ul>
+<li><p>表锁：系统开销最小，会锁定整张表，MyIsam 使用表锁。</p>
+</li>
+<li><p>行锁：最大程度的支持并发处理，但是也带来了最大的锁开销，InnoDB使用行锁。</p>
+</li>
+</ul>
+<blockquote>
+<p>Innodb的锁的策略为next-key锁，即record lock + gap lock，是通过在index上加lock实现的。如果index为 unique index，则降级为record lock行锁，如果是普通index，则为next-key lock，如果没有index，则直接锁住全表，即表锁。</p>
+</blockquote>
+<h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><ul>
+<li><p>共享锁(读锁)：不堵塞，多个用户可以同时读一个资源，互不干扰</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/83148075" target="_blank" rel="noopener">排他锁(写锁)</a>：一个写锁会阻塞其他的读锁和写锁</p>
+</li>
+</ul>
+<h3 id="悲观锁-乐观锁"><a href="#悲观锁-乐观锁" class="headerlink" title="悲观锁/乐观锁"></a>悲观锁/乐观锁</h3><ul>
+<li><p>悲观锁：依靠数据库提供的锁机制实现(即:共享锁和排他锁)，读取数据时加锁，其它事务无法修改这些数据。修改删除数据时也加锁，其它事务无法读取这些数据。</p>
+</li>
+<li><p>乐观锁：基于数据版本(Version)记录机制实现，通过版本号，从而实现CAS原子性更新(将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则進行更新，否则认为是过期数据)</p>
+</li>
+</ul>
+<blockquote>
+<p>InnoDB是基于索引来完成行锁。例如：SELECT * FROM tab_with_index WHERE id = 1 FOR UPDATE。<br>FOR UPDATE可以根据条件来完成行锁锁定，并且id是有索引键的列,如果id不是索引键，那么InnoDB将完成表锁，并发将无从谈起。</p>
+</blockquote>
+<h3 id="MVCC多版本并发控制"><a href="#MVCC多版本并发控制" class="headerlink" title="MVCC多版本并发控制"></a><a href="https://juejin.im/post/5c68a4056fb9a049e063e0ab" target="_blank" rel="noopener">MVCC多版本并发控制</a></h3><p>并发访问(读或者写)数据库时，对正在事务内处理的数据做多版本的管理，用来避免由于写操作的堵塞，而引发读操作失败的并发问题。</p>
+<p>MVCC并发控制下的读事务一般使用<code>时间戳</code>或者<code>事务ID</code>去标记当前读的数据库的状态(版本)，读取这个版本的数据。读、写事务相互隔离，不需要加锁。读写并存的时候，写操作会根据目前数据库的状态，创建一个新版本，并发的读则依旧访问旧版本的数据。避免了脏读和不可重复读。</p>
+<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><ul>
+<li><p>联合索引最左前缀原则</p>
+</li>
+<li><p>不要在列上使用函数和进行运算</p>
+</li>
+<li><p>负向条件查询不能使用索引</p>
+<ul>
+<li>负向条件有：!=、&lt;&gt;、not in、not exists、not like 等</li>
+</ul>
+</li>
+<li><p>使用覆盖索引</p>
+<ul>
+<li>所谓覆盖索引，是指被查询的列，数据能从索引中取得，而不用通过行定位符再到数据表上获取，能够极大的提高性能。</li>
+</ul>
+</li>
+<li><p>避免强制类型转换</p>
+</li>
+<li><p>范围列可以用到索引，范围列后面的列无法用到索引</p>
+<ul>
+<li>范围条件有：&lt;、&lt;=、&gt;、&gt;=、between等</li>
+</ul>
+</li>
+<li><p>更新频繁、数据区分度不高的字段上不宜建立索引</p>
+</li>
+<li><p>索引列不允许为null</p>
+</li>
+<li><p>避免使用or来连接条件</p>
+</li>
+<li><p>前导模糊查询不能使用索引</p>
+</li>
+</ul>
+<h2 id="Explain列"><a href="#Explain列" class="headerlink" title="Explain列"></a>Explain列</h2><ul>
+<li><p>id：一般来说一个select一个唯一id，如果是子查询，就有两个select，id是不一样的，另外有些子查询的id是一样的(被優化為连接查询)</p>
+</li>
+<li><p>select_type：</p>
+<ul>
+<li>simple：不包括union和子查询的查询都算simple类型。</li>
+<li>primary：包括union，union all，其中最左边的查询即为primary。</li>
+<li>union：包括union，union all，除了最左边的查询，其他的查询类型都为union</li>
+</ul>
+</li>
+<li><p>type：访问方法</p>
+<ul>
+<li>ref：普通二级索引与常量进行等值匹配</li>
+<li>ref_or_null：普通二级索引与常量进行等值匹配，该索引可能是null</li>
+<li>const：主键或唯一二级索引列与常量进行等值匹配</li>
+<li>range：范围区间的查询</li>
+<li>all：全表扫描</li>
+</ul>
+</li>
+<li><p>possible_keys：对某表进行单表查询时可能用到的索引</p>
+</li>
+<li><p>key：经过查询优化器计算不同索引的成本，最终选择成本最低的索引</p>
+</li>
+<li><p>rows：</p>
+<ul>
+<li>如果使用全表扫描，那么rows就代表需要扫描的行数</li>
+<li>如果使用索引，那么rows就代表预计扫描的行数</li>
+</ul>
+</li>
+<li><p>filtered：</p>
+<ul>
+<li>如果全表扫描，那么filtered就代表满足搜索条件的记录的百分比</li>
+<li>如果是索引，那么filtered就代表除去索引对应的搜索，其他搜索条件的百分比</li>
+</ul>
+</li>
+<li><p>Extra：包含的是不适合在其他列显示的额外信息。</p>
+<ul>
+<li>Using where：意味着mysql服务器将在存储引擎检索行后再进行过滤</li>
+<li>Using index：表示mysql将使用覆盖索引，以避免访问表</li>
+<li>Using filesort：意味着mysql会对结果使用一个外部索引排序，而不是按照索引次序从表里读取行</li>
+<li>Using index condition：在存储引擎层使用索引过滤数据的一种优化方式</li>
+<li>Using temporary：这意味着mysql对查询结果排序时会使用一个临时表</li>
+<li>Using join buffer (Block Nested Loop)</li>
+<li>Using join buffer (Batched Key Access)</li>
+<li>Using MRR</li>
+</ul>
+</li>
+</ul>
+<h2 id="SQL查询执行顺序"><a href="#SQL查询执行顺序" class="headerlink" title="SQL查询执行顺序"></a>SQL查询执行顺序</h2><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>)     <span class="type">SELECT</span></span><br><span class="line">(<span class="number">2</span>)     <span class="type">DISTINCT</span> &lt;select_list&gt;</span><br><span class="line">(<span class="number">3</span>)     <span class="type">FROM</span> &lt;left_table&gt;</span><br><span class="line">(<span class="number">4</span>)     &lt;join_type&gt; <span class="type">JOIN</span> &lt;right_table&gt;</span><br><span class="line">(<span class="number">5</span>)     <span class="type">ON</span> &lt;join_condition&gt;</span><br><span class="line">(<span class="number">6</span>)     <span class="type">WHERE</span> &lt;where_condition&gt;</span><br><span class="line">(<span class="number">7</span>)     <span class="type">GROUP</span> <span class="type">BY</span> &lt;group_by_list&gt;</span><br><span class="line">(<span class="number">8</span>)     <span class="type">HAVING</span> &lt;having_condition&gt;</span><br><span class="line">(<span class="number">9</span>)     <span class="type">ORDER</span> <span class="type">BY</span> &lt;order_by_condition&gt;</span><br><span class="line">(<span class="number">10</span>)    <span class="type">LIMIT</span> &lt;limit_number&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Redo-Undo"><a href="#Redo-Undo" class="headerlink" title="Redo/Undo"></a><a href="https://zhuanlan.zhihu.com/p/86553820" target="_blank" rel="noopener">Redo/Undo</a></h2><h2 id="主从复制的流程"><a href="#主从复制的流程" class="headerlink" title="主从复制的流程"></a>主从复制的流程</h2><ul>
+<li><p>Master 上面的 binlog dump 线程，该线程负责将 master 的 binlog event 传到 slave 。</p>
+</li>
+<li><p>Slave 上面的 IO 线程，该线程负责接收 Master 传过来的 binlog，并写入 relay log。</p>
+</li>
+<li><p>Slave 上面的 SQL 线程，该线程负责读取 relay log 并执行。</p>
+</li>
+<li><p>如果是多线程复制，SQL 线程只做 coordinator，只负责把 relay log 中的 binlog 读出来然后交给 worker 线程， woker 线程负责具体 binlog event 的执行。</p>
+</li>
+</ul>
+<h2 id="清理-MySQL-binlog"><a href="#清理-MySQL-binlog" class="headerlink" title="清理 MySQL binlog"></a>清理 MySQL binlog</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 首先查看主从库正在使用的binlog文件名称</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">master</span>(<span class="keyword">slave</span>) <span class="keyword">status</span></span><br><span class="line"></span><br><span class="line"># 删除之前一定要备份</span><br><span class="line">purge master logs before'2017-09-01 00:00:00'; # 删除指定时间前的日志</span><br><span class="line">purge master logs to'mysql-bin.000001'; # 删除指定的日志文件</span><br><span class="line"></span><br><span class="line"># 自动删除：通过设置binlog的过期时间让系统自动删除日志</span><br><span class="line">show variables like 'expire_logs_days'; # 查看过期时间</span><br><span class="line">set global expire_logs_days = 30; # 设置过期时间</span><br></pre></td></tr></table></figure>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Mysql-面試題',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>

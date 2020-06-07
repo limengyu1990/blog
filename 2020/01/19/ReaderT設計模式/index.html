@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        ReaderT設計模式 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#更好的globals"><span class="toc-text">更好的globals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免WriterT和StateT"><span class="toc-text">避免WriterT和StateT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免ExceptT"><span class="toc-text">避免ExceptT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只是ReaderT"><span class="toc-text">只是ReaderT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Has-typeclass-途径"><span class="toc-text">Has typeclass 途径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#恢复纯度"><span class="toc-text">恢复纯度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布后更新"><span class="toc-text">发布后更新</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        ReaderT設計模式
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-01-19 16:53:28</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Haskell" title="Haskell">Haskell</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p><a href="https://www.fpcomplete.com/blog/2017/06/readert-design-pattern" target="_blank" rel="noopener">原文</a></p>
+</blockquote>
+<p>通常，我经常会在网上收到或阅读有关<code>Haskell</code>中”设计模式”的问题。<br>常见的回答是<code>Haskell</code>中没有它们。许多语言都是通过模式来解决的，在<code>Haskell</code>中，我们是通过语言特性（例如内置的<code>immutability</code>不变性，<code>lambda</code>，<code>laziness</code>等）来解决的。但是，我相信对于结构化程序还有一些高级<code>guidance</code>(指导)的空間，我将其宽松地称为<code>Haskell</code>设计模式。</p>
+<p>我今天要描述的模式是我几年来一直称为的<code>ReaderT</code>模式，至少在非正式讨论中是这样。 我将其用作<code>Yesod</code>的<code>Handler</code>类型设计的基础，它描述了大多数<code>stack</code>代码库，我定期向朋友、同事和客户推荐它。</p>
+<p>也就是说，这种模式在<code>Haskell</code>世界中并不普遍，很多人的代码设计都不同。所以请记住，和我写过的<a href="https://www.fpcomplete.com/blog/2016/11/exceptions-best-practices-haskell" target="_blank" rel="noopener">其他文章</a>一样，这是一篇非常自以为是的文章，但它代表了我个人和<code>FP Complete</code>的最佳实践建议。</p>
+<p>让我们总结一下模式，然后讨论细节和例外:</p>
+<ul>
+<li><p>您的应用程序应定义一个核心数据类型(如果需要，可将其称为<code>Env</code>).</p>
+</li>
+<li><p>该数据类型将包含所有可模拟的运行时配置和全局函数(例如日志记录函数或数据库访问).</p>
+</li>
+<li><p>如果必须有一些可变状态，请将其作为可变引用(<code>IORef</code>，<code>TVar</code>等)放入<code>Env</code>中.</p>
+</li>
+<li><p>通常，您的应用程序代码将存在于<code>ReaderT Env IO</code>中。如果需要，将其定义为<code>type App = ReaderT Env IO</code>，或者直接使用<code>newtype</code>包装而不是直接使用<code>ReaderT</code>.</p>
+</li>
+<li><p>有时可以使用其他<code>monad</code>转换器，但只能用于你的应用程序的一小部分，這些部分最好是纯代码.</p>
+</li>
+<li><p>可选：不要直接使用<code>App</code>数据类型，而是用<code>mtl-style</code>类型类(如<code>MonadReader</code>和<code>MonadIO</code>)编写函数，这样可以<code>recover</code>(恢复)一些您认为我刚刚告诉您扔掉<code>IO</code>和<code>mutable references</code>(可变引用)的纯洁性.</p>
+</li>
+</ul>
+<p>一下子就要吸收很多东西，其中的一些(比如<code>mtl</code>类型类)可能還不清楚，而其他部分(尤其是<code>可变引用</code>位)可能看起来完全错了,让我来激励这些陈述并解释其中的细微差别.</p>
+<h3 id="更好的globals"><a href="#更好的globals" class="headerlink" title="更好的globals"></a>更好的globals</h3><p>让我们淘汰掉其中的简单部分。全局变量不好，可变的全局变量更糟。<br>假设您有一个想要配置其日志记录级别的应用程序（例如，我们应该打印还是<code>swallow</code>吞下<code>DEBUG</code>级别的消息？）。在<code>Haskell</code>中，您可以通过三种常见的方式进行此操作:</p>
+<ul>
+<li>(1)使用<code>compile-time flag</code>(编译时标志)来控制将哪些日志记录代码包含在可执行文件中</li>
+<li>(2)定义一个全局值，用<code>unsafePerformIO</code>读取配置文件(或环境变量)</li>
+<li>(3)在您的<code>main</code>函数中读取配置文件，然后将值(通过<code>ReaderT</code>显式或隐式)传递给其余代码</li>
+</ul>
+<p>(1)很诱人，但是经验告诉我这是一个糟糕的解决方案。每次在代码库中进行条件编译时，都会添加一些可能的构建故障。如果您有5个条件，则现在有32(2^5)个可能的构建配置。您确定对于这32种配置都具有正确的导入语句集吗？這处理起来很痛苦。<br>此外，您是否真的要在编译时决定不需要调试信息？我更希望能够在配置文件中将<code>false</code>转换为<code>true</code>并重新启动我的应用以在<code>debugging</code>时获取更多信息。</p>
+<p>(顺便说一下，甚至比这更好的是: 在进程运行时发出信号以更改<code>debug</code>级别的能力，但我们暂时不考虑这一点。<code>ReaderT</code>+可变变量模式是实现这一点的最佳方法之一)</p>
+<p>好吧，你同意我的观点，你不应该有条件地编译。然而，既然您已经编写了整个应用程序，那么您可能会犹豫是否必须重写它，以便在任何地方都执行一些配置值。<br>我明白了，這很痛苦。因此，您决定只使用<code>unsafePerformIO</code>，因为该文件将被读取一次，所以对于整个运行时来说，它是一个<code>pure-ish</code>值，而且一切看起来都很安全。然而:</p>
+<ul>
+<li><p>现在，您对<code>将在何处发生异常情况</code>有一定程度的不确定性。如果配置文件丢失或无效，将从何处抛出异常？我宁愿在应用程序初始化时立即发生这种情况。</p>
+</li>
+<li><p>假设您要使用<code>louder</code>(响亮)的调试信息来运行应用程序的一小部分(因为您知道它比其他代码更有可能失敗)。您基本上根本无法做到这一点。</p>
+</li>
+<li><p>只要等到出于某种原因在配置文件解析中使用<code>STM</code>，然后在另一个<code>STM</code>块中首先计算配置值。(<a href="https://github.com/snoyberg/yaml/issues/86" target="_blank" rel="noopener">这是不可能的</a>).</p>
+</li>
+<li><p>每次使用<code>unsafePerformIO</code>时，一只<code>kitten</code>都会死亡。</p>
+</li>
+</ul>
+<p>现在是时候咬紧牙关，定义一些<code>Env</code>数据类了，将配置文件值放入其中，然后通过应用程序对其进行线程化了。如果您从一开始就设计应用程序是这样的: 那就太好了，没有危害。</p>
+<p>稍后在应用程序开发中这样做肯定是一件痛苦的事，但是我可以在下面说一些来减轻这种痛苦。并且，与面对围绕<code>unsafePerformIO</code>的竞争条件相比，用机械代码重写承受一点痛苦绝对是更好的选择。请记住，这是<code>Haskell</code>: 我们宁愿面对编译时，也不要面对运行时的痛苦。</p>
+<p>一旦你接受了自己的命运，全力以赴地投入(3)，你就很轻松了:</p>
+<ul>
+<li>有一些新的配置值可以传递吗？简单，只需增加<code>Env</code>类型.</li>
+<li>是否要暂时提高日志级别？使用<code>local</code>，你很<code>golden</code>.</li>
+</ul>
+<p>现在，您不再像<code>CPP</code>代码(1)或全局变量(2)这样的丑陋骇客了，因为你已经消除了以正确方式做这件事可能带来的痛苦。</p>
+<p><strong><em>初始化资源</em></strong><br>读取配置值的情况不错，但初始化一些资源的情况更好。假设您要初始化一个随机数生成器，打开一个<code>Handle</code>来发送日志消息，设置一个数据库池，或者创建一个临时目录来存储文件。在<code>main</code>内部执行这些操作比从某个全局位置执行这些操作更符合逻辑。<br>对于此类初始化，全局变量方法的一个优点是，它可以推迟到第一次使用值时進行，如果您认为某些资源可能并不总是需要的话，这是很好的。但如果这是你想要的，你可以使用像<a href="https://github.com/commercialhaskell/stack/blob/master/src/Data/IORef/RunOnce.hs" target="_blank" rel="noopener">runOnce</a>这样的方法。</p>
+<h3 id="避免WriterT和StateT"><a href="#避免WriterT和StateT" class="headerlink" title="避免WriterT和StateT"></a>避免WriterT和StateT</h3><h3 id="避免ExceptT"><a href="#避免ExceptT" class="headerlink" title="避免ExceptT"></a>避免ExceptT</h3><h3 id="只是ReaderT"><a href="#只是ReaderT" class="headerlink" title="只是ReaderT"></a>只是ReaderT</h3><h3 id="Has-typeclass-途径"><a href="#Has-typeclass-途径" class="headerlink" title="Has typeclass 途径"></a>Has typeclass 途径</h3><h3 id="恢复纯度"><a href="#恢复纯度" class="headerlink" title="恢复纯度"></a>恢复纯度</h3><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><h3 id="发布后更新"><a href="#发布后更新" class="headerlink" title="发布后更新"></a>发布后更新</h3><p>2017年6月15日，来自<code>Ashley</code>的以下有关<code>ImplicitParams</code>的评论引发了<a href="https://www.reddit.com/r/haskell/comments/6gz4w5/whats_wrong_with_implicitparams/" target="_blank" rel="noopener">Reddit关于该扩展程序问题的讨论</a>。请您自己阅读讨论内容，但对我而言，<code>MonadReader</code>是更好的选择.</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'ReaderT設計模式',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
