@@ -191,7 +191,7 @@
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> :: s -&gt; t</span><br><span class="line"><span class="title">from</span> :: t -&gt; s</span><br></pre></td></tr></table></figure>
 <p>这样，一个接一个地<code>composing</code>(构成)就可以让您回到起点。 换句话说，这样:</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> . from = id</span><br><span class="line"><span class="title">from</span> . to = id</span><br></pre></td></tr></table></figure>
-<p>有时我们将类型<code>s</code>和<code>t</code>之间的同构写为: <code>s</code><img src="tonggou.jpg" alt=""><code>t</code>.</p>
+<p>有时我们将类型<code>s</code>和<code>t</code>之间的同构写为: <code>s</code><img src="tonggou.jpg" alt="&quot;&quot;">{:height=”13px” width=”13px”}<code>t</code>.</p>
 <p>如果两种类型具有相同的基数，则它们的元素之间的任何一对一映射都正好是这些<code>to</code>和<code>from</code>函数。但这样的映射从何而来？哪里都不重要！只需在每个类型上选择一个不一定与<code>Ord</code>实例对应的任意排序，然后将一个排序下的第一个元素映射到另一个排序下的第一个元素。<code>Rinse</code>(冲洗)并重复。</p>
 <p>例如，我们可以定义一个具有基数为2的新类型:</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Spin</span> = <span class="type">Up</span> | <span class="type">Down</span></span></span><br></pre></td></tr></table></figure>
@@ -212,7 +212,7 @@
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|<span class="type">Maybe</span> a| = <span class="number">1</span> + |a|</span><br></pre></td></tr></table></figure>
 <p><code>Dual</code>(双重)<code>sum</code>类型是所谓的<code>product</code>(乘积)类型。再次,我们将首先看一下规范示例 - <code>pair</code>(对)类型<code>(a，b)</code>.<br>类似地，<code>product</code>类型的基数是其基数的乘积。</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|(a, b)| = |a| × |b|</span><br></pre></td></tr></table></figure>
-<p>为了说明，考虑<img src="thinking-with-type-01/hunhe.png" alt="">形式的混合分数。我们可以通过<code>product</code>类型在<code>Haskell</code>中表示它们。</p>
+<p>为了说明，考虑<img src="hunhe.png" alt="">{:height=”15px” width=”15px”}形式的混合分数。我们可以通过<code>product</code>类型在<code>Haskell</code>中表示它们。</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">MixedFraction</span> a = <span class="type">Fraction</span></span></span><br><span class="line">    &#123; mixedBit :: <span class="type">Word8</span></span><br><span class="line">    , numerator :: a</span><br><span class="line">    , denominator :: a</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>并执行其基数分析，如下所示:</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|<span class="type">MixedFraction</span> a| = |<span class="type">Word8</span>| × |a| × |a| = <span class="number">256</span> × |a| × |a|</span><br></pre></td></tr></table></figure>
@@ -224,7 +224,7 @@
 <p>函数<code>absurd</code>在1⃣️处的类型为<code>Void -&gt; a</code>。这有点虚张声势，说”如果您给我一个<code>Void</code>，我可以给您您想要的任何东西。” 尽管这是个谎言，但由于一开始就没有<code>Voids</code>，所以我们无法反驳。</p>
 <p>函数类型还具有关于基数的编码方式，它们对应于<code>exponentialization</code>(指数化)。举个例子，这里正好有4<code>(2^2)</code>個<code>Bool -&gt; Bool</code>类型的居民，这些函数是<code>id</code>，<code>not</code>，<code>const True</code>和<code>const False</code>。尽可能地努力，但是在<code>Bools</code>之间找不到其他任何纯函数！</p>
 <p>更一般地，类型<code>a -&gt; b</code>具有基数<code>|b|^|a|</code>。尽管起初这可能令人惊讶 -<code>it always seems backwards to me</code>(在我看来似乎总是倒退)-该<code>argument</code>(论点/參數)是<code>straightforward</code>(很直接的)。对于域中<code>a</code>的每个值，我们需要退返回<code>b</code>。但是我们可以为<code>a</code>的每个值选择<code>b</code>的任何值，从而得到以下相等性:</p>
-<p><img src="thinking-with-type-01/zhishu.png" alt=""></p>
+<p><img src="zhishu.png" alt="">{:height=”50%” width=”50%”}</p>
 <blockquote>
 <p>练习1.2-i: 确定<code>Either Bool (Bool, Maybe Bool) -&gt; Bool</code>的基数.</p>
 </blockquote>
@@ -236,7 +236,7 @@
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">emptyBoard</span> :: <span class="type">TicTacToe</span> (<span class="type">Maybe</span> <span class="type">Bool</span>)</span><br><span class="line"><span class="title">emptyBoard</span> = <span class="type">TicTacToe</span></span><br><span class="line">     <span class="type">Nothing</span> <span class="type">Nothing</span> <span class="type">Nothing</span></span><br><span class="line">     <span class="type">Nothing</span> <span class="type">Nothing</span> <span class="type">Nothing</span></span><br><span class="line">     <span class="type">Nothing</span> <span class="type">Nothing</span> <span class="type">Nothing</span></span><br></pre></td></tr></table></figure>
 <p>编写像<code>checkWinner</code>这样的函数会更加复杂。</p>
 <p>与其经历所有这些麻烦，我们可以利用我们的类型代数知识来提供帮助。第一步是对<code>TicTacToe</code>执行基数分析:</p>
-<p><img src="thinking-with-type-01/TicTacToe.png" alt=""></p>
+<p><img src="TicTacToe.png" alt="">{:height=”50%” width=”50%”}</p>
 <p>当这样写的时候，我们看到<code>TicTacToe</code>与函数<code>(Three，Three) -&gt; a</code>或它的咖喱形式：<code>Three -&gt; Three -&gt; a</code>同构。当然，<code>Three</code>是具有三个<code>inhabitants</code>(居民)的任何类型。也许看起来像这样:</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Three</span> = <span class="type">One</span> | <span class="type">Two</span> | <span class="type">Three</span></span></span><br><span class="line">    <span class="keyword">deriving</span> (<span class="type">Eq</span>, <span class="type">Ord</span>, <span class="type">Enum</span>, <span class="type">Bounded</span>)</span><br></pre></td></tr></table></figure>
 <p>由于这种同构，我们可以改用以下形式表示<code>TicTacToe</code>:</p>
@@ -246,7 +246,7 @@
 <p>这样的转变不会让我们做任何其他我们做不到的事情，但它确实大大改善了人体工程学。<br>通过这样的改变，我们得到了整个组合函数工具箱的回报；我们获得了更好的组合性，并且需要支付更少的认知负担。</p>
 <p>让我们不要忘记，编程主要是人类的工作，而人体工程学的确是值得追求的。 您的同事和合作者稍后会感谢您！</p>
 <h3 id="1-4-Curry–Howard同构"><a href="#1-4-Curry–Howard同构" class="headerlink" title="1.4 Curry–Howard同构"></a>1.4 Curry–Howard同构</h3><p>下表总结了我们之前对类型及其基数之间代数关系的讨论。</p>
-<p><img src="thinking-with-type-01/table.png" alt=""></p>
+<p><img src="table.png" alt="">{:height=”50%” width=”50%”}</p>
 <p>该表本身在数学和类型之间形成了更普遍的同构。它被称为<code>Curry-Howard</code>同构，即宽松地指出逻辑中的每个语句都等同于某些计算机程序，反之亦然。 <code>Philip Wadler</code>以<code>propositions as types</code>的名字推广了<code>Curry–Howard</code>。</p>
 <p><code>Curry–Howard</code>同构是对我们宇宙的深刻见解。它使我们能够通过函数式编程的角度来分析数学定理。更好的是，当表达为类型时，甚至连”无聊的”数学定理也很有趣。</p>
 <p>为了说明这一点，考虑定理<code>a ^ 1 = a</code>。当通过<code>Curry–Howard</code>查看时，它描述了<code>() -&gt; a</code>和<code>a</code>之间的同构。换句话说，该定理表明在拥有一个值和拥有一个计算该值的(纯)程序之间没有区别。这种洞察力是为什么编写<code>Haskell</code>与其他编程语言相比如此令人喜悦的背后的核心原则。</p>
@@ -261,7 +261,7 @@
 </blockquote>
 <h3 id="1-5-规范表示"><a href="#1-5-规范表示" class="headerlink" title="1.5 规范表示"></a>1.5 规范表示</h3><p>具有相同基数的任何两种类型都是同构的直接推论是，存在多种表示任何给定类型的方法。尽管您不一定要让它改变类型建模的方式，但最好记住您有一个选择。</p>
 <p>由于同构，一个类型的所有这些表示都与任何其他类型的表示”一样好”。<br>然而，正如我们将在145页上看到的, <code>working with types generically</code>(通常使用类型时)使用<code>conventional form</code>(常规形式)会很有用。这种<code>canonical representation</code>(规范表示)被称为<code>products</code>的<code>sum</code>，指的是形式的任何类型<code>t</code>:</p>
-<p><img src="thinking-with-type-01/guifan.png" alt=""></p>
+<p><img src="guifan.png" alt="">{:height=”50%” width=”50%”}</p>
 <p>大<code>Σ</code>表示加法，而<code>Π</code>表示乘法-因此我们可以将其理解为”外加法，内乘法”。我们还规定，所有加法必须通过<code>Either</code>表示，并且乘法必须通过<code>(,)</code>表示。不用担心，写出这样的规则会使它看起来比实际复杂得多。</p>
 <p>所有这些都意味着以下每种类型均以其规范表示形式:</p>
 <ul>
