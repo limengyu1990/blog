@@ -191,7 +191,7 @@
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> :: s -&gt; t</span><br><span class="line"><span class="title">from</span> :: t -&gt; s</span><br></pre></td></tr></table></figure>
 <p>这样，一个接一个地<code>composing</code>(构成)就可以让您回到起点。 换句话说，这样:</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> . from = id</span><br><span class="line"><span class="title">from</span> . to = id</span><br></pre></td></tr></table></figure>
-<p>有时我们将类型<code>s</code>和<code>t</code>之间的同构写为: <code>s</code><img src="tonggou.jpg" alt="&quot;&quot;">{:height=”13px” width=”13px”}<code>t</code>.</p>
+<p>有时我们将类型<code>s</code>和<code>t</code>之间的同构写为: <code>s</code><img src="img src=&quot;tonggou.jpg&quot; width=&quot;13px&quot; height=&quot;13px&quot;" alt="&quot;&quot;"><code>t</code>.</p>
 <p>如果两种类型具有相同的基数，则它们的元素之间的任何一对一映射都正好是这些<code>to</code>和<code>from</code>函数。但这样的映射从何而来？哪里都不重要！只需在每个类型上选择一个不一定与<code>Ord</code>实例对应的任意排序，然后将一个排序下的第一个元素映射到另一个排序下的第一个元素。<code>Rinse</code>(冲洗)并重复。</p>
 <p>例如，我们可以定义一个具有基数为2的新类型:</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Spin</span> = <span class="type">Up</span> | <span class="type">Down</span></span></span><br></pre></td></tr></table></figure>
