@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Raspberry4B-Svn-Gitea-Drone-CI/CD - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#树莓派配置"><span class="toc-text">树莓派配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git操作SVN仓库"><span class="toc-text">Git操作SVN仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose-yml配置"><span class="toc-text">docker-compose.yml配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gitea"><span class="toc-text">gitea</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drone"><span class="toc-text">drone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#evn"><span class="toc-text">.evn</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#drone-env"><span class="toc-text">.drone.env</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#drone-rpc-env"><span class="toc-text">.drone-rpc.env</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pg-env"><span class="toc-text">.pg.env</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#runner-env"><span class="toc-text">.runner.env</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动"><span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动报错排查"><span class="toc-text">启动报错排查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitea配置"><span class="toc-text">gitea配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drone配置"><span class="toc-text">drone配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drone-yml配置"><span class="toc-text">.drone.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题排查"><span class="toc-text">问题排查</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Raspberry4B-Svn-Gitea-Drone-CI/CD
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-08-02 11:48:03</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#Raspberry 4B" title="Raspberry 4B">Raspberry 4B</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#svn" title="svn">svn</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#git" title="git">git</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#gitea" title="gitea">gitea</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#drone" title="drone">drone</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="树莓派配置"><a href="#树莓派配置" class="headerlink" title="树莓派配置"></a>树莓派配置</h2><ul>
+<li><p>官方系统烧录工具<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">Raspberry Pi Imager</a></p>
+</li>
+<li><p><a href="https://github.com/openfans-community-offical/Debian-Pi-Aarch64/blob/master/README_zh.md#3-5%E6%97%A0%E7%BA%BF%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E" target="_blank" rel="noopener">Debian-Pi-Aarch64</a>系统</p>
+</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.overlook.android.fing" target="_blank" rel="noopener">Fing</a>手机网络工具</li>
+</ul>
+<p>烧录完系统以后,修改<code>/boot/wpa_supplicant.conf</code>文件，配置无线网络:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">country=CN</span><br><span class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</span><br><span class="line">update_config=1</span><br><span class="line"></span><br><span class="line">## ssid是你的无线Wifi名称，psk是你无线Wifi的密码</span><br><span class="line">network=&#123;</span><br><span class="line">    ssid="your-wifi1-ssid"</span><br><span class="line">    psk="wifi1-password"</span><br><span class="line">    priority=1</span><br><span class="line">    id_str="wifi-1"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后将<code>SD</code>卡插入到树莓派上，接上电源。</p>
+<p>该系统默认初始化时会自动重启3次，我们可以使用下载的<a href="https://play.google.com/store/apps/details?id=com.overlook.android.fing" target="_blank" rel="noopener">Fing</a>网络工具，将手机接入相同的<code>wifi</code>网络，进行扫描，即可发现树莓派的<code>ip</code>地址。</p>
+<p>通过<code>ssh pi@树莓派ip</code>进行连接，系统默认用户是<code>pi</code>, 默认密码是: <code>raspberry</code>。</p>
+<p><img src="pi.png" alt=""></p>
+<h2 id="Git操作SVN仓库"><a href="#Git操作SVN仓库" class="headerlink" title="Git操作SVN仓库"></a>Git操作SVN仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Note right of 本地SVN: 使用svn命令操作SVN仓库</span><br><span class="line">本地SVN&lt;-远程SVN仓库: svn checkout svn://xxx/trunk/xxx\nsvn add test.md\nsvn commit</span><br><span class="line">Note right of 远程SVN仓库: 使用git命令操作SVN仓库</span><br><span class="line">本地Git&lt;-远程SVN仓库: git svn clone svn://xxx/trunk/xxx\ngit svn rebase\ngit svn barnch/tag xxx\ngit add .\ngit commit\ngit svn dcommit</span><br><span class="line"></span><br><span class="line">本地Git-&gt;本地gitea分支: git checkout -b gitea</span><br><span class="line"></span><br><span class="line">本地gitea分支-&gt;远程gitea仓库: git merge master \ngit push -u origin HEAD:master</span><br></pre></td></tr></table></figure>
+<h2 id="docker-compose-yml配置"><a href="#docker-compose-yml配置" class="headerlink" title="docker-compose.yml配置"></a>docker-compose.yml配置</h2><h3 id="gitea"><a href="#gitea" class="headerlink" title="gitea"></a>gitea</h3><p>如下是<code>gitea(1.13.0)</code>的<code>docker-compose.yml</code>配置:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.7"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="comment"># 配置gitea使用mysql</span></span><br><span class="line"><span class="attr">  aix_mysql:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">mysql:5.7</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">aix_mysql</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">MYSQL_ROOT_PASSWORD=gitea123456</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">MYSQL_DATABASE=gitea</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">MYSQL_USER=gitea</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">MYSQL_PASSWORD=gitea123456</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aixnet</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/Users/limengyu/docker/aix/mysql/conf/my.cnf:/etc/mysql/my.cnf:rw</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/Users/limengyu/docker/aix/mysql/data:/var/lib/mysql/:rw</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/Users/limengyu/docker/aix/mysql/logs:/var/log/mysql/:rw</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  aix_memcache:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">memcached:alpine</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">aix_memcache</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aixnet</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  aix_gitea:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">gitea/gitea:latest</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">aix_gitea</span></span><br><span class="line">    <span class="comment"># 环境变量配置(在下面)</span></span><br><span class="line"><span class="attr">    env_file:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.env</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aixnet</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"$GITEA_WEB_PORT:3000"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"$GITEA_SSH_PORT:22"</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DOMAIN=$SERVER_IP</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">SSH_DOMAIN=$SERVER_IP</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">SSH_PORT=$GITEA_SSH_PORT</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">SSH_LISTEN_PORT=22</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">ROOT_URL=$GITEA_WEB_URL</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/Users/limengyu/docker/aix/gitea:/data:rw</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  aixnet:</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="drone"><a href="#drone" class="headerlink" title="drone"></a>drone</h3><p>下面是<code>drone(1.8.0)</code>的<code>docker-compose.yml</code>配置，可以和上面的合在一起，我这里拆开了。<br><code>drone</code>可以使用<code>mysql</code>也可以使用<code>postgresql</code>,官方文档称针对<code>postgresql</code>有优化，这里给出一个使用的例子:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.7"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="comment"># drone使用postgresql</span></span><br><span class="line"><span class="attr">  aix_pg:</span></span><br><span class="line"><span class="attr">   restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">   image:</span> <span class="attr">postgres:latest</span></span><br><span class="line"><span class="attr">   container_name:</span> <span class="string">aix_pg</span></span><br><span class="line"><span class="attr">   privileged:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">   ports:</span></span><br><span class="line"><span class="bullet">     -</span> <span class="number">5432</span><span class="string">:5432</span></span><br><span class="line">   <span class="comment"># 环境变量配置(在下面)</span></span><br><span class="line"><span class="attr">   env_file:</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">.pg.env</span></span><br><span class="line"><span class="attr">   networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aixnet</span></span><br><span class="line"><span class="attr">   volumes:</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">/Users/limengyu/docker/aix/pg/data:/var/lib/postgresql/data:rw</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  aix_drone_server:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">drone/drone:latest</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">aix_drone_server</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"$DRONE_HTTP_PORT:80"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"$DRONE_HTTPS_PORT:443"</span></span><br><span class="line">    <span class="comment"># 环境变量配置(在下面)</span></span><br><span class="line"><span class="attr">    env_file:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.drone.env</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.drone-rpc.env</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.env</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aixnet</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/Users/limengyu/docker/aix/drone:/var/lib/drone/:rw</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock:rw</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_LOGS_DEBUG=true</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_LOGS_PRETTY=true</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_LOGS_COLOR=true</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_LOGS_TRACE=false</span></span><br><span class="line">      <span class="comment"># 配置对应的postgres数据库信息</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_DATABASE_DRIVER=postgres</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_DATABASE_DATASOURCE=postgres://drone:drone123456@aix_pg:5432/drone?sslmode=disable</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_GITEA_SKIP_VERIFY=false</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_TLS_AUTOCERT=false</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_GIT_ALWAYS_AUTH=false</span></span><br><span class="line">      <span class="comment">#- DRONE_RUNNER_CAPACITY=2</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_SERVER_HOST=$&#123;SERVER_IP&#125;:$&#123;DRONE_HTTP_PORT&#125;</span></span><br><span class="line">      <span class="comment"># 配置对应的gitea仓库地址</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_GITEA_SERVER=http://$&#123;SERVER_IP&#125;:$&#123;GITEA_WEB_PORT&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  aix_drone_agent:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">drone/drone-runner-docker:1</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">aix_drone_agent</span></span><br><span class="line">    <span class="comment"># 环境变量配置(在下面)</span></span><br><span class="line"><span class="attr">    env_file:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.runner.env</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.drone-rpc.env</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.env</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"$DRONE_RUNNER_PORT:3000"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aixnet</span></span><br><span class="line"><span class="attr">    depends_on:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aix_drone_server</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock:rw</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_RPC_HOST=aix_drone_server</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_RPC_SERVER=http://aix_drone_server</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_DEBUG=true</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_LOGS_DEBUG=true</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_LOGS_PRETTY=true</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">DRONE_LOGS_NOCOLOR=false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  aixnet:</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>以下是环境变量配置</p>
+<h4 id="evn"><a href="#evn" class="headerlink" title=".evn"></a>.evn</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 本机ip</span><br><span class="line">SERVER_IP=192.168.2.86</span><br><span class="line"></span><br><span class="line">// gitea端口配置</span><br><span class="line">GITEA_WEB_PORT=8080</span><br><span class="line">GITEA_SSH_PORT=22</span><br><span class="line"></span><br><span class="line">// drone端口配置</span><br><span class="line">DRONE_HTTP_PORT=8090</span><br><span class="line">DRONE_HTTPS_PORT=8091</span><br><span class="line">// drone-runner端口配置</span><br><span class="line">DRONE_RUNNER_PORT=8082</span><br><span class="line"></span><br><span class="line">//gitea web地址</span><br><span class="line">GITEA_WEB_URL=http://192.168.1.86:8080</span><br></pre></td></tr></table></figure>
+<h4 id="drone-env"><a href="#drone-env" class="headerlink" title=".drone.env"></a>.drone.env</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// oauth2使用，配置gitea时会配置</span><br><span class="line">DRONE_GITEA_CLIENT_ID=740c33b5-ae14-4284-be76-592bc05ae1b9</span><br><span class="line">DRONE_GITEA_CLIENT_SECRET=L4nxg5X-_acodbQ4TWHPR3qqhGRwE3U7NfbN--2hCNQ=</span><br><span class="line">// 使用http</span><br><span class="line">DRONE_SERVER_PROTO=http</span><br><span class="line">// aixbx用户是在配置gitea时配置的，下面会看到</span><br><span class="line">DRONE_USER_CREATE=username:aixbx,admin:true</span><br></pre></td></tr></table></figure>
+<h4 id="drone-rpc-env"><a href="#drone-rpc-env" class="headerlink" title=".drone-rpc.env"></a>.drone-rpc.env</h4><p><code>drone-server</code>和<code>drone-runner</code>共用,可以通过<code>openssl rand -hex 16</code>生成:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DRONE_RPC_SECRET=da19cfd2-33ed-44d2-8e60-5c987e780f36</span><br></pre></td></tr></table></figure></p>
+<h4 id="pg-env"><a href="#pg-env" class="headerlink" title=".pg.env"></a>.pg.env</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 数据库</span><br><span class="line">POSTGRES_USER=drone</span><br><span class="line">POSTGRES_PASSWORD=drone123456</span><br><span class="line">POSTGRES_DB=drone</span><br></pre></td></tr></table></figure>
+<h4 id="runner-env"><a href="#runner-env" class="headerlink" title=".runner.env"></a>.runner.env</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DRONE_RUNNER_NAME=runner-agent</span><br></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>在<code>docker-compose.yml</code>所在目录执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动报错排查"><a href="#启动报错排查" class="headerlink" title="启动报错排查"></a>启动报错排查</h3><p>TODO</p>
+<h2 id="gitea配置"><a href="#gitea配置" class="headerlink" title="gitea配置"></a>gitea配置</h2><p>打开上面配置的<code>${GITEA_WEB_URL}</code>地址(即<code>http://192.168.2.86:8080</code>)，进入到<code>gitea</code>初始化页面进行配置:</p>
+<p><img src="gitea_mysql.png" alt=""><br><img src="gitea_admin.png" alt=""></p>
+<ul>
+<li>数据库选择<code>mysql</code>，数据库主机修改为<code>aix_mysql:3306</code>，<code>aix_mysql</code>是上面配置的<code>container_name</code>. 用户名和密码修改为上面<code>docker-compose.yml</code>中配置的<code>gitea/gitea123456</code>。</li>
+<li>管理员用户名配置为上面<code>.drone.env</code>中配置的<code>aixbx</code>用户，密码自己设置一下，然后填写好邮箱并保存。</li>
+</ul>
+<p>经过如上步骤后，<code>gitea</code>就初始化完成了，接着我们去<code>gitea</code>中配置下<code>drone</code>的<code>OAuth2</code>信息。<br><img src="gitea_drone.png" alt=""></p>
+<ul>
+<li>应用名称录入: <code>drone</code></li>
+<li>重定向url录入<code>drone</code>的地址: <code>http://192.168.2.86:8090/login</code>(我们的例子地址)</li>
+<li>上面的钥匙<code>drone</code>，是我已经授权了一个例子，点击<code>撤销</code>,可以撤销授权.</li>
+</ul>
+<p>保存后就可以看到生成的<code>客户端ID</code>和<code>客户端秘钥</code>，这两个需要配置到上文中的<code>.drone.env</code>环境变量文件中(<code>DRONE_GITEA_CLIENT_ID</code>和<code>DRONE_GITEA_CLIENT_SECRET</code>):<br><img src="gitea_drone2.png" alt=""></p>
+<p>接着我们在<code>gitea</code>中新建一个测试仓库<code>gitea-drone-demo</code>:<br><img src="gitea_demo.png" alt=""></p>
+<p>其他不用填写，保存。然后我们的<code>gitea</code>配置告一段落，下面登陆到<code>drone</code>进行配置。</p>
+<h2 id="drone配置"><a href="#drone配置" class="headerlink" title="drone配置"></a>drone配置</h2><p>打开<code>http://192.168.2.86:8090</code>，首先会提示<code>OAuth2</code>授权，点击确定即可进入到<code>drone</code>页面:<br><img src="drone_index.png" alt=""></p>
+<p>点击<code>sync</code>，就可以看到我们在<code>gitea</code>中新创建的测试仓库，然后点击<code>ACTIVATE</code>就可以激活该仓库。</p>
+<p><img src="drone_init.png" alt=""><br>将<code>Trusted</code>钩上并保存。</p>
+<p><img src="drone_secret.png" alt=""><br>设置<code>username</code>:<code>pi</code>, <code>password</code>:<code>123456</code>。<br>稍后我们在编写<code>.drone.yml</code>文件时就可以直接使用<code>username</code>和<code>password</code>了。</p>
+<p>经过如上配置我们就配置好<code>drone</code>了，接下来我们就可以编写<code>.drone.yml</code>文件了，<code>drone</code>是根据<code>.drone.yml</code>文件来进行编排的。每个项目中都有一个<code>.drone.yml</code>文件.</p>
+<h2 id="drone-yml配置"><a href="#drone-yml配置" class="headerlink" title=".drone.yml配置"></a>.drone.yml配置</h2><p>在我们的项目根目录下新建<code>.drone.yml</code>文件:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">docker</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">gitea-drone-demo</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置当前工作目录，下面的每一步都会基于该目录执行相应命令</span></span><br><span class="line"><span class="attr">workspace:</span></span><br><span class="line"><span class="attr">  base:</span> <span class="string">/app</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">git/drone/gitea-drone-demo</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁用默认的git clone命令</span></span><br><span class="line"><span class="attr">clone:</span></span><br><span class="line"><span class="attr">  disable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="comment"># 拉取我们的项目代码</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">git</span> <span class="string">clone</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">alpine/git</span></span><br><span class="line"><span class="attr">    commands:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">clone</span> <span class="string">$DRONE_GIT_HTTP_URL</span> <span class="string">./</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 编译我们的项目</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">maven</span> <span class="string">compile</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">maven:3.6.2-jdk-8</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">cache</span></span><br><span class="line"><span class="attr">      path:</span> <span class="string">/root/.m2</span></span><br><span class="line"><span class="attr">    commands:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">mvn</span> <span class="string">clean</span> <span class="string">install</span> <span class="bullet">-DskipTests=true</span> <span class="bullet">-Dmaven.javadoc.skip=true</span> <span class="bullet">-B</span> <span class="bullet">-V</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 编译好以后通过scp将我们的war包上传到树莓派中</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">scp</span> <span class="string">upload</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">appleboy/drone-scp</span></span><br><span class="line"><span class="attr">    settings:</span></span><br><span class="line">      <span class="comment"># 树莓派地址</span></span><br><span class="line"><span class="attr">      host:</span> <span class="number">192.168</span><span class="number">.2</span><span class="number">.138</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">22</span></span><br><span class="line">      <span class="comment"># 使用上面drone中配置的secret变量</span></span><br><span class="line"><span class="attr">      username:</span></span><br><span class="line"><span class="attr">        from_secret:</span> <span class="string">username</span></span><br><span class="line"><span class="attr">      password:</span></span><br><span class="line"><span class="attr">        from_secret:</span> <span class="string">password</span></span><br><span class="line">      <span class="comment"># 上传到目标机器的指定目录</span></span><br><span class="line"><span class="attr">      target:</span> <span class="string">/home/pi/$&#123;DRONE_REPO_NAME&#125;</span></span><br><span class="line"><span class="attr">      strip_components:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">      rm:</span> <span class="literal">true</span></span><br><span class="line">      <span class="comment"># 需要上传的文件(可以看到，我们会上传4个文件到目标机器，后面会看到具体内容)</span></span><br><span class="line"><span class="attr">      source:</span> </span><br><span class="line"><span class="bullet">        -</span> <span class="string">./target/$&#123;DRONE_REPO_NAME&#125;.war</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">./Dockerfile</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">./deploy.sh</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">./start.sh</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 通过ssh在目标机器上执行指定命令</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">ssh</span> <span class="string">deploy</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">appleboy/drone-ssh</span></span><br><span class="line"><span class="attr">    settings:</span></span><br><span class="line">      <span class="comment"># 树莓派地址</span></span><br><span class="line"><span class="attr">      host:</span> <span class="number">192.168</span><span class="number">.2</span><span class="number">.138</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">22</span></span><br><span class="line"><span class="attr">      username:</span></span><br><span class="line"><span class="attr">        from_secret:</span> <span class="string">username</span></span><br><span class="line"><span class="attr">      password:</span></span><br><span class="line"><span class="attr">        from_secret:</span> <span class="string">password</span></span><br><span class="line">      <span class="comment"># 执行的命令</span></span><br><span class="line"><span class="attr">      script:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">cd</span> <span class="string">/home/pi/$&#123;DRONE_REPO_NAME&#125;</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">mv</span> <span class="string">./target/$&#123;DRONE_REPO_NAME&#125;.war</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">sh</span> <span class="string">deploy.sh</span> </span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 部署完成后，通过企业微信进行通知</span></span><br><span class="line">  <span class="comment"># - name: wechat notify</span></span><br><span class="line">  <span class="comment">#   image: clem109/drone-wechat</span></span><br><span class="line">  <span class="comment">#   secrets: [plugin_corpid, plugin_corp_secret, plugin_agent_id]</span></span><br><span class="line">  <span class="comment">#   title: $&#123;DRONE_REPO_NAME&#125;</span></span><br><span class="line">  <span class="comment">#   description: "Build Number: $&#123;DRONE_BUILD_NUMBER&#125; failed. $&#123;DRONE_COMMIT_AUTHOR&#125; please fix. Check the results here: $&#123;DRONE_BUILD_LINK&#125; "</span></span><br><span class="line">  <span class="comment">#   msg_url: $&#123;DRONE_BUILD_LINK&#125;</span></span><br><span class="line">  <span class="comment">#   btn_txt: btn</span></span><br><span class="line">  <span class="comment">#   when:</span></span><br><span class="line">  <span class="comment">#     status: [ failure ]</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">cache</span></span><br><span class="line"><span class="attr">    host:</span></span><br><span class="line"><span class="attr">      path:</span> <span class="string">/Users/limengyu/.m2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># master分支时触发</span></span><br><span class="line"><span class="attr">trigger:</span></span><br><span class="line"><span class="attr">  branch:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
+<p><code>deploy.sh</code>文件:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">now=`date +%Y%m%d%H%M%S`</span><br><span class="line"> </span><br><span class="line">server=<span class="string">"gitea-drone-demo"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 给实例启个名称，后面配置nginx时会用到</span></span><br><span class="line"><span class="built_in">alias</span>=<span class="string">"drone_demo"</span></span><br><span class="line"><span class="comment"># 设置同一个网络</span></span><br><span class="line">network=<span class="string">"docker_aixnet"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止当前正在运行的docker实例</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"building <span class="variable">$server</span> instance..."</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"now date: <span class="variable">$now</span>"</span></span><br><span class="line">docker ps | grep <span class="variable">$server</span> | awk <span class="string">'&#123;print $1&#125;'</span> | xargs --no-run-if-empty docker stop</span><br><span class="line">docker ps -a | grep <span class="variable">$server</span> | awk <span class="string">'&#123;print $1&#125;'</span> | xargs --no-run-if-empty docker rm</span><br><span class="line">docker build -t <span class="variable">$server</span> .</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"built <span class="variable">$server</span> instance done..."</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动新docker实例</span></span><br><span class="line">docker run -it --name <span class="variable">$alias</span> -p 127.0.0.1:8080:8080 -d --network <span class="variable">$network</span> --network-alias <span class="variable">$alias</span> <span class="variable">$server</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Dockfile</code>文件:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FROM tomcat:9-alpine as dev</span><br><span class="line"></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line">COPY . /app/</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line"></span><br><span class="line">RUN chmod +x ./start.sh</span><br><span class="line"></span><br><span class="line">CMD ./start.sh</span><br></pre></td></tr></table></figure>
+<p><code>start.sh</code>文件:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">cp /app/gitea-drone-demo.war /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT.war</span><br><span class="line"></span><br><span class="line">rm -rf /usr/<span class="built_in">local</span>/tomcat/webapps/ROOT</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/tomcat/bin</span><br><span class="line"></span><br><span class="line">./catalina.sh run</span><br></pre></td></tr></table></figure></p>
+<p>至此，所有的文件都配置好了，距离运行测试只有一步之遥了。我们还需要在树莓派上配置下<code>nginx</code>:<br>登陆到树莓派, 然后配置<code>docker-compose.yml</code>文件:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.7"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  nginx:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">nginx:alpine</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">aix_nginx</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"80:80"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="attr">     aixnet:</span></span><br><span class="line">       <span class="comment"># 设置别名后，这些域名指向的都是nginx的容器内地址，例如: 172.18.0.3，</span></span><br><span class="line">       <span class="comment"># 这样我们容器内的服务就可以通过该域名进行互相访问了</span></span><br><span class="line"><span class="attr">       aliases:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">"gitea.drone.demo"</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">"a.com"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  aix_registry:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">registry:latest</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">aix_registry</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"5000:5000"</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">aixnet</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  aixnet:</span></span><br></pre></td></tr></table></figure></p>
+<p>然后启动<code>docker-compose up -d</code>.<br>接着进入到<code>nginx</code>容器中:<br><code>docker-compose exec nginx ash</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置反向代理</span></span><br><span class="line"><span class="attribute">vi</span> /etc/nginx/conf.d/gitea.drone.demo.conf</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> gitea.drone.demo;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="comment"># drone_demo 就是`deploy.sh`文件中配置的实例名称。</span></span><br><span class="line">        <span class="attribute">proxy_pass</span> http://drone_demo:8080;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">重新加载`nginx`配置:</span><br><span class="line">`nginx -s reload`</span><br></pre></td></tr></table></figure>
+<p>经过如上步骤，我们就可以执行测试了,首先配置<code>ssh</code>:<br>在<code>192.168.2.86</code>机器上配置:<br>ssh-keygen -t rsa -C “<a href="mailto:xxxx@163.com" target="_blank" rel="noopener">xxxx@163.com</a>“<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/config</span><br><span class="line"></span><br><span class="line">Host aixbx</span><br><span class="line">HostName 192.168.2.86</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">User aixbx</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_aixbx</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将id_rsa_aixbx.pub 配置到gitea中</span></span><br><span class="line"><span class="comment"># 然后执行:</span></span><br><span class="line">OCaml:.ssh limengyu$ ssh -T git@aixbx</span><br><span class="line">Hi there, aixbx! You<span class="string">'ve successfully authenticated with the key named xxxx@163.com, but Gitea does not provide shell access.</span></span><br><span class="line"><span class="string">If this is unexpected, please log in with password and setup Gitea under another user.</span></span><br></pre></td></tr></table></figure></p>
+<p>我们通过<code>git svn</code>命令操作<code>svn</code>仓库，<code>clone</code>好代码后，切换到<code>gitea</code>分支中，然后配置<code>upstream</code>并推送代码到远程<code>gitea</code>仓库:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个aixbx是配置的ssh</span></span><br><span class="line">git remote add origin git@aixbx:aixbx/gitea-drone-demo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将代码push到远程gitea仓库</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>之后，我们只需要将<code>master</code>分支的内容<code>merge</code>到<code>gitea</code>分支，在<code>push</code>到<code>gitea</code>仓库中，就可以自动触发<code>ci/cd</code>流程了:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout gitea</span><br><span class="line"></span><br><span class="line">git merge master</span><br><span class="line"></span><br><span class="line">git push -u origin HEAD:master</span><br></pre></td></tr></table></figure></p>
+<p><img src="deploy.png" alt=""></p>
+<h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><p>TODO</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="https://serokell.io/blog">serokell</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Raspberry4B-Svn-Gitea-Drone-CI/CD',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>

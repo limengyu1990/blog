@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        thinking-with-types-01 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#致谢"><span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-类型背后的代数"><span class="toc-text">1. 类型背后的代数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Isomorphisms-and-Cardinalities-同构与基数"><span class="toc-text">1.1 Isomorphisms and Cardinalities(同构与基数)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-求和，乘积和指数类型"><span class="toc-text">1.2 求和，乘积和指数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-示例：Tic-Tac-Toe"><span class="toc-text">1.3 示例：Tic-Tac-Toe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Curry–Howard同构"><span class="toc-text">1.4 Curry–Howard同构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-规范表示"><span class="toc-text">1.5 规范表示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Terms-Types-and-Kinds-术语，类型和种类"><span class="toc-text">2. Terms, Types and Kinds(术语，类型和种类)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Kind-系統"><span class="toc-text">2.1 Kind 系統</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-类型的种类"><span class="toc-text">2.1.1 类型的种类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-Arrow种类"><span class="toc-text">2.1.2 Arrow种类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-约束种类"><span class="toc-text">2.1.3 约束种类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-数据种类"><span class="toc-text">2.2 数据种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-提升-丰富内置类型"><span class="toc-text">2.3 提升/丰富内置类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-符号"><span class="toc-text">2.3.1 符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-自然数"><span class="toc-text">2.3.2 自然数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-列表"><span class="toc-text">2.3.3 列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-元組"><span class="toc-text">2.3.4 元組</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-类型级別功能"><span class="toc-text">2.4 类型级別功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-方差"><span class="toc-text">3. 方差</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 不会Haskell的Scala写不出好的JavaScript。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        thinking-with-types-01
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-05-20 22:45:57</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#type system" title="type system">type system</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#类型" title="类型">类型</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>当人们说“但是大多数业务逻辑错误不是类型错误”时，我只想向他们展示如何将错误变成类型错误。– 马特·帕森斯</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>正如我的许多项目所做的那样，开始思考类型是偶然的。 我失业，无聊，开始厌倦在Haskell聊天室里一遍又一遍地回答同样的问题。 因此，我开始写了一个快速文档，记下了许多我认为写博客文章会很有趣的类型级别的编程主题。</p>
+<p>这份文档很快就变成了这些博客文章的外观概述，但是当我要把它拆成单独的文件时，我停了下来。 为什么不把它变成一本书呢？</p>
+<p>我联系了一些朋友，看看是否有人对和我一起写它感兴趣。 一些小问题，但没有人有时间想献给这样的事情。 随后我的兴奋消失了，这个想法在后燃器上搁置了几个月。</p>
+<p>但是我仍然失业，也很无聊，无论如何我发现自己在慢慢充实章节。 我写书的热情减弱了，但我仍然感到写书的欲望。 有一天，一个朋友让我写作，并敢于发表我的作品。我默许了。</p>
+<p>如此一来，在2018年7月8日，我发布了一份长达37页的文档以表示感谢，以衡量社区是否对此书感兴趣。令我不断惊讶的是。响应比我预期的大100倍左右。各种各样的支持词和信件来了，其中许多人答应付钱给我，以便继续写信。</p>
+<p>这对我来说足够了。我组建了Patreon，开始出售这本书的早期使用权，并开始参加比赛。承诺每周发布一次更新，再加上不想进行欺诈，这使我非常有动力完成本书。<br>这是保持专注的强大技术，我强烈推荐给比开始项目更擅长完成项目的任何人。</p>
+<p>听起来陈词滥调，但是如果没有Haskell社区的大力支持，这本书就不可能实现。特别是要告诉我，即使是五年之后，我每天仍会从他们那里学习有关这种奇妙语言的新知识。</p>
+<p>由Sandy Maguire用爱撰写. 2018</p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>类型级编程是一个<code>uncommon calling</code>(不常见的调用)。尽管大多数程序员都在关注如何编译更多代码，但是我们类型级别的程序员正在尽最大努力防止代码被编译。</p>
+<p>严格来说，类型的工作是双重的-它们防止（错误）事物进行编译，并且这样做有助于我们寻求更优雅的解决方案。 例如，如果有一个问题的解决方案有十种，而其中有九种的类型不好，那么我们不需要为正确的答案而费劲。</p>
+<p>但是请不要误会-这本书主要是关于减少程序编译的环境。 如果您是Haskell的初学者程序员，感觉像GHC经常与您争论，经常发现难以理解的类型错误，那么本书可能不适合您。还没。</p>
+<p>这本书是给谁的？我一直在努力争取的目标读者都是中级至精通这门语言的人。他们能够用Haskell解决真正的问题，而且不需要太多麻烦。他们不需要对<code>ExceptT</code>和在<code>IO</code>中抛出异常有强烈的意见，也不需要知道如何检查生成的<code>Core</code>来发现性能瓶颈。</p>
+<p>但是目标读者应该对他们编写的程序有一种健康的不安感。<br>他们应该看看自己的註釋说”不要用n = 5调用此函数，因为它会崩溃”，并想知道是否有某种方法可以告诉编译器有关此的信息。读者应该紧张地盯着他们认为不可能发生的错误調用，但是必须让类型检查器感到满意。</p>
+<p>简而言之，读者应该在寻找减少代码编译量的机会。<br>这并非出于受虐狂，混亂或任何类似的事情。而是，这种愿望来自慈善之地-现在，对类型检查器稍加沮丧比将难以发现的bug投入生产更可取。</p>
+<p>类型级编程和其他编程一样，最好是适度的。在复杂性方面，它有自己的成本，因此应该谨慎使用。虽然你的金融应用程序每天处理数十亿美元非常关键，如果您的业余爱好视频游戏错误地绘制了一个游戏框架，那么它的重要性就降低了。在第一种情况下，可能有必要使用您拥有的任何工具以防止出现问题。 第二，这些技术可能过于笨拙。</p>
+<p><code>Style</code>是一个众所周知的很难教的东西, 在一个非常真实的意义上，<code>Style</code>似乎是我们从一门学科中提炼出所有我们知道如何教的东西之后剩下的东西。不幸的是，何时使用类型级编程在很大程度上是一个<code>Style</code>问题。接球并跑起来很容易，但是谨慎是神圣的。</p>
+<p>如果有疑问，请不要在类型级别执行此操作。把这些技术留到那些出错会带来灾难性后果的情况下，留到一些类型级的东西会带来很大影响的情况下，留到那些可以极大地改进API的情况下。如果您的用例显然不是這些情況中的某一個，那么很有可能会有一种更干净、更简单的方法来处理值。</p>
+<p>但是，让我们更多地讨论类型本身。</p>
+<p>作为一个团体，我认为可以公平地说Haskellers是个反动派。我猜想，我们中的大多数人至少花了一个晚上的时间，试图向一个动态类型的同事颂扬一个强类型系统的优点。他们会说”我喜欢Ruby，因为类型不会妨碍我。”虽然作为强类型系统的支持者，我们的第一直觉可能是将我们的头脑强行连接到表上，但我认为这是一个值得牢记的批评。</p>
+<p>作为Haskellers，我们当然对类型的值有很强的看法。它们是有用的，在编码、调试和重构时，它们确实发挥了巨大的作用。虽然我们可以一挥手，驳斥同事的抱怨，并证明他们以前从未见过”真正”的類型系统，但我们这样做对他们和我们自己都是一种伤害。这种轻率的反应是忽略他们的不開心的精神-类型常常会妨碍他们。我们只是学会了对这些缺点视而不见，而不是硬着头皮说，也许类型并不总是解决每个问题的办法。</p>
+<p><code>Simon Peyton-Jones</code>是Haskell的主要作者之一，他很快就承认了一个事实，即类型系统排除了大量无错误程序。例如，请考虑以下程序，该程序具有类型错误，但从未实际评估过它:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fst</span> (<span class="string">"no problems"</span>, <span class="type">True</span> &lt;&gt; <span class="number">17</span>)</span><br></pre></td></tr></table></figure>
+<p>因为类型错误被’fst’惰性忽略，所以在运行时对这样一个表达式的求值将很高兴地产生”no problems”.<br>尽管我们认为它的类型不正确，但实际上它的行为举止良好。 诚然, 这样的例子的有用性很低，但是重点仍然存在。<code>types often do get in the way of perfectly reasonable programs.</code>(类型经常会干扰完全合理的程序)。</p>
+<p>有时，这种掩饰的幌子是”不清楚这东西应该是哪种类型”。<code>C</code>的<code>printf</code>函数是一个特别令人痛苦的案例：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">int</span> printf (const char *format, ...)</span><br></pre></td></tr></table></figure>
+<p>如果您从未有过使用<code>printf</code>的乐趣，它的工作原理如下: 它解析<code>format</code>参数，并使用其结构从调用堆栈中弹出其他参数。 您会看到，<code>format</code>的形状决定了上面的<code>...</code>中应填写哪些参数。</p>
+<p>例如，格式字符串<code>hello %s</code>接受一个附加字符串，并将其插入到<code>%s</code>中。同样，说明符<code>%d</code>描述有符号十进制整数的插值。</p>
+<p>以下对<code>printf</code>的调用均有效:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">• <span class="built_in">printf</span>(<span class="string">"hello %s"</span>, <span class="string">"world"</span>),  # <span class="string">"helloworld"</span>,</span><br><span class="line">• <span class="built_in">printf</span>(<span class="string">"%d + %d = %s"</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="string">"three"</span>),    # <span class="string">"1 + 2 = three"</span>,</span><br><span class="line">• <span class="built_in">printf</span>(<span class="string">"no specifiers"</span>),  # <span class="string">"no specifiers"</span>.</span><br></pre></td></tr></table></figure>
+<p>请注意，按照书面规定，似乎不可能将<code>Haskell-esque</code>类型的签名分配给<code>printf</code>。由其省略号表示的其他参数由其第一个参数(字符串)的值指定类型。这种模式在动态类型的语言中很常见，对于<code>printf</code>而言，它无疑是有用的。</p>
+<p><code>printf</code>的文档很快提到了用户不能提供格式字符串，这样做会打开漏洞，攻击者可以在其中破坏内存并获得对系统的访问权限。 确实，这是一个非常普遍的问题，而且在任何有关软件安全的大学讲座中，制作这样的字符串通常都是第一个作业。</p>
+<p>需要明确的是，当格式字符串的说明符与给定的其他参数不一致时，会出现<code>printf</code>中的漏洞。 以下对<code>printf</code>看起来无害的调用都是恶意的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">• <span class="built_in">printf</span>(<span class="string">"%d"</span>), 这可能会破坏堆栈.</span><br><span class="line">• <span class="built_in">printf</span>(<span class="string">"%s"</span>, <span class="number">1</span>), 它将读取任意数量的内存。</span><br></pre></td></tr></table></figure>
+<p>C的类型系统不足以描述<code>printf</code>。但是，由于<code>printf</code>是一个非常有用的函数，因此这并不是将其排除在语言之外的足够有说服力的理由。因此，对<code>printf</code>的调用有效地关闭了类型检查，以便有一块蛋糕也能吃。但是，这为未定义的行为和安全问题的形式打开了一个通道，类型错误可以使类型错误一直持续到运行时。</p>
+<p>我的观点是，与”Null是十亿美元的错误”或当今流行的其他论点相比，防止安全漏洞是这类漏洞中更为重要的方面。我们将在第9章回到<code>printf</code>问题。</p>
+<p>除了极少数的例外，<code>Haskellers</code>的普遍态度是忽略了病态程序的實用性。另一个令人不安的事实是：我们最喜欢的语言不能做其他语言所能做的有用的事情。</p>
+<p>但是一切并没有丢失。事实上, 对于那些愿意努力学习如何做的人来说，<code>Haskell</code>能够表达奇怪类型的事物，例如<code>printf</code>。本书旨在成为一本全面的手册，以帮助您从这里开始，从一个称职的<code>Haskell</code>程序员到一个说服编译器为他们工作的人。</p>
+<h2 id="1-类型背后的代数"><a href="#1-类型背后的代数" class="headerlink" title="1. 类型背后的代数"></a>1. 类型背后的代数</h2><h3 id="1-1-Isomorphisms-and-Cardinalities-同构与基数"><a href="#1-1-Isomorphisms-and-Cardinalities-同构与基数" class="headerlink" title="1.1 Isomorphisms and Cardinalities(同构与基数)"></a>1.1 Isomorphisms and Cardinalities(同构与基数)</h3><p>函数式编程的一个杀手级特性是模式匹配，这是通过代数数据类型实现的。但是，这个术语不仅仅是我们可以进行模式匹配的事物的醒目的标题。顾名思义，代数数据类型背后其实有一个代数。</p>
+<p>轻松理解和操纵此代数是一个强大的超能力-它使我们能够分析类型，为它们找到更方便的形式，并确定可以实现哪些操作(例如，类型类)。</p>
+<p>首先，我们可以将每种类型与其基数联系起来——它拥有的<code>inhabitants</code>(居民/類型的實例的統稱)数量，忽略<code>bottoms</code>(底)。考虑以下简单的类型定义:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Void</span></span></span><br><span class="line"><span class="class"><span class="keyword">data</span> () = ()</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Bool</span> = <span class="type">False</span> | <span class="type">True</span></span></span><br></pre></td></tr></table></figure>
+<p><code>Void</code>的居民为零，因此其基数为0。<br>单元类型<code>()</code>有一个居住者-因此其基数为1。这并不奇怪，但布尔具有基数2，对应于其构造函数<code>True</code>和<code>False</code>。</p>
+<p>我们可以更正式地写这些关于基数的语句：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|<span class="type">Void</span>| = <span class="number">0</span></span><br><span class="line">  |()| = <span class="number">1</span></span><br><span class="line">|<span class="type">Bool</span>| = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>具有相同基数的任何两种类型将始终彼此同构。类型<code>s</code>和<code>t</code>之间的同构定义为一对函数<code>to</code>和<code>from</code>。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> :: s -&gt; t</span><br><span class="line"><span class="title">from</span> :: t -&gt; s</span><br></pre></td></tr></table></figure>
+<p>这样，一个接一个地<code>composing</code>(构成)就可以让您回到起点。 换句话说，这样:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">to</span> . from = id</span><br><span class="line"><span class="title">from</span> . to = id</span><br></pre></td></tr></table></figure>
+<p>有时我们将类型<code>s</code>和<code>t</code>之间的同构写为: <code>s</code><img src="../thinking-with-type-01/tonggou.jpg" style="width:20px"><code>t</code>.</p>
+<p>如果两种类型具有相同的基数，则它们的元素之间的任何一对一映射都正好是这些<code>to</code>和<code>from</code>函数。但这样的映射从何而来？哪里都不重要！只需在每个类型上选择一个不一定与<code>Ord</code>实例对应的任意排序，然后将一个排序下的第一个元素映射到另一个排序下的第一个元素。<code>Rinse</code>(冲洗)并重复。</p>
+<p>例如，我们可以定义一个具有基数为2的新类型:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Spin</span> = <span class="type">Up</span> | <span class="type">Down</span></span></span><br></pre></td></tr></table></figure>
+<p>通过上面的论点，我们应该期望<code>Spin</code>等同于<code>Bool</code>。 的确是:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">boolToSpin1</span> :: <span class="type">Bool</span> -&gt; <span class="type">Spin</span></span><br><span class="line"><span class="title">boolToSpin1</span> <span class="type">False</span> = <span class="type">Up</span></span><br><span class="line"><span class="title">boolToSpin1</span> <span class="type">True</span> = <span class="type">Down</span></span><br><span class="line"></span><br><span class="line"><span class="title">spinToBool1</span> :: <span class="type">Spin</span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="title">spinToBool1</span> <span class="type">Up</span> = <span class="type">False</span></span><br><span class="line"><span class="title">spinToBool1</span> <span class="type">Down</span> = <span class="type">True</span></span><br></pre></td></tr></table></figure>
+<p>但是请注意，<code>Spin</code>和<code>Bool</code>之间还有另一种同构:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">boolToSpin2</span> :: <span class="type">Bool</span> -&gt; <span class="type">Spin</span></span><br><span class="line"><span class="title">boolToSpin2</span> <span class="type">False</span> = <span class="type">Down</span></span><br><span class="line"><span class="title">boolToSpin2</span> <span class="type">True</span> = <span class="type">Up</span></span><br><span class="line"></span><br><span class="line"><span class="title">spinToBool2</span> :: <span class="type">Spin</span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="title">spinToBool2</span> <span class="type">Up</span> = <span class="type">True</span></span><br><span class="line"><span class="title">spinToBool2</span> <span class="type">Down</span> = <span class="type">False</span></span><br></pre></td></tr></table></figure>
+<p>我们应该选择两种同构中的哪一种？有关系吗？<br>通常，对于基数为<code>n</code>的任何两种类型，它们之间有<code>n!</code>种唯一的同构。就数学而言，任何一个都和其他任何一个一样好 - 而且在大多数情况下，知道存在同构就足够了。</p>
+<p>类型<code>s</code>和<code>t</code>之间的同构性证明了<code>s</code>和<code>t</code>都是同一件事。它们可能有不同的实例，但这更多是关于<code>Haskell</code>的<code>typeclass</code>的陈述，而不是关于<code>s</code>和<code>t</code>的等价关系。</p>
+<p>同构是类型代数中一个特别强大的概念。在本书中，我们将通过同构进行推理，所以最好现在就<code>comfortable</code>(熟悉)这个想法。</p>
+<h3 id="1-2-求和，乘积和指数类型"><a href="#1-2-求和，乘积和指数类型" class="headerlink" title="1.2 求和，乘积和指数类型"></a>1.2 求和，乘积和指数类型</h3><p>用<code>cardinalities</code>(基数)的语言，<code>sum</code>(求和)类型对应于加法。 这些的典型示例是<code>Either a b</code>，要么是一個<code>a</code>，要么是一個<code>b</code>。因此，<code>a b</code>的基数(记住,<code>inhabitants</code>的数量)是<code>a</code>的基数加上<code>b</code>的基数。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|<span class="type">Either</span> a b| = |a| + |b|</span><br></pre></td></tr></table></figure>
+<p>如您所料，这就是为什么将这些称为<code>sum</code>类型的原因。添加后的直觉可以推广到具有多个构造函数的任何数据类型-类型的基数始终是其构造函数的基数之和。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Deal</span> a b = <span class="type">This</span> a</span></span><br><span class="line">| <span class="type">That</span> b</span><br><span class="line">| <span class="type">TheOther</span> <span class="type">Bool</span></span><br></pre></td></tr></table></figure>
+<p>我们可以分析Deal的基数:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|<span class="type">Deal</span> a b| = |a| + |b| + |<span class="type">Bool</span>|</span><br><span class="line">           = |a| + |b| + <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>我们也可以看一下<code>Maybe a</code>的基数。由于无效数据构造函数对构建没有兴趣 - 仅存在一个<code>Nothing</code>(无)，因此<code>Maybe a</code>的基数可以表示为:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|<span class="type">Maybe</span> a| = <span class="number">1</span> + |a|</span><br></pre></td></tr></table></figure>
+<p><code>Dual</code>(双重)<code>sum</code>类型是所谓的<code>product</code>(乘积)类型。再次,我们将首先看一下规范示例 - <code>pair</code>(对)类型<code>(a，b)</code>.<br>类似地，<code>product</code>类型的基数是其基数的乘积。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|(a, b)| = |a| × |b|</span><br></pre></td></tr></table></figure>
+<p>为了说明，考虑<img src="../thinking-with-type-01/hunhe.png" style="width:20px">形式的混合分数。我们可以通过<code>product</code>类型在<code>Haskell</code>中表示它们。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">MixedFraction</span> a = <span class="type">Fraction</span></span></span><br><span class="line">    &#123; mixedBit :: <span class="type">Word8</span></span><br><span class="line">    , numerator :: a</span><br><span class="line">    , denominator :: a</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>并执行其基数分析，如下所示:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|<span class="type">MixedFraction</span> a| = |<span class="type">Word8</span>| × |a| × |a| = <span class="number">256</span> × |a| × |a|</span><br></pre></td></tr></table></figure>
+<p>所有这些基数的有趣结果是，我们发现自己能够根据类型表达数学真理。例如，我们可以通过显示<code>(a，())</code>与<code>a</code>之间的同构来证明<code>a × 1 = a</code>.</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">prodUnitTo</span> :: a -&gt; (a, ())</span><br><span class="line"><span class="title">prodUnitTo</span> a = (a, ())</span><br><span class="line"></span><br><span class="line"><span class="title">prodUnitFrom</span> :: (a, ()) -&gt; a</span><br><span class="line"><span class="title">prodUnitFrom</span> (a, ()) = a</span><br></pre></td></tr></table></figure>
+<p>在这里，我们可以把<code>unit</code>(单元)类型看作是<code>product</code>类型的一个<code>monoidal identity</code>(单态恒等式)，也就是说”<code>sticking it in doesn’t change anything&quot;</code>(坚持下去不会改变任何事情)”. 因为<code>a × 1 = a</code>，我们可以根据需要与任意多个<code>unit</code>类型配对。</p>
+<p>同样地，<code>Void</code>充当<code>sum</code>类型的<code>monoidal unit</code>(单态單元)。为了让我们相信这一点，我们可以将<code>a + 0 = a</code>这个琐碎的语句看作是<code>Either a Void</code>和<code>a</code>之间的同构。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">sumUnitTo</span> :: <span class="type">Either</span> a <span class="type">Void</span> -&gt; a</span><br><span class="line"><span class="title">sumUnitTo</span> (<span class="type">Left</span> a) = a</span><br><span class="line"><span class="title">sumUnitTo</span> (<span class="type">Right</span> v) = absurd v   · · · <span class="number">1</span>⃣️</span><br><span class="line"></span><br><span class="line"><span class="title">sumUnitFrom</span> :: a -&gt; <span class="type">Either</span> a <span class="type">Void</span></span><br><span class="line"><span class="title">sumUnitFrom</span> = <span class="type">Left</span></span><br></pre></td></tr></table></figure>
+<p>函数<code>absurd</code>在1⃣️处的类型为<code>Void -&gt; a</code>。这有点虚张声势，说”如果您给我一个<code>Void</code>，我可以给您您想要的任何东西。” 尽管这是个谎言，但由于一开始就没有<code>Voids</code>，所以我们无法反驳。</p>
+<p>函数类型还具有关于基数的编码方式，它们对应于<code>exponentialization</code>(指数化)。举个例子，这里正好有4<code>(2^2)</code>個<code>Bool -&gt; Bool</code>类型的居民，这些函数是<code>id</code>，<code>not</code>，<code>const True</code>和<code>const False</code>。尽可能地努力，但是在<code>Bools</code>之间找不到其他任何纯函数！</p>
+<p>更一般地，类型<code>a -&gt; b</code>具有基数<code>|b|^|a|</code>。尽管起初这可能令人惊讶 -<code>it always seems backwards to me</code>(在我看来似乎总是倒退)-该<code>argument</code>(论点/參數)是<code>straightforward</code>(很直接的)。对于域中<code>a</code>的每个值，我们需要退返回<code>b</code>。但是我们可以为<code>a</code>的每个值选择<code>b</code>的任何值，从而得到以下相等性:</p>
+<p><img src="zhishu.png" alt=""></p>
+<blockquote>
+<p>练习1.2-i: 确定<code>Either Bool (Bool, Maybe Bool) -&gt; Bool</code>的基数.</p>
+</blockquote>
+<p>好奇的读者可能想知道减法，除法和其他数学运算在应用于类型时是否有意义。但这样的事情即使不是不可能，也很难用<code>Haskell</code>来表达。减法对应于删除了特定值的类型，而类型的除法使它的某些值相等（就相等定义的意义而言，而不是使它们相等的<code>Eq</code>实例）。</p>
+<p>实际上，即使是微积分中的微分概念在类型领域也具有意义。 尽管我们不再赘述，但还是鼓励有兴趣的读者参考Conor McBride的论文<code>The Derivative of a Regular Type is its Type of One-Hole Contexts(常规类型的导数是它的单孔上下文类型)</code>[8]。</p>
+<h3 id="1-3-示例：Tic-Tac-Toe"><a href="#1-3-示例：Tic-Tac-Toe" class="headerlink" title="1.3 示例：Tic-Tac-Toe"></a>1.3 示例：Tic-Tac-Toe</h3><p>我之前说过，能够操纵类型背后的代数是强大的超级大国。让我们证明一下。想象一下我们想写一个<code>tic-tac-toe</code>游戏。标准的<code>tic-tac</code>共有9个空格，我们可以像这样天真地实现:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">TicTacToe</span> a = <span class="type">TicTacToe</span></span></span><br><span class="line">&#123; topLeft   :: a,</span><br><span class="line">  topCenter :: a,</span><br><span class="line">  topRight  :: a,</span><br><span class="line">  midLeft   :: a,</span><br><span class="line">  midCenter :: a,</span><br><span class="line">  midRight  :: a,</span><br><span class="line">  botLeft   :: a,</span><br><span class="line">  botCenter :: a,</span><br><span class="line">  botRight  :: a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尽管这样的事情行之有效，但要进行编程却相当笨拙。 例如，如果我们要构建一个空板，则有很多东西要填。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">emptyBoard</span> :: <span class="type">TicTacToe</span> (<span class="type">Maybe</span> <span class="type">Bool</span>)</span><br><span class="line"><span class="title">emptyBoard</span> = <span class="type">TicTacToe</span></span><br><span class="line">     <span class="type">Nothing</span> <span class="type">Nothing</span> <span class="type">Nothing</span></span><br><span class="line">     <span class="type">Nothing</span> <span class="type">Nothing</span> <span class="type">Nothing</span></span><br><span class="line">     <span class="type">Nothing</span> <span class="type">Nothing</span> <span class="type">Nothing</span></span><br></pre></td></tr></table></figure>
+<p>编写像<code>checkWinner</code>这样的函数会更加复杂。</p>
+<p>与其经历所有这些麻烦，我们可以利用我们的类型代数知识来提供帮助。第一步是对<code>TicTacToe</code>执行基数分析:</p>
+<p><img src="TicTacToe.png" alt="&quot;&quot;"></p>
+<p>当这样写的时候，我们看到<code>TicTacToe</code>与函数<code>(Three，Three) -&gt; a</code>或它的咖喱形式：<code>Three -&gt; Three -&gt; a</code>同构。当然，<code>Three</code>是具有三个<code>inhabitants</code>(居民)的任何类型。也许看起来像这样:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Three</span> = <span class="type">One</span> | <span class="type">Two</span> | <span class="type">Three</span></span></span><br><span class="line">    <span class="keyword">deriving</span> (<span class="type">Eq</span>, <span class="type">Ord</span>, <span class="type">Enum</span>, <span class="type">Bounded</span>)</span><br></pre></td></tr></table></figure>
+<p>由于这种同构，我们可以改用以下形式表示<code>TicTacToe</code>:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">TicTacToe</span> a = <span class="type">TicTacToe2</span> &#123;</span></span><br><span class="line"><span class="class">  <span class="title">board</span> :: <span class="type">Three</span> -&gt; <span class="type">Three</span> -&gt; <span class="title">a</span></span></span><br><span class="line"><span class="class">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>从而简化了对<code>emptyBoard</code>的实现:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">emptyBoard</span> :: <span class="type">TicTacToe2</span> (<span class="type">Maybe</span> <span class="type">Bool</span>)</span><br><span class="line"><span class="title">emptyBoard</span> = <span class="type">TicTacToe2</span> $ const $ const <span class="type">Nothing</span></span><br></pre></td></tr></table></figure>
+<p>这样的转变不会让我们做任何其他我们做不到的事情，但它确实大大改善了人体工程学。<br>通过这样的改变，我们得到了整个组合函数工具箱的回报；我们获得了更好的组合性，并且需要支付更少的认知负担。</p>
+<p>让我们不要忘记，编程主要是人类的工作，而人体工程学的确是值得追求的。 您的同事和合作者稍后会感谢您！</p>
+<h3 id="1-4-Curry–Howard同构"><a href="#1-4-Curry–Howard同构" class="headerlink" title="1.4 Curry–Howard同构"></a>1.4 Curry–Howard同构</h3><p>下表总结了我们之前对类型及其基数之间代数关系的讨论。</p>
+<p><img src="table.png" alt=""></p>
+<p>该表本身在数学和类型之间形成了更普遍的同构。它被称为<code>Curry-Howard</code>同构，即宽松地指出逻辑中的每个语句都等同于某些计算机程序，反之亦然。 <code>Philip Wadler</code>以<code>propositions as types</code>的名字推广了<code>Curry–Howard</code>。</p>
+<p><code>Curry–Howard</code>同构是对我们宇宙的深刻见解。它使我们能够通过函数式编程的角度来分析数学定理。更好的是，当表达为类型时，甚至连”无聊的”数学定理也很有趣。</p>
+<p>为了说明这一点，考虑定理<code>a ^ 1 = a</code>。当通过<code>Curry–Howard</code>查看时，它描述了<code>() -&gt; a</code>和<code>a</code>之间的同构。换句话说，该定理表明在拥有一个值和拥有一个计算该值的(纯)程序之间没有区别。这种洞察力是为什么编写<code>Haskell</code>与其他编程语言相比如此令人喜悦的背后的核心原则。</p>
+<blockquote>
+<p>练习 1.4-i：<br>使用<code>Curry-Howard</code>证明<code>a ^ b × a ^ c = a ^ (b + c)</code>的指数定律。也就是说，提供类型为<code>(b -&gt; a) -&gt; (c -&gt; a) -&gt; Either b c -&gt; a</code>和<code>(Either b c -&gt; a) -&gt; (b -&gt; a, c -&gt; a)</code>之一的函数。</p>
+</blockquote>
+<blockquote>
+<p>练习 1.4-ii：<br>证明(a x b) ^ c =a ^ c × b ^ c</p>
+</blockquote>
+<blockquote>
+<p>练习 1.4-iii：<br>给出<code>(a ^ b) ^ c = a ^ (b × c)</code>的证明，这是否使您想起<code>Prelude</code>中的任何内容？</p>
+</blockquote>
+<h3 id="1-5-规范表示"><a href="#1-5-规范表示" class="headerlink" title="1.5 规范表示"></a>1.5 规范表示</h3><p>具有相同基数的任何两种类型都是同构的直接推论是，存在多种表示任何给定类型的方法。尽管您不一定要让它改变类型建模的方式，但最好记住您有一个选择。</p>
+<p>由于同构，一个类型的所有这些表示都与任何其他类型的表示”一样好”。<br>然而，正如我们将在145页上看到的, <code>working with types generically</code>(通常使用类型时)使用<code>conventional form</code>(常规形式)会很有用。这种<code>canonical representation</code>(规范表示)被称为<code>products</code>的<code>sum</code>，指的是形式的任何类型<code>t</code>:</p>
+<p><img src="guifan.png" alt="&quot;&quot;"></p>
+<p>大<code>Σ</code>表示加法，而<code>Π</code>表示乘法-因此我们可以将其理解为”外加法，内乘法”。我们还规定，所有加法必须通过<code>Either</code>表示，并且乘法必须通过<code>(,)</code>表示。不用担心，写出这样的规则会使它看起来比实际复杂得多。</p>
+<p>所有这些都意味着以下每种类型均以其规范表示形式:</p>
+<ul>
+<li>()</li>
+<li>Either a b</li>
+<li>Either (a, b) (c, d)</li>
+<li>Either a (Either b (c, d))</li>
+<li>a -&gt; b</li>
+<li>(a, b)</li>
+<li>(a, Int) – 我们对<code>numeric</code>(数值)类型的规则做了一个例外，因为要把它们表达成一个<code>sums</code>，工作量太大了。</li>
+</ul>
+<p>但是以下两种类型均未以规范的形式表示:</p>
+<ul>
+<li>(a, Bool)</li>
+<li>(a, Either (b, c))</li>
+</ul>
+<p>例如，<code>Maybe a</code>的规范表示是<code>Either a ()</code>。重申一遍，这并不意味着您更喜欢使用<code>Either a ()</code>而不是<code>Maybe a</code>。现在知道这两种类型是等效的就足够了。我们将在第13章中返回规范形式。</p>
+<h2 id="2-Terms-Types-and-Kinds-术语，类型和种类"><a href="#2-Terms-Types-and-Kinds-术语，类型和种类" class="headerlink" title="2. Terms, Types and Kinds(术语，类型和种类)"></a>2. Terms, Types and Kinds(术语，类型和种类)</h2><h3 id="2-1-Kind-系統"><a href="#2-1-Kind-系統" class="headerlink" title="2.1 Kind 系統"></a>2.1 Kind 系統</h3><p>在日常的<code>Haskell</code>编程中，基本的构造块是那些<code>terms</code>和<code>types</code>。 <code>Terms</code>是您可以操纵的值，即在运行时存在的事物。<code>Types</code>只不过是健全性检查：向编译器(和我们自己)证明，我们试图编写的程序具有一定意义。</p>
+<p>完全类似地，类型级编程的基本构造块是<code>types</code>和<code>kinds</code>。<code>types</code>现在变成了要操纵的东西，而<code>kinds</code>则成为我们用来保持诚实的证据。</p>
+<p>如果您不熟悉<code>kind</code>系统，则可以合理地将其描述为<code>类型的类型系统</code>。因此，按照这种推理方式，<code>kinds</code>松散地称为<code>类型的种类</code>(当我们稍后在第15章中查看<code>-XTypeInType</code>扩展时，尤其如此).</p>
+<p>考虑数字<code>4</code>和<code>5</code>，两者均为<code>Int</code>类型。就编译器而言，我们可以在程序中将<code>4</code>的每个实例替换为<code>5</code>，然后整个程序将继续编译。程序本身可能做一些不同的事情，但是由于两者都是<code>Int</code>类型，因此<code>4</code>和<code>5</code>可以互换-至少就类型检查器而言。</p>
+<h4 id="2-1-1-类型的种类"><a href="#2-1-1-类型的种类" class="headerlink" title="2.1.1 类型的种类"></a>2.1.1 类型的种类</h4><p>在继续讨论之前，我们必须避开一个潜在的混乱点。相当令人费解的是, <code>type</code>一词有几种相关的含义。我们将需要对两者进行区分。</p>
+<p><code>type</code>一词可用于描述在类型级别存在的任何事物，也就是说，任何既不是<code>term</code>也不是<code>kind</code>的事物。</p>
+<p>但是，我们也可以引用<code>TYPEs</code>，它是具有<code>inhabitants</code>(居民)的<code>types</code>的<code>kind</code>。历史上，<code>TYPE</code>被写为<code>*</code>，但是此较旧的符号将在最新版本的<code>GHC</code>中弃用。<code>TYPE</code>是类似<code>Int</code>和<code>Maybe Bool</code>之类的东西的<code>kind</code>，它对运行时存在的事物进行分类。某些不是<code>TYPE</code> <code>kind</code>的东西是<code>Maybe</code>(没有类型参数)和<code>Show</code>。</p>
+<p><code>Sometimes we call the sorts of things which have kind TYPE value types.</code>(有时我们称这类具有<code>kind TYPE value types</code>的事物。)</p>
+<p>在本书中，我们将在<code>SMALLCAPS</code>中对<code>kinds</code>进行排版，以便将它们与常规类型区分开。请注意，这只是打印过程的一种惯例-在<code>Haskell</code>源文件中，<code>TYPE</code> <code>kind</code>仍应写为<code>Type</code>。</p>
+<h4 id="2-1-2-Arrow种类"><a href="#2-1-2-Arrow种类" class="headerlink" title="2.1.2 Arrow种类"></a>2.1.2 Arrow种类</h4><p>本书假定您已经对Haskell的<code>kinds</code>，<code>TYPE</code>和<code>(→)</code>标准有所了解。因此，在这里我们将不做任何超出严格必要的事情。</p>
+<h4 id="2-1-3-约束种类"><a href="#2-1-3-约束种类" class="headerlink" title="2.1.3 约束种类"></a>2.1.3 约束种类</h4><h3 id="2-2-数据种类"><a href="#2-2-数据种类" class="headerlink" title="2.2 数据种类"></a>2.2 数据种类</h3><h3 id="2-3-提升-丰富内置类型"><a href="#2-3-提升-丰富内置类型" class="headerlink" title="2.3 提升/丰富内置类型"></a>2.3 提升/丰富内置类型</h3><h4 id="2-3-1-符号"><a href="#2-3-1-符号" class="headerlink" title="2.3.1 符号"></a>2.3.1 符号</h4><h4 id="2-3-2-自然数"><a href="#2-3-2-自然数" class="headerlink" title="2.3.2 自然数"></a>2.3.2 自然数</h4><h4 id="2-3-3-列表"><a href="#2-3-3-列表" class="headerlink" title="2.3.3 列表"></a>2.3.3 列表</h4><h4 id="2-3-4-元組"><a href="#2-3-4-元組" class="headerlink" title="2.3.4 元組"></a>2.3.4 元組</h4><h3 id="2-4-类型级別功能"><a href="#2-4-类型级別功能" class="headerlink" title="2.4 类型级別功能"></a>2.4 类型级別功能</h3><h2 id="3-方差"><a href="#3-方差" class="headerlink" title="3. 方差"></a>3. 方差</h2>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="https://serokell.io/blog">serokell</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'thinking-with-types-01',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
