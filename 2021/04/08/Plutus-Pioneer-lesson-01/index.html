@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境配置"><span class="toc-text">环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nix"><span class="toc-text">nix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#课程01"><span class="toc-text">课程01</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动模拟器"><span class="toc-text">启动模拟器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一节课"><span class="toc-text">第一节课</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拍卖流程"><span class="toc-text">拍卖流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#评估"><span class="toc-text">评估</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境配置"><span class="toc-text">环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nix"><span class="toc-text">nix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#课程01"><span class="toc-text">课程01</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动模拟器"><span class="toc-text">启动模拟器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一节课"><span class="toc-text">第一节课</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拍卖流程"><span class="toc-text">拍卖流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#评估"><span class="toc-text">评估</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol>
 </div>
     
 </div>
@@ -240,7 +240,7 @@
 </li>
 </ul>
 <p>检查<code>Final balances</code>，可以看到最终结果，钱包3现在有1个<code>T</code>:<br><img src="09.png" alt=""></p>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><blockquote>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><blockquote>
 <p><code>Cardano</code>的时间划分为了几个<code>epoch</code>(纪元)，然后每个<code>epoch</code>再次被划分为<code>slots</code>(插槽),<code>slot</code>是可以创建<code>block</code>(块)的较短时间段, <code>Ouroboros</code>股权证明算法，为每个<code>slot</code>随机分配一个<code>stake pool</code>(股份池), 然后，所谓的<code>slot leader</code>为此<code>slot</code>创建相应的<code>block</code>, 在创建<code>epoch</code>之前，已经进行了<code>slot leader</code>的选举。每个<code>slot</code>通常都包含一个<code>block</code>，但是如果所选的池性能不好，则可能不时有一个空<code>slot</code>。对于<code>Cardano</code>协议，空<code>slot</code>是可以的，但是大多数<code>block</code>必须在一个<code>epoch</code>期间生成，以保持有保证的安全性。每20秒有一个<code>slot</code>，每个<code>epoch</code>包含21600个<code>slots</code>。因此，每5天就有一个新<code>epoch</code>。</p>
 </blockquote>
 <p><img src="10.png" alt=""></p>
