@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        Reach_概述 - undefined
+        
+    </title><meta name="robots" content="noindex">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 所有的善恶都是我，良心一路走来依旧清澈鲜活... </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分散应用程序"><span class="toc-text">分散应用程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一个最小的Reach程序"><span class="toc-text">一个最小的Reach程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译"><span class="toc-text">编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口"><span class="toc-text">接口</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 所有的善恶都是我，良心一路走来依旧清澈鲜活... </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Reach_概述
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-02-14 10:04:45</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#DApps" title="DApps">DApps</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#Reach" title="Reach">Reach</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>这是Reach和Reach程序结构的非正式概述。本文档的目的是提供足够的技术细节，帮助您了解Reach的功能，但它既不是教程，也不是参考资料。当你准备好真正开始一个项目时，你可以从<a href="https://docs.reach.sh/tut.html" target="_blank" rel="noopener">tutorial</a>或<a href="https://docs.reach.sh/ref.html" target="_blank" rel="noopener">reference</a>开始，或者从<a href="https://docs.reach.sh/workshop.html" target="_blank" rel="noopener">workshop</a>开始。</p>
+<h4 id="分散应用程序"><a href="#分散应用程序" class="headerlink" title="分散应用程序"></a>分散应用程序</h4><p><code>DApp</code>由多个代理组成，它们通过一些后端一致网络(如以太坊或<code>Algorand</code>)相互交互。<br>这些代理代表通过信息提供<code>direction</code>(趋势)和<code>authority</code>(职权)的<code>principals</code>(负责人)。这些<code>principals</code>(负责人)可能是人类或其他自主的代理人，甚至是拥有自己结构的委员会和组织。共识网络允许这些代理以特定于网络的令牌（如ETH或ALGO）的形式传递和接收价值。该网络还允许创建”合同”，确保所有代理在轮流计算和发布价值和信息时遵循相同的规则。这些”合同”的细节是每个共识网络所特有的，但它们是所有代理和<code>principals</code>(负责人)暗中信任的，因为它们的运作可以独立地进行核实，以符合先前商定的规则。</p>
+<p>单个Reach程序包含DApp的所有方面:</p>
+<ul>
+<li><code>Participant backends</code>(参与者后端)是代表<code>principals</code>(负责人)的代理</li>
+<li><code>Frontends</code>(前端)是<code>participants</code>(参与者)和<code>principals</code>(<a href="https://docs.reach.sh/ref-model.html#%28tech._participant%29" target="_blank" rel="noopener">负责人</a>)之间接口的技术表示</li>
+<li>合同执行程序规则，包括操作顺序</li>
+</ul>
+<p>在Reach中，程序员只需要指定<code>participants</code>(参与者)的动作，即他们单独做什么和他们一致做什么。Reach编译器通过执行这些规则的连接器自动为共识网络导出一个合同.</p>
+<h4 id="一个最小的Reach程序"><a href="#一个最小的Reach程序" class="headerlink" title="一个最小的Reach程序"></a>一个最小的<code>Reach</code>程序</h4><p>让我们看一个简单的Reach程序，其中两个<code>principals</code>(负责人)，Alice和Bob，进行交互。在这个DApp中，Alice有一些Bob可能想要的信息，并且她有大量的网络代币，她想用这些代币来交换。</p>
+<p>该程序的主要部分如下所示:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>   <span class="string">'reach 0.1'</span>;</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span>    <span class="keyword">export</span> <span class="keyword">const</span> main =</span><br><span class="line"><span class="number">4</span>         Reach.App(</span><br><span class="line"><span class="number">5</span>            &#123;&#125;,</span><br><span class="line"><span class="number">6</span>            [</span><br><span class="line"><span class="number">7</span>                [</span><br><span class="line"><span class="number">8</span>                    <span class="string">'Alice'</span>, &#123; </span><br><span class="line"><span class="number">9</span>                         request: UInt,</span><br><span class="line"><span class="number">10</span>                        info: Bytes(<span class="number">128</span>) </span><br><span class="line"><span class="number">11</span>                    &#125;</span><br><span class="line"><span class="number">12</span>                ],</span><br><span class="line"><span class="number">13</span>                [  </span><br><span class="line"><span class="number">14</span>                    <span class="string">'Bob'</span>, &#123; </span><br><span class="line"><span class="number">15</span>                        want: Fun([UInt], Null),</span><br><span class="line"><span class="number">16</span>                        got: Fun([Bytes(<span class="number">128</span>)], Null) </span><br><span class="line"><span class="number">17</span>                    &#125;</span><br><span class="line"><span class="number">18</span>                ]</span><br><span class="line"><span class="number">19</span>            ],</span><br><span class="line"><span class="number">20</span>            (A, B) =&gt; &#123;</span><br><span class="line">..                <span class="comment">// ...body...</span></span><br><span class="line">..            &#125; </span><br><span class="line"><span class="number">40</span>        );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第1行指定这是一个Reach程序</li>
+<li>第3行定义程序的<code>main</code>导出。<code>main</code>是Reach使用的默认值</li>
+<li>第4行指定它是应用程序</li>
+<li>第7行至第12行指定Alice的参与者和前端之间的接口。在这种情况下，Alice的前端必须提供一个名为<code>request</code>的数字和一个名为<code>info</code>的字符串。</li>
+<li>第13行至第18行指定Bob的接口，该接口包括一个名为<code>want</code>的函数，该函数接受一个数字并返回<code>null</code>，以及一个名为<code>get</code>的函数，该函数接收该信息。</li>
+<li>最后,第20行，将这些<code>participants</code>(参与者)绑定到程序标识符<code>A</code>和<code>B</code>.</li>
+</ul>
+<p>省略线从21到39，包含应用程序的主体，我们可以将其分为四个部分。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">..    <span class="comment">// ...</span></span><br><span class="line"><span class="number">21</span>    A.only(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"><span class="number">22</span>      <span class="keyword">const</span> request = declassify(interact.request); &#125;);</span><br><span class="line"><span class="number">23</span>    A.publish(request);</span><br><span class="line"><span class="number">24</span>    commit();</span><br><span class="line">..    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第21行至第22行，指定Alice采取<a href="https://docs.reach.sh/ref-model.html#%28tech._local._step%29" target="_blank" rel="noopener">本地步骤</a>，在该步骤中对请求的令牌数量进行<a href="https://docs.reach.sh/ref-programs-local.html#%28tech._declassify%29" target="_blank" rel="noopener">declassifies(解密)</a>。 在Reach中，来自前端的所有值都是秘密的，直到使用<code>declassify</code>明确将其公开。</p>
+</li>
+<li><p>第23行，使<code>Alice</code>通过发布该值来加入应用程序，并且程序的逻辑转换为指定合同的内容。</p>
+</li>
+<li><p>第24行, 第14行使合同<code>commit</code>(承诺)使用这些值，并继续执行该程序的其余部分</p>
+</li>
+</ul>
+<p>至此，<code>Bob</code>的后端已经了解了请求的值，可以将其交付给<code>Bob</code>的前端以供他批准。接下来会发生这种情况。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">..    <span class="comment">// ...</span></span><br><span class="line"><span class="number">26</span>    B.only(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"><span class="number">27</span>      interact.want(request); &#125;);</span><br><span class="line"><span class="number">28</span>    B.pay(request);</span><br><span class="line"><span class="number">29</span>    commit();</span><br><span class="line">..    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>第26和27行让<code>Bob</code>执行该交付。<code>interact.want</code>不会明确返回布尔值，因为如果<code>Bob</code>不想继续，则前端无法返回。该程序的更好版本可能会返回<code>false</code>，并将其传达给<code>Alice</code>.</p>
+</li>
+<li><p>在第28行和第29行，<code>Bob</code>加入了该应用程序，并提交了与适当金额匹配的付款，然后签订了合同。</p>
+</li>
+</ul>
+<p>现在又轮到<code>Alice</code>了,<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">..    <span class="comment">// ...</span></span><br><span class="line"><span class="number">31</span>    A.only(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"><span class="number">32</span>      <span class="keyword">const</span> info = declassify(interact.info); &#125;);</span><br><span class="line"><span class="number">33</span>    A.publish(info);</span><br><span class="line"><span class="number">34</span>    transfer(request).to(A);</span><br><span class="line"><span class="number">35</span>    commit();</span><br><span class="line">..    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>第31行至第32行指定<code>Alice</code>对信息进行解密</li>
+<li>第33行让<code>Alice</code>发布</li>
+<li>第34行将合同要求的金额转给<code>Alice</code></li>
+<li>第35行提交共识网络上的交易</li>
+</ul>
+<p>剩下的唯一事情就是<code>Bob</code>的<a href="https://docs.reach.sh/ref-model.html#%28tech._backend%29" target="_blank" rel="noopener">后端</a>将信息传递到他的<a href="https://docs.reach.sh/ref-model.html#%28tech._frontend%29" target="_blank" rel="noopener">前端</a>:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">..    <span class="comment">// ...</span></span><br><span class="line"><span class="number">37</span>    B.only(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"><span class="number">38</span>      interact.got(info); &#125;);</span><br><span class="line"><span class="number">39</span>    exit();</span><br><span class="line">..    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>第37和38行执行此操作.</li>
+<li>第39行退出程序</li>
+</ul>
+<p><code>Reach</code>程序员无需考虑合同存储，协议图，状态验证或网络详细信息等详细信息； 相反，他们可以专注于应用程序的业务逻辑。</p>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>在Reach程序员将此应用程序写入<code>overview/index.rsh</code>之类的文件中之后，他们可以运行:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ reach compile overview/index.rsh</span><br></pre></td></tr></table></figure>
+<p><code>build</code>目录将包含一个名为<code>index.main.mjs</code>的新文件，该文件包含每个<code>participant</code>(参与者)的后端的<code>JavaScript</code>实现以及该合约的以太坊字节码。</p>
+<p>对于这个40行的应用程序，<code>Reach</code>编译器在两个函数中生成了929行<code>JavaScript</code>代码，一个用于<code>Alice</code>，一个用于<code>Bob</code>。另外，它还生成了<code>159</code>行代码来实现合同。如果程序员没有使用<code>Reach</code>，他们就必须在这三个模块中分别编写这1088行代码，并在开发过程的每一步都保持同步。</p>
+<p>此外，<code>Reach</code>不仅适用于以太坊: 它与区块链无关，并且可以轻松配置为使用其他<a href="https://docs.reach.sh/ref-model.html#%28tech._connector%29" target="_blank" rel="noopener">连接器</a>以其他”共识网络”为目标，例如<code>Algorand</code>.<br><code>Reach</code>也没有与<code>JavaScript</code>绑定，它可以配置为以其他”后端”语言为目标，例如<code>Go</code>。</p>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p><code>Reach</code>不仅会编译您的程序，还会对其进行验证，并确保不会发生所有类别的错误。例如，它始终保证程序结尾处的<a href="https://docs.reach.sh/ref-model.html#%28tech._contract%29" target="_blank" rel="noopener">合同</a>中的余额为零。这很重要，因为如果不正确，则令牌将被”合同”锁定并且无法访问。</p>
+<p>对于此示例程序，很明显，当第18行的<code>request</code>的单次传送进入而第24行的<code>request</code>的单次传送出去时，则在程序结束时余额为零。<br>但是，我们可以做一些小调整，以证明出现了问题。</p>
+<p>让我们把第三步改为在余额中保留一个单位:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">..    <span class="comment">// ...</span></span><br><span class="line"><span class="number">21</span>    A.only(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"><span class="number">22</span>      <span class="keyword">const</span> info = declassify(interact.info); &#125;);</span><br><span class="line"><span class="number">23</span>    A.publish(info);</span><br><span class="line"><span class="number">24</span>    transfer(request<span class="number">-1</span>).to(A); <span class="comment">// &lt;--- Oops!</span></span><br><span class="line"><span class="number">25</span>    commit();</span><br><span class="line">..    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>然后运行编译器:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ reach compile overview/index-error.rsh</span><br></pre></td></tr></table></figure></p>
+<p>它将打印出一条详细的错误消息，显示违规行为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">..    <span class="comment">// ...</span></span><br><span class="line"> <span class="number">2</span>    Verifying <span class="keyword">for</span> generic connector</span><br><span class="line"> <span class="number">3</span>      Verifying <span class="keyword">with</span> mode = VM_Honest</span><br><span class="line"> <span class="number">4</span>    Verification failed:</span><br><span class="line"> <span class="number">5</span>      <span class="keyword">in</span> VM_Honest mode</span><br><span class="line"> <span class="number">6</span>      <span class="keyword">of</span> theorem TClaim CT_Assert</span><br><span class="line"> <span class="number">7</span>      msg: <span class="string">"balance assertion"</span></span><br><span class="line"> <span class="number">8</span>      at ./index-error.rsh:<span class="number">29</span>:<span class="number">11</span>:application</span><br><span class="line"> <span class="number">9</span>    </span><br><span class="line"><span class="number">10</span>      <span class="comment">// Violation witness</span></span><br><span class="line"><span class="number">11</span>      <span class="keyword">const</span> interact_Alice_request = <span class="number">1</span>;</span><br><span class="line"><span class="number">12</span>      <span class="comment">//    ^ from interaction at ./index-error.rsh:4:12:application</span></span><br><span class="line"><span class="number">13</span>    </span><br><span class="line"><span class="number">14</span>      <span class="comment">// Theorem formalization</span></span><br><span class="line"><span class="number">15</span>      assert(<span class="number">0</span> == (interact_Alice_request - (interact_Alice_request - <span class="number">1</span>)));</span><br><span class="line"><span class="number">16</span>    </span><br><span class="line">..    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure></p>
+<p>验证失败包括很多信息，例如一个具体的反例，它显示了可能由”前端”提供的值，这些值会导致财产无法保全。在这种情况下，它报告说，如果<code>Alice</code>在第4行的程序开始时传递一个大于1的<code>interact.request</code>，那么在程序结束时合同余额将不会证明为0。</p>
+<p><code>Reach</code>程序员无需担心所有错误类别，因为编译器会自动检查其代码并确保不存在这些错误。 当然，关于自动验证的细节还有很多要说的。 确实，它是Reach的最强大功能之一，但我们暂时将其保留。</p>
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><p>Reach编译器产生的后端本身并不是一个应用程序。特别是，每个参与者都需要一个前端进行交互。在实际部署中，此接口代码将绑定到GUI，例如Web或智能手机应用程序。 让我们看一个简单的命令行版本，该版本演示了如何在专用devnet上进行测试。</p>
+<p>该程序只有23行，其<code>shell</code>非常简单:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span>    <span class="keyword">import</span> &#123; loadStdlib &#125; <span class="keyword">from</span> <span class="string">'@reach-sh/stdlib'</span>;</span><br><span class="line"> <span class="number">2</span>    <span class="keyword">import</span> * <span class="keyword">as</span> backend <span class="keyword">from</span> <span class="string">'./build/index.main.mjs'</span>;</span><br><span class="line"> <span class="number">3</span>    </span><br><span class="line"> <span class="number">4</span>    (<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line"> <span class="number">5</span>      <span class="keyword">const</span> stdlib = <span class="keyword">await</span> loadStdlib();</span><br><span class="line"> <span class="number">6</span>    </span><br><span class="line"> <span class="number">7</span>      <span class="keyword">const</span> accAlice = <span class="keyword">await</span> stdlib.newTestAccount(stdlib.parseCurrency(<span class="number">5</span>));</span><br><span class="line"> <span class="number">8</span>      <span class="keyword">const</span> accBob = <span class="keyword">await</span> stdlib.newTestAccount(stdlib.parseCurrency(<span class="number">10</span>));</span><br><span class="line"> <span class="number">9</span>    </span><br><span class="line"><span class="number">10</span>      <span class="keyword">const</span> ctcAlice = accAlice.deploy(backend);</span><br><span class="line"><span class="number">11</span>      <span class="keyword">const</span> ctcBob = accBob.attach(backend, ctcAlice.getInfo());</span><br><span class="line"><span class="number">12</span>    </span><br><span class="line"><span class="number">13</span>      <span class="keyword">await</span> <span class="built_in">Promise</span>.all([</span><br><span class="line">..        <span class="comment">// ...</span></span><br><span class="line"><span class="number">22</span>      ]);</span><br><span class="line"><span class="number">23</span>    &#125;)();</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>第1行和第2行导入<code>Reach</code>标准库加载器和已编译的应用后端</li>
+<li>第5行根据<code>REACH_CONNECTOR_MODE</code>环境变量动态加载适当的网络特定的<code>Reach stdlib</code>。 如果未指定，默认情况下将使用<code>Reach</code>的<code>ETH stdlib</code>。<code>Reach</code>的所有特定于网络的<code>stdlib</code>都遵循一个通用接口，使您可以编写与网络无关的程序</li>
+<li>第7和8行为<code>Alice</code>和<code>Bob</code>初始化了新的测试帐户</li>
+<li>第10行让<code>Alice</code>在共识网络上部署<code>contact</code>(合同)</li>
+<li>第11行将Bob附加到合同上。值<code>ctcAlice</code>不包含任何秘密信息，可以很容易地打印出来并在共识网络之外与Bob共享</li>
+<li>第13至22行启动后端，并等待它们完成，我们稍后会详细介绍。</li>
+</ul>
+<p>对于所有的测试程序，这段代码都非常相似，并且演示了构建一个<code>Reach</code>应用程序进行测试是多么直接。</p>
+<p>让我们看一下从<code>Alice</code>开始初始化和连接每个参与者的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">..    <span class="comment">// ...</span></span><br><span class="line"><span class="number">14</span>    backend.Alice(ctcAlice, &#123;</span><br><span class="line"><span class="number">15</span>      request: stdlib.parseCurrency(<span class="number">5</span>),</span><br><span class="line"><span class="number">16</span>      info: <span class="string">'If you wear these, you can see beyond evil illusions.'</span></span><br><span class="line"><span class="number">17</span>    &#125;),</span><br><span class="line">..    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>第14行为Alice提取后端。</li>
+<li></li>
+</ul>
+<!-- flag of hidden posts -->
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> thank you </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="https://serokell.io/blog">serokell</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Reach_概述',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        状态模式 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 所有的善恶都是我，良心一路走来依旧清澈鲜活... </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#状态模式"><span class="toc-text">状态模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例"><span class="toc-text">案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用状态模式"><span class="toc-text">使用状态模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类图"><span class="toc-text">类图</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#套用类图"><span class="toc-text">套用类图</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#策略模式-模版方法-状态模式"><span class="toc-text">策略模式/模版方法/状态模式</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 所有的善恶都是我，良心一路走来依旧清澈鲜活... </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        状态模式
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-02-21 18:58:13</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#状态模式" title="状态模式">状态模式</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#设计模式" title="设计模式">设计模式</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#重构" title="重构">重构</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p><strong>状态模式</strong>允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Machine</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 等待接收保单</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> WAIT_ING = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 解析中</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> PARSE_ING = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 智能核保中</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> SMART_UNDERWRITE = <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// 通知核保结果</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> NOTIFY_RESULT = <span class="number">10</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 人保</span></span><br><span class="line">    <span class="comment">// private final static int MANUAL_UNDERWRITE = 3;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前状态</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> state = WAIT_ORDER;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保单号</span></span><br><span class="line">    String orderNum = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Machine</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.orderNum = orderNum;</span><br><span class="line">        <span class="comment">// 接收到新保单，设置状态为解析中</span></span><br><span class="line">        <span class="keyword">if</span>(StringUtils.isNotEmpty(orderNum))&#123;</span><br><span class="line">            state = PARSE_ING;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**新保单**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.orderNum = orderNum;</span><br><span class="line">       <span class="keyword">this</span>.state = PARSE_ING;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(state == WAIT_ING)&#123;</span><br><span class="line">            print <span class="string">"没有保单可以处理"</span></span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state == PARSE_ING)&#123;</span><br><span class="line">            <span class="comment">// 解析中</span></span><br><span class="line">            state = SMART_UNDERWRITE;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state == SMART_UNDERWRITE)&#123;</span><br><span class="line">            <span class="comment">// 智核中</span></span><br><span class="line">            state = NOTIFY_RESULT;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// else if(state == MANUAL_UNDERWRITE)&#123;</span></span><br><span class="line">        <span class="comment">//     // 人核中</span></span><br><span class="line">        <span class="comment">//     state = NOTIFY_RESULT;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(state == NOTIFY_RESULT)&#123;</span><br><span class="line">            <span class="comment">// 通知核保结果</span></span><br><span class="line">            sendNotify();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**重新执行智核**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(state == WAIT_ING)&#123;</span><br><span class="line">            print <span class="string">"不可以重新执行智核"</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state == PARSE_ING)&#123;</span><br><span class="line">           print <span class="string">"不可以重新执行智核"</span></span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state == SMART_UNDERWRITE)&#123;</span><br><span class="line">           print <span class="string">"正在执行智核，稍后重试"</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state == MANUAL_UNDERWRITE)&#123;</span><br><span class="line">            state = SMART_UNDERWRITE;</span><br><span class="line">            print <span class="string">"回退到智核成功"</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state == NOTIFY_RESULT)&#123;</span><br><span class="line">            print <span class="string">"已通知，不可以重新执行智核"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**发送通知**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(state == NOTIFY_RESULT)&#123;</span><br><span class="line">            <span class="keyword">int</span> result = push();</span><br><span class="line">            <span class="keyword">if</span>(result.ok())&#123;</span><br><span class="line">                print <span class="string">"push success"</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                print <span class="string">"push error"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>()&#123;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>()&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">monitor</span><span class="params">()</span></span>&#123;</span><br><span class="line">        print <span class="string">"当前状态: "</span>+ state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**测试**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">       Machine machine = <span class="keyword">new</span> Machine();</span><br><span class="line">       machine.monitor();</span><br><span class="line"></span><br><span class="line">       machine.newOrder(<span class="string">"1000"</span>);</span><br><span class="line">       machine.handler();</span><br><span class="line">       machine.monitor();</span><br><span class="line">       machine.handler();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用状态模式"><a href="#使用状态模式" class="headerlink" title="使用状态模式"></a>使用状态模式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Machine</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 等待接收保单</span></span><br><span class="line">    State waitOrderState;</span><br><span class="line">    <span class="comment">// 解析中</span></span><br><span class="line">    State parseState;</span><br><span class="line">    <span class="comment">// 智能核保中</span></span><br><span class="line">    State smartUnderwriteState;</span><br><span class="line">    <span class="comment">// 通知核保结果</span></span><br><span class="line">    State notifyResultState;</span><br><span class="line">    <span class="comment">// 人保</span></span><br><span class="line">    State manualUnderwriteState;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前状态</span></span><br><span class="line">    State state = waitOrderState;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保单号</span></span><br><span class="line">    String orderNum = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Machine</span><span class="params">()</span></span>&#123;</span><br><span class="line">       waitOrderState = <span class="keyword">new</span> WaitOrderState(<span class="keyword">this</span>);</span><br><span class="line">       parseState = <span class="keyword">new</span> ParseState(<span class="keyword">this</span>);</span><br><span class="line">       smartUnderwriteState = <span class="keyword">new</span> SmartUnderwriteState(<span class="keyword">this</span>);</span><br><span class="line">       notifyResultState = <span class="keyword">new</span> NotifyResultState(<span class="keyword">this</span>);</span><br><span class="line">       manualUnderwriteState = <span class="keyword">new</span> ManualUnderwriteState(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">changeState</span><span class="params">(State state)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**新保单**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>&#123;</span><br><span class="line">       state.newOrder(orderNum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">        state.handler();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**重新执行智核**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>&#123;</span><br><span class="line">        state.reSmartUnderWrite();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**发送通知**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>&#123;</span><br><span class="line">        state.sendNotify();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">monitor</span><span class="params">()</span></span>&#123;</span><br><span class="line">        print <span class="string">"当前状态: "</span>+ state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**测试**/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">       Machine machine = <span class="keyword">new</span> Machine();</span><br><span class="line">       machine.monitor();</span><br><span class="line"></span><br><span class="line">       machine.newOrder(<span class="string">"1000"</span>);</span><br><span class="line">       machine.handler();</span><br><span class="line">       machine.monitor();</span><br><span class="line">       machine.handler();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WaitOrderState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    Machine machine;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WaitOrderState</span><span class="params">(Machine machine)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.machine = machine;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>&#123;</span><br><span class="line">        print <span class="string">"收到新保单请求"</span>;</span><br><span class="line">        handler();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// ... 处理逻辑 ...</span></span><br><span class="line">        machine.changeState(machine.getParseState());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParseState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    Machine machine;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// ... 处理逻辑 ...</span></span><br><span class="line">        <span class="comment">// 进入到智核状态</span></span><br><span class="line">        machine.changeState(machine.getSmartUnderwriteState());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmartUnderwriteState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    Machine machine;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// ... 处理逻辑 ...</span></span><br><span class="line">        <span class="keyword">if</span>(enableManual())&#123;</span><br><span class="line">            <span class="comment">// 开启人核，进入到人核状态</span></span><br><span class="line">            machine.changeState(machine.getManualUnderwriteState());</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">// 未开启人核，进入到推送状态</span></span><br><span class="line">            machine.changeState(machine.getNotifyResultState());    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ManualUnderwriteState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    Machine machine;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>&#123;</span><br><span class="line">        print <span class="string">"重新执行智核"</span>;</span><br><span class="line">        <span class="comment">// ... 处理逻辑 ...</span></span><br><span class="line">        <span class="comment">// 进入到智核状态</span></span><br><span class="line">        machine.changeState(machine.getSmartUnderwriteState());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// ... 处理逻辑 ...</span></span><br><span class="line">        <span class="comment">// 进入到推送状态</span></span><br><span class="line">        machine.changeState(machine.getNotifyResultState());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotifyResultState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    Machine machine;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newOrder</span><span class="params">(String orderNum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reSmartUnderWrite</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持该操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sendNotify</span><span class="params">()</span></span>&#123;</span><br><span class="line">        print <span class="string">"发送通知"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// ... 处理逻辑 ...</span></span><br><span class="line">        <span class="comment">// 进入到其他状态</span></span><br><span class="line">        machine.changeState(machine.getWaitOrderState());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h4><p><img src="状态模式/class-graph.png" alt=""></p>
+<h5 id="套用类图"><a href="#套用类图" class="headerlink" title="套用类图"></a>套用类图</h5><p><img src="状态模式/demo-graph.png" alt=""></p>
+<h4 id="策略模式-模版方法-状态模式"><a href="#策略模式-模版方法-状态模式" class="headerlink" title="策略模式/模版方法/状态模式"></a>策略模式/模版方法/状态模式</h4><ul>
+<li>策略模式 <ul>
+<li>将可以互换的行为封装起来，然后使用委托的方法，决定使用哪一个</li>
+</ul>
+</li>
+<li>模版方法<ul>
+<li>由子类决定如何实现算法中的某些步骤</li>
+</ul>
+</li>
+<li>状态模式<ul>
+<li>封装基于状态的行为，并将行为委托到当前状态</li>
+</ul>
+</li>
+</ul>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> thank you </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="https://serokell.io/blog">serokell</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '状态模式',
+        owner: 'limengyu1990',
+        repo: 'hexo-blog',
+        oauth: {
+            client_id: '7cfc73dd62b57f07ed83',
+            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+        },
+    })
+    gitment.render('comment-container')
+</script>
+
+</html>
