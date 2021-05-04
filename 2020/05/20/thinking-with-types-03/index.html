@@ -229,18 +229,24 @@
 <script src="/blog/js/index.js"></script>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<script src="/blog/js/gitment.js"></script>
-<script>
-    var gitment = new Gitment({
-        id: 'thinking-with-types-03',
-        owner: 'limengyu1990',
-        repo: 'hexo-blog',
-        oauth: {
-            client_id: '7cfc73dd62b57f07ed83',
-            client_secret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
-        },
-    })
-    gitment.render('comment-container')
-</script>
+<!--create by tea9-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+          clientID: '7cfc73dd62b57f07ed83',
+          clientSecret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+          repo: 'hexo-blog',
+          owner: 'limengyu1990',
+          admin: 'limengyu1990',
+          id: location.pathname,      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+        gitalk.render('comment-container')
+    </script>
+
+<!--end-->
+
 
 </html>
