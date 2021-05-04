@@ -235,12 +235,12 @@
 </blockquote>
 <p>通过游乐场打开<br><code>plutus-pioneer-program/code/week03/Vesting.hs</code>文件.</p>
 <p>我们设置初始余额为1000个<code>lovelaces</code>:</p>
-<p><img src="Plutus-Pioneer-lesson-03/01.png" alt=""></p>
+<p><img src="01.png" alt=""></p>
 <p>然后设置以下<code>action</code>序列:</p>
-<p><img src="Plutus-Pioneer-lesson-03/02.png" alt=""></p>
+<p><img src="02.png" alt=""></p>
 <p><code>getPubKeyHash</code>字段的值我们没有设置(钱包2的公钥哈希值)，我们可以通过两个方法获取到该值:</p>
 <ul>
-<li><p>将<code>getPubKeyHash</code>字段的值留空，然后执行’评估’操作，就可以在<code>genesis slot (0)</code>处，看到两个钱包的<code>pubkeyhash</code>:<br><img src="Plutus-Pioneer-lesson-03/03.png" alt=""></p>
+<li><p>将<code>getPubKeyHash</code>字段的值留空，然后执行’评估’操作，就可以在<code>genesis slot (0)</code>处，看到两个钱包的<code>pubkeyhash</code>:<br><img src="03.png" alt=""></p>
 </li>
 <li><p>使用<code>repl</code>命令行</p>
 </li>
@@ -254,9 +254,9 @@
 <p>费用: 10个<code>lovelaces</code>.</p>
 <p>目前钱包1剩下:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1000 - 费用 10 - vesting 100 = 890个lovelaces</span><br></pre></td></tr></table></figure></p>
 <p>目前脚本有: 100个<code>lovelaces</code>:</p>
-<p><img src="Plutus-Pioneer-lesson-03/04.png" alt=""></p>
+<p><img src="04.png" alt=""></p>
 <p>等待10个<code>slot</code>后，钱包2将会抓取到100个<code>lovelaces</code>:</p>
-<p><img src="Plutus-Pioneer-lesson-03/05.png" alt=""></p>
+<p><img src="05.png" alt=""></p>
 <p>可以看到，抓取操作也支付了10个<code>lovelaces</code>费用，钱包2最终得到90个<code>lovelaces</code>.</p>
 <h3 id="Vesting源码解读"><a href="#Vesting源码解读" class="headerlink" title="Vesting源码解读"></a>Vesting源码解读</h3><p>玩耍过该合同后，我们来看下它的源代码,<br>查看<code>~/haskell/plutus-pioneer-program/code/week03/Vesting.hs</code>文件:</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- Datum数据</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">VestingDatum</span> = <span class="type">VestingDatum</span></span></span><br><span class="line">    &#123; beneficiary :: <span class="type">PubKeyHash</span> <span class="comment">-- ^ 受益人的公钥hash，在我们例子中是: 钱包2</span></span><br><span class="line">    , deadline    :: <span class="type">Slot</span> <span class="comment">-- 截止时间，在我们例子中是: slot 10</span></span><br><span class="line">    &#125; <span class="keyword">deriving</span> <span class="type">Show</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 验证器</span></span><br><span class="line"><span class="title">mkValidator</span> :: <span class="type">VestingDatum</span> -&gt; () -&gt; <span class="type">ScriptContext</span> -&gt; <span class="type">Bool</span></span><br><span class="line"><span class="title">mkValidator</span> dat () ctx =</span><br><span class="line">    traceIfFalse <span class="string">"beneficiary's signature missing"</span> checkSig &amp;&amp;</span><br><span class="line">    traceIfFalse <span class="string">"deadline not reached"</span>            checkDeadline</span><br><span class="line"><span class="title">where</span></span><br><span class="line">    <span class="comment">-- 从上下文中获取交易信息</span></span><br><span class="line">    info :: <span class="type">TxInfo</span></span><br><span class="line">    info = scriptContextTxInfo ctx</span><br><span class="line"></span><br><span class="line">    <span class="comment">-- 检查受益人的签名是否在交易的公钥哈希列表中存在</span></span><br><span class="line">    checkSig :: <span class="type">Bool</span></span><br><span class="line">    checkSig = beneficiary dat `elem` txInfoSignatories info</span><br><span class="line"></span><br><span class="line">    <span class="comment">-- 检查截止时间(包含所有大于等于截止时间的值)</span></span><br><span class="line">    <span class="comment">-- 是否完全包含`txInfoValidRange`(交易的有效范围)</span></span><br><span class="line">    checkDeadline :: <span class="type">Bool</span></span><br><span class="line">    checkDeadline = from (deadline dat) `contains` txInfoValidRange info</span><br></pre></td></tr></table></figure>
