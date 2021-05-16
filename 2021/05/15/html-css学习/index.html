@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        html-css学习 - undefined
+        
+    </title><meta name="robots" content="noindex">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 所有的善恶都是我，良心一路走来依旧清澈鲜活... </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/img/photo.png" />
+        </div>
+        <div class="name">
+            <i>不负如来不负卿</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#选择器"><span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类型选择器"><span class="toc-text">类型选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类选择器"><span class="toc-text">类选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#id选择器"><span class="toc-text">id选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组合选择器"><span class="toc-text">组合选择器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块级元素-内联元素"><span class="toc-text">块级元素/内联元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接"><span class="toc-text">链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a标签"><span class="toc-text">a标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#邮件"><span class="toc-text">邮件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相对路径-绝对路径"><span class="toc-text">相对路径/绝对路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链接到同一页面的各个部分"><span class="toc-text">链接到同一页面的各个部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长度"><span class="toc-text">长度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#绝对长度"><span class="toc-text">绝对长度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Pixels-像素"><span class="toc-text">Pixels 像素</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相对长度"><span class="toc-text">相对长度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Percentages-百分比"><span class="toc-text">Percentages 百分比</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Em"><span class="toc-text">Em</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display-显示值"><span class="toc-text">display 显示值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#盒模型"><span class="toc-text">盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#width-amp-height"><span class="toc-text">width &amp; height</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Margin-amp-Padding"><span class="toc-text">Margin &amp; Padding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Borders"><span class="toc-text">Borders</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Box-Sizing"><span class="toc-text">Box Sizing</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Content-Box"><span class="toc-text">Content Box</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Padding-Box"><span class="toc-text">Padding Box</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Border-Box"><span class="toc-text">Border Box</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#挑选Box-Size"><span class="toc-text">挑选Box Size</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 所有的善恶都是我，良心一路走来依旧清澈鲜活... </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        html-css学习
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-05-15 14:23:56</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#html" title="html">html</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#css" title="css">css</a>
+        <span>/</span>
+        
+        <a class="tag" href="/blog/tags/#盒子" title="盒子">盒子</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p><a href="https://learn.shayhowe.com/html-css/opening-the-box-model/#what-is-the-box-model" target="_blank" rel="noopener">原文</a></p>
+</blockquote>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><h4 id="类型选择器"><a href="#类型选择器" class="headerlink" title="类型选择器"></a>类型选择器</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.awesome &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"awesome"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"awesome"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#shayhowe &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"shayhowe"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="组合选择器"><a href="#组合选择器" class="headerlink" title="组合选择器"></a>组合选择器</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hotdog"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"mustard"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hotdog</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: brown;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hotdog</span> <span class="selector-tag">p</span><span class="selector-class">.mustard</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最佳实践是不要在类选择器前添加类型选择器</p>
+<p>id选择器 &gt; 类选择器 &gt; 类型选择器</p>
+<h3 id="块级元素-内联元素"><a href="#块级元素-内联元素" class="headerlink" title="块级元素/内联元素"></a>块级元素/内联元素</h3><p>块级元素占用任何可用宽度，无论其内容如何，​​并从新的一行开始。内联级别的元素仅占据其内容所需的宽度，并在同一行上一个接一个地排列。<br>块级元素通常用于较大的内容，例如标题和结构元素。内联级别的元素通常用于较小的内容，例如一些被选为粗体或斜体的单词。</p>
+<p>块级元素可以彼此嵌套，并且可以包装内联级元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>，<span class="tag">&lt;<span class="name">h2</span>&gt;</span>，<span class="tag">&lt;<span class="name">h3</span>&gt;</span>，<span class="tag">&lt;<span class="name">h4</span>&gt;</span>，<span class="tag">&lt;<span class="name">h5</span>&gt;</span>，<span class="tag">&lt;<span class="name">h6</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>，<span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--HTML5的结构元素--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span>，<span class="tag">&lt;<span class="name">nav</span>&gt;</span>，<span class="tag">&lt;<span class="name">article</span>&gt;</span>，<span class="tag">&lt;<span class="name">section</span>&gt;</span>，<span class="tag">&lt;<span class="name">aside</span>&gt;</span>，<span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--示例--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"social"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>I may be found on...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Additionally, I have a profile on...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Soon we'll be <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"tooltip"</span>&gt;</span>writing HTML<span class="tag">&lt;/<span class="name">span</span>&gt;</span> with the best of them.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>内联级别(<code>span</code>)的元素不能从新行开始。它们属于文档的正常流程，一个接一个地排列，仅保持其内容的宽度。内联级别的元素可以相互嵌套。但是，它们<strong>不能包装块级元素</strong>。通常，我们会看到内联级元素具有较小的内容，例如几句话。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--基于文本的元素--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span> <span class="tag">&lt;<span class="name">b</span>&gt;</span> <span class="tag">&lt;<span class="name">em</span>&gt;</span> <span class="tag">&lt;<span class="name">i</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--示例--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>Caution:<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> Falling rocks.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This recipe calls for <span class="tag">&lt;<span class="name">b</span>&gt;</span>bacon<span class="tag">&lt;/<span class="name">b</span>&gt;</span> and <span class="tag">&lt;<span class="name">b</span>&gt;</span>baconnaise<span class="tag">&lt;/<span class="name">b</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I <span class="tag">&lt;<span class="name">em</span>&gt;</span>love<span class="tag">&lt;/<span class="name">em</span>&gt;</span> Chicago!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The name <span class="tag">&lt;<span class="name">i</span>&gt;</span>Shay<span class="tag">&lt;/<span class="name">i</span>&gt;</span> means a gift.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><h4 id="a标签"><a href="#a标签" class="headerlink" title="a标签"></a>a标签</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://shayhowe.com"</span>&gt;</span>Shay<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:shay@awesome.com?subject=Reaching%20Out&amp;body=How%20are%20you"</span>&gt;</span>Email Me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="相对路径-绝对路径"><a href="#相对路径-绝对路径" class="headerlink" title="相对路径/绝对路径"></a>相对路径/绝对路径</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 相对路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"about.html"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 绝对路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.google.com/"</span>&gt;</span>Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="链接到同一页面的各个部分"><a href="#链接到同一页面的各个部分" class="headerlink" title="链接到同一页面的各个部分"></a>链接到同一页面的各个部分</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"top"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#top"</span>&gt;</span>Back to top<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--页眉--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"index.html"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"speakers.html"</span>&gt;</span>Speakers<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"schedule.html"</span>&gt;</span>Schedule<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"venue.html"</span>&gt;</span>Venue<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"register.html"</span>&gt;</span>Register<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--页脚--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"index.html"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"speakers.html"</span>&gt;</span>Speakers<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"schedule.html"</span>&gt;</span>Schedule<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"venue.html"</span>&gt;</span>Venue<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"register.html"</span>&gt;</span>Register<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h3><h4 id="绝对长度"><a href="#绝对长度" class="headerlink" title="绝对长度"></a>绝对长度</h4><p>绝对长度值是最简单的长度值，因为它们固定到物理尺寸，例如英寸，厘米或毫米。最流行的绝对测量单位称为像素，并由<code>px</code>单位符号表示。</p>
+<h5 id="Pixels-像素"><a href="#Pixels-像素" class="headerlink" title="Pixels 像素"></a>Pixels 像素</h5><p>像素等于1/96英寸；因此，一英寸有96个像素。然而，像素的精确测量在高密度和低密度观看设备之间可能略有不同。<br>这里的代码使用像素将所有段落的字体大小设置为14像素。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>随着观看设备的变化和屏幕尺寸的变化，像素已经失去了一些流行性。</p>
+<h4 id="相对长度"><a href="#相对长度" class="headerlink" title="相对长度"></a>相对长度</h4><p>除了绝对长度值，还有相对长度值。相对长度值稍微复杂一些，因为它们不是固定的测量单位；它们依赖于另一个测量的长度。</p>
+<h5 id="Percentages-百分比"><a href="#Percentages-百分比" class="headerlink" title="Percentages 百分比"></a>Percentages 百分比</h5><p>百分比，用%单位表示法表示，是最常用的相对值之一。百分比长度是相对于另一个对象的长度定义的。例如，要将一个元素的宽度设置为50%，我们必须知道它的父元素的宽度，它嵌套在其中的元素，然后标识父元素宽度的50%。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.col</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">这里我们将<span class="selector-tag">class</span>属性值为<span class="selector-tag">col</span>的元素的宽度设置为50%。</span><br><span class="line">这50%将相对于元素父元素的宽度进行计算。</span><br><span class="line">百分比对于设置元素的高度和宽度以及构建网页布局非常有用。</span><br><span class="line">我们将经常依靠他们来帮助我们解决这些问题。</span><br></pre></td></tr></table></figure></p>
+<h5 id="Em"><a href="#Em" class="headerlink" title="Em"></a>Em</h5><p>长度是根据元素的字体大小计算的。单个em单位等效于元素的字体大小。因此，例如，如果一个元素的字体大小为14像素，并将其width设置为5em，则宽度将等于70像素（14像素乘以5）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.banner</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">5em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有为元素显式指定字体大小，<code>em</code>单位将相对于具有指定字体大小的最近父元素的字体大小。</p>
+<p><code>em</code>单位通常用于<strong>设置文本样式</strong>，包括<strong>字体大小</strong>，以及<strong>文本周围的间距</strong>，包括<strong>边距和填充</strong>。</p>
+<h3 id="display-显示值"><a href="#display-显示值" class="headerlink" title="display 显示值"></a>display 显示值</h3><ul>
+<li><p>block 块级元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>inline 内联元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>inline-block</p>
+<ul>
+<li>使用此值将允许元素充当块级元素，接受所有盒模型属性。但是，该元素将与其他元素一起显示，并且默认情况下不会以新行开始。</li>
+</ul>
+</li>
+<li><p>none 隐藏</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">6px</span> solid <span class="number">#949599</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总宽度:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">margin-right</span> + </span><br><span class="line"><span class="selector-tag">border-right</span> + </span><br><span class="line"><span class="selector-tag">padding-right</span> + </span><br><span class="line"><span class="selector-tag">width</span> + </span><br><span class="line"><span class="selector-tag">padding-left</span> + </span><br><span class="line"><span class="selector-tag">border-left</span> + </span><br><span class="line"><span class="selector-tag">margin-left</span></span><br></pre></td></tr></table></figure></p>
+<p>总高度:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">margin-top</span> + </span><br><span class="line"><span class="selector-tag">border-top</span> + </span><br><span class="line"><span class="selector-tag">padding-top</span> + </span><br><span class="line"><span class="selector-tag">height</span> + </span><br><span class="line"><span class="selector-tag">padding-bottom</span> + </span><br><span class="line"><span class="selector-tag">border-bottom</span> + </span><br><span class="line"><span class="selector-tag">margin-bottom</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="01.png" alt=""></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Width: 492px = 20px + 6px + 20px + 400px + 20px + 6px + 20px</span><br><span class="line">Height: 192px = 20px + 6px + 20px + 100px + 20px + 6px + 20px</span><br></pre></td></tr></table></figure>
+<p>毫无疑问，盒子模型是<code>HTML</code>和<code>CSS</code>中比较混乱的部分之一。我们将<code>width</code>属性值设置为<code>400</code>像素，但是元素的实际宽度是<code>492</code>像素。默认情况下，盒子模型是加法模型；因此，要确定一个盒子的实际大小，我们需要考虑盒子的四个侧面的填充、边框和边距。我们的<code>width</code>不仅包括<code>width</code>属性值，还包括左右<code>padding</code>、左右<code>borders</code>以及左右<code>margins</code>的大小。</p>
+<h4 id="width-amp-height"><a href="#width-amp-height" class="headerlink" title="width &amp; height"></a>width &amp; height</h4><p>每个元素都有默认的宽度和高度。宽度和高度可以是0像素，但默认情况下，浏览器将以大小呈现每个元素。根据元素的显示方式，默认宽度和高度可能足够。如果元素是页面布局的关键，则它可能需要指定的宽度和高度属性值。在这种情况下，可以指定非内联元素的属性值。</p>
+<p>元素的默认宽度取决于其<code>display</code>显示值。块级元素的默认宽度为<code>100%</code>，占用整个可用的水平空间。内联和内联块元素水平扩展和收缩以容纳其内容。<br>内联级别的元素不能具有固定的大小，因此宽度和高度属性仅与非内联元素相关。要为非内联元素设置特定宽度，请使用<code>width</code>属性:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>元素的默认高度由其内容决定。元素将根据需要垂直展开和收缩以容纳其内容。要为非内联元素设置特定高度，请使用<code>height</code>属性:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>调整内联级别元素的大小<br>请记住，内联级元素将不接受宽度和高度属性或与之相关的任何值。但是，块和<code>inline-block</code>(内联块)元素将接受宽度和高度属性及其相应的值。</p>
+</blockquote>
+<h4 id="Margin-amp-Padding"><a href="#Margin-amp-Padding" class="headerlink" title="Margin &amp; Padding"></a>Margin &amp; Padding</h4><p>根据元素的不同，浏览器可能会对元素应用默认<code>margins</code>和<code>padding</code>，以帮助提高易读性和清晰度。我们通常会在基于文本的元素中看到这一点。<br>这些元素的默认边距和填充可能因浏览器和元素而异。在第1课中，我们讨论了如何使用CSS重置将所有这些默认值调低到零。这样做可以让我们从头做起，明确自己的值。</p>
+<p><code>margin</code>属性允许我们设置元素周围的空间量。</p>
+<p>元素的<code>Margins</code>位于任何边框之外，颜色完全透明。</p>
+<p><code>Margins</code>可以用来帮助将元素放置在页面的某个特定位置，也可以用来提供喘息的空间，使所有其他元素保持安全距离。下面是<code>margin</code>属性的作用：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>margin属性的一个奇怪之处是，内联级元素不接受垂直边距(<code>top</code>和<code>bottom</code>)。但是，块级和内联块元素可以接受这些垂直边距。</p>
+<p><code>Margins</code>仅在内联级别的元素上左右水平工作。<code>Padding</code>在内联级别元素的所有四个边上工作；<br>但是，顶部和底部的垂直<code>Padding</code>可能会渗入元素上方和下方的线条中。<br>对于块和内联块元素，<code>Margins</code>和<code>Padding</code>的工作方式与普通的工作方式相同。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="comment">/* top-bottom=10 left-right=20 */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="comment">/* top/right/bottom/left */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">20px</span> <span class="number">0</span> <span class="number">15px</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>边距和填充属性是完全透明的，不接受任何颜色值。不过，由于是透明的，它们会显示相关元素的背景色。对于边距，我们看到父元素的背景色，对于填充，我们看到应用填充的元素的背景色。</p>
+</blockquote>
+<h4 id="Borders"><a href="#Borders" class="headerlink" title="Borders"></a>Borders</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="comment">/* width, style, and color */</span></span><br><span class="line">  <span class="attribute">border</span>: <span class="number">6px</span> solid <span class="number">#949599</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="02.png" alt=""></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="03.png" alt=""></p>
+<h4 id="Box-Sizing"><a href="#Box-Sizing" class="headerlink" title="Box Sizing"></a>Box Sizing</h4><p>到目前为止，盒子模型一直是一种附加设计。<br>如果将元素的宽度设置为400像素，然后添加20像素的<code>padding</code>和每边10像素的<code>border</code>，则元素的实际全宽将变为460像素。<br>请记住，我们需要将<code>width</code>、<code>padding</code>和<code>border</code>属性值相加，以获得元素的实际全宽。</p>
+<p>然而，盒子模型可以改变以支持不同的计算。<code>CSS3</code>引入了<code>box size</code>属性，它允许我们精确地更改<code>box</code>模型的工作方式以及元素大小的计算方式。<br>该属性接受三个主要值<code>content box</code>、<code>padding box</code>和<code>border box</code>，每个值对<code>box</code>大小的计算方式都有略微不同的影响。</p>
+<h5 id="Content-Box"><a href="#Content-Box" class="headerlink" title="Content Box"></a>Content Box</h5><p><code>content box</code>值是默认值，将<code>box</code>模型保留为附加设计。</p>
+<p>如果不使用<code>box size</code>属性，这将是所有元素的默认值。元素的大小从<code>width</code>和<code>height</code>属性开始，然后添加任何<code>padding</code>、<code>border</code>或<code>margin</code>属性值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-sizing</span>: content-box;</span><br><span class="line">     <span class="attribute">-moz-box-sizing</span>: content-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: content-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Padding-Box"><a href="#Padding-Box" class="headerlink" title="Padding Box"></a>Padding Box</h5><p><code>padding box</code>值通过在元素的<code>width</code>和<code>height</code>中包含任何<code>padding</code>属性值来更改<code>box</code>模型。</p>
+<p>使用<code>padding box</code>值时，如果元素的<code>width</code>为400像素，而<code>padding</code>为每边20像素，则实际宽度仍为400像素。随着<code>padding</code>值的增加，元素中的内容大小会按比例缩小。</p>
+<p>如果添加<code>border</code>或<code>margin</code>，这些值将添加到<code>width</code>或<code>height</code>属性中，以计算整个<code>box</code>的大小。例如，如果我们在宽度为400像素的元素的每边添加<strong>10像素</strong>的<code>border</code>和20像素的<code>padding</code>，实际的全宽将变成420像素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: padding-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>随着CSS规范的发展，<code>box size</code>属性的<code>padding box</code>值已被弃用，不应使用。</p>
+</blockquote>
+<h5 id="Border-Box"><a href="#Border-Box" class="headerlink" title="Border Box"></a>Border Box</h5><p>最后，<code>border box</code>值会更改<code>box</code>模型，以便任何<code>border</code>或<code>padding</code>属性值都包含在元素的宽度和高度中。<br>当使用<code>border box</code>值时，如果一个元素的宽度为400像素，每边有20个像素的<code>padding</code>，每边有10个像素的<code>border</code>，那么实际的宽度将保持为400像素。</p>
+<p>如果我们添加<code>margin</code>，则需要添加这些值来计算整个<code>box</code>的大小。无论使用哪个<code>box</code>大小属性值，都需要添加任何<code>margin</code>值来计算元素的完整大小.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>不同的<code>box-sizing</code>值允许从不同区域计算元素及其<code>box</code>的<code>width</code>.</p>
+</blockquote>
+<h5 id="挑选Box-Size"><a href="#挑选Box-Size" class="headerlink" title="挑选Box Size"></a>挑选Box Size</h5><p>一般来说，<code>box-sizing</code>的最佳值是<code>border-box</code>。<code>border-box</code>的值使我们的数学变得非常简单。<br>如果我们希望一个元素的宽度为400像素，那么它就是400，并且无论我们添加了什么<code>padding</code>或<code>border</code>值，它都将保持400像素的宽度.</p>
+<p>此外，我们可以轻松地混合长度值。假设我们希望我们的盒子有40%宽。在元素的每一侧添加20像素的<code>padding</code>和10像素的<code>border</code>并不困难，而且我们仍然可以保证，尽管在其他地方使用了像素值，但<code>box</code>的实际宽度仍将保持40%.</p>
+<!-- flag of hidden posts -->
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/blog/img/pay.png">
+        <p> thank you </p>
+    </div>
+</div>
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://medium.com/netflix-techblog">Netflix</a></span>
+        <span>/</span>
+        
+        <span><a href="https://engineering.linkedin.com/blog">Linkedin</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blogs.dropbox.com/tech/">Dropbox</a></span>
+        <span>/</span>
+        
+        <span><a href="https://code.fb.com/">Facebook</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.fpcomplete.com/blog">FPComplete</a></span>
+        <span>/</span>
+        
+        <span><a href="https://blog.janestreet.com/">JaneStreet</a></span>
+        <span>/</span>
+        
+        <span><a href="https://github.com/limengyu1990/">Github</a></span>
+        <span>/</span>
+        
+        <span><a href="https://serokell.io/blog">serokell</a></span>
+        <span>/</span>
+        
+        <span><a href="https://iohk.io/en/blog">IOHK</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+
+<!--create by tea9-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+          clientID: '7cfc73dd62b57f07ed83',
+          clientSecret: 'dd03b7e54aadf0d81e4c9c93e23a41272bcfcfa1',
+          repo: 'blog',
+          owner: 'limengyu1990',
+          admin: 'limengyu1990',
+          id: location.pathname,      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+        gitalk.render('comment-container')
+    </script>
+
+<!--end-->
+
+
+</html>
